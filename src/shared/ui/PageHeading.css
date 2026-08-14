@@ -1,0 +1,31 @@
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--mzbk-space-5);
+}
+
+.page-heading__title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.page-heading__description {
+  margin-top: var(--mzbk-space-2);
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.page-heading__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mzbk-space-3);
+}
+
+@media (max-width: 920px) {
+  .page-heading {
+    flex-direction: column;
+  }
+}

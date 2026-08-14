@@ -1,0 +1,39 @@
+.equipment-select {
+  width: 200px;
+  min-height: 45px;
+  padding: 0 26px 0 23px;
+  border-radius: 5px;
+  border: 1px solid var(--control-border);
+  appearance: none;
+  background-color: var(--control-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L6 6L10 2' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  color: var(--text-white);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.equipment-select:focus-visible {
+  outline: none;
+  border-color: rgba(55, 175, 255, 0.78);
+  box-shadow: 0 0 0 4px rgba(55, 175, 255, 0.12);
+}
+
+.equipment-select option {
+  background-color: var(--control-bg);
+  color: var(--text-white);
+  font-weight: 700;
+}
+
+.equipment-select option:checked {
+  background: linear-gradient(0deg, var(--control-option-active-bg), var(--control-option-active-bg));
+  color: var(--text-white);
+}
+
+.equipment-select option:disabled {
+  background-color: var(--control-bg);
+  color: rgba(255, 255, 255, 0.36);
+}

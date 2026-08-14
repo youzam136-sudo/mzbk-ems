@@ -1,0 +1,14 @@
+.history-page {
+  gap: var(--mzbk-space-6);
+}
+
+.history-page .history-search-bar {
+  max-width: 1088px;
+  margin-right: auto;
+}
+
+@media (max-width: 1280px) {
+  .history-page .history-search-bar {
+    max-width: 100%;
+  }
+}

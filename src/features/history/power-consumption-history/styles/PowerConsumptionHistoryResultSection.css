@@ -1,0 +1,31 @@
+.power-consumption-history-result .card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mzbk-space-7);
+  padding: var(--mzbk-space-7);
+}
+
+@media (max-width: 720px) {
+  .power-consumption-history-result .card__body {
+    gap: var(--mzbk-space-5);
+    min-height: auto;
+    padding: var(--mzbk-space-5) var(--mzbk-space-4) var(--mzbk-space-6);
+  }
+
+  .power-consumption-history-result .chart {
+    height: 300px !important;
+  }
+
+  .power-consumption-history-result__table-card .table {
+    min-width: max(100%, 680px) !important;
+    table-layout: fixed;
+  }
+
+  .power-consumption-history-result__table-card .table thead th,
+  .power-consumption-history-result__table-card .table tbody td {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+    line-height: 1.35;
+  }
+}

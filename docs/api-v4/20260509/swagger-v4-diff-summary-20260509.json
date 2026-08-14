@@ -1,0 +1,2697 @@
+{
+  "checkedAt": "2026-05-09T04:33:09.409Z",
+  "baseUrl": "http://efd.iptime.org:2016",
+  "current": {
+    "pathItems": 48,
+    "operations": 76,
+    "tags": 15,
+    "schemas": 94
+  },
+  "previous": {
+    "pathItems": 45,
+    "operations": 73,
+    "tags": 15,
+    "schemas": 88
+  },
+  "addedOperations": [
+    {
+      "key": "GET /dashboard/individual",
+      "method": "GET",
+      "path": "/dashboard/individual",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "대시보드 개별 조회",
+      "operationId": "individual",
+      "request": "-",
+      "response": "ApiResponseDashboardIndividualResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "DashboardSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /dashboard/integrated",
+      "method": "GET",
+      "path": "/dashboard/integrated",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "대시보드 통합 조회",
+      "operationId": "integrated",
+      "request": "-",
+      "response": "ApiResponseDashboardIntegratedResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "DashboardSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants/init",
+      "method": "GET",
+      "path": "/master/plants/init",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "마스터 화면 초기 로딩 데이터 조회",
+      "operationId": "init",
+      "request": "-",
+      "response": "ApiResponseMasterInitResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/baseline",
+      "method": "GET",
+      "path": "/monitoring/baseline",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 운전현황 조회",
+      "operationId": "baseline_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/baseline/detail",
+      "method": "GET",
+      "path": "/monitoring/baseline/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 운전현황 상세 조회",
+      "operationId": "baselineDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/peak-respond",
+      "method": "GET",
+      "path": "/monitoring/peak-respond",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "보조전력 운전현황 조회",
+      "operationId": "peakRespond_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/peak-respond/detail",
+      "method": "GET",
+      "path": "/monitoring/peak-respond/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "보조전력 운전현황 상세 조회",
+      "operationId": "peakRespondDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/power-supply",
+      "method": "GET",
+      "path": "/monitoring/power-supply",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "전력급전 운영현황 조회",
+      "operationId": "powerSupply_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/power-supply/detail",
+      "method": "GET",
+      "path": "/monitoring/power-supply/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "전력급전 운영현황 상세 조회",
+      "operationId": "powerSupplyDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/reserved",
+      "method": "GET",
+      "path": "/monitoring/reserved",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "예비전력 운전현황 조회",
+      "operationId": "reserved_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/reserved/detail",
+      "method": "GET",
+      "path": "/monitoring/reserved/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "예비전력 운전현황 상세 조회",
+      "operationId": "reservedDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/baseline",
+      "method": "GET",
+      "path": "/trend/baseline",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "기저전력 운영이력 조회",
+      "operationId": "baseline",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/peak-respond",
+      "method": "GET",
+      "path": "/trend/peak-respond",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "보조전력 운영이력 조회",
+      "operationId": "peakRespond",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/power-supply",
+      "method": "GET",
+      "path": "/trend/power-supply",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "전력급전 운영이력 조회",
+      "operationId": "powerSupply",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/reserved",
+      "method": "GET",
+      "path": "/trend/reserved",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "예비전력 운영이력 조회",
+      "operationId": "reserved",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    }
+  ],
+  "removedOperations": [
+    {
+      "key": "GET /analysis/assist/history",
+      "method": "GET",
+      "path": "/analysis/assist/history",
+      "tags": [
+        "03. Analysis"
+      ],
+      "summary": "보조전력 운영이력 조회",
+      "operationId": "assistHistory",
+      "request": "-",
+      "response": "ApiResponseAnalysisSummaryResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "AnalysisSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /analysis/base/plant/history",
+      "method": "GET",
+      "path": "/analysis/base/plant/history",
+      "tags": [
+        "03. Analysis"
+      ],
+      "summary": "기저전력 개별 운영이력 조회",
+      "operationId": "basePlantHistory",
+      "request": "-",
+      "response": "ApiResponseAnalysisSummaryResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "AnalysisSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /analysis/base/total/history",
+      "method": "GET",
+      "path": "/analysis/base/total/history",
+      "tags": [
+        "03. Analysis"
+      ],
+      "summary": "기저전력 통합 운영이력 조회",
+      "operationId": "baseTotalHistory",
+      "request": "-",
+      "response": "ApiResponseAnalysisSummaryResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "AnalysisSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /analysis/dispatch/history",
+      "method": "GET",
+      "path": "/analysis/dispatch/history",
+      "tags": [
+        "03. Analysis"
+      ],
+      "summary": "전력급전 운영이력 조회",
+      "operationId": "dispatchHistory",
+      "request": "-",
+      "response": "ApiResponseAnalysisSummaryResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "AnalysisSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /analysis/standby/history",
+      "method": "GET",
+      "path": "/analysis/standby/history",
+      "tags": [
+        "03. Analysis"
+      ],
+      "summary": "예비전력 운영이력 조회",
+      "operationId": "standbyHistory",
+      "request": "-",
+      "response": "ApiResponseAnalysisSummaryResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "AnalysisSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/assist",
+      "method": "GET",
+      "path": "/monitoring/assist",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "보조전력 운전현황 조회",
+      "operationId": "assistStatus",
+      "request": "-",
+      "response": "ApiResponseAssistPowerStatusResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/base/plant",
+      "method": "GET",
+      "path": "/monitoring/base/plant",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 개별 운전현황 조회",
+      "operationId": "basePlantStatus",
+      "request": "-",
+      "response": "ApiResponseBasePowerStatusResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/base/total",
+      "method": "GET",
+      "path": "/monitoring/base/total",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 통합 운전현황 조회",
+      "operationId": "baseTotalStatus",
+      "request": "-",
+      "response": "ApiResponseBasePowerStatusResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/dashboard/plant",
+      "method": "GET",
+      "path": "/monitoring/dashboard/plant",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "발전소 개별 대시보드 조회",
+      "operationId": "plantDashboard",
+      "request": "-",
+      "response": "ApiResponseDashboardPlantResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/dashboard/total",
+      "method": "GET",
+      "path": "/monitoring/dashboard/total",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "발전소 통합 대시보드 조회",
+      "operationId": "totalDashboard",
+      "request": "-",
+      "response": "ApiResponseDashboardTotalResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/dispatch",
+      "method": "GET",
+      "path": "/monitoring/dispatch",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "전력급전 운영현황 조회",
+      "operationId": "dispatchStatus",
+      "request": "-",
+      "response": "ApiResponseDispatchPowerStatusResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/standby",
+      "method": "GET",
+      "path": "/monitoring/standby",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "예비전력 운전현황 조회",
+      "operationId": "standbyStatus",
+      "request": "-",
+      "response": "ApiResponseStandbyPowerStatusResponse",
+      "parameters": []
+    }
+  ],
+  "changedOperations": [
+    {
+      "key": "DELETE /master/batteries/{batId}/{batSeq}",
+      "method": "DELETE",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "summary": "배터리 마스터 삭제",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "07. Master-Battery"
+          ],
+          "current": [
+            "08. Master Battery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/diesels/{dslId}/{dslSeq}",
+      "method": "DELETE",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "summary": "디젤발전기 마스터 삭제",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "09. Master-Diesel"
+          ],
+          "current": [
+            "10. Master Diesel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "DELETE",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "summary": "인버터 마스터 삭제",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "08. Master-Inverter"
+          ],
+          "current": [
+            "09. Master Inverter"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "DELETE",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "summary": "PCS 마스터 삭제",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "06. Master-PCS"
+          ],
+          "current": [
+            "07. Master PCS"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/plants/{plntId}/{plntSeq}",
+      "method": "DELETE",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "summary": "발전소 마스터 삭제",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "05. Master-Plant"
+          ],
+          "current": [
+            "06. Master Plant"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/batteries",
+      "method": "GET",
+      "path": "/master/batteries",
+      "summary": "배터리 마스터 목록 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "07. Master-Battery"
+          ],
+          "current": [
+            "08. Master Battery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/batteries/{batId}/{batSeq}",
+      "method": "GET",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "summary": "배터리 마스터 상세 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "07. Master-Battery"
+          ],
+          "current": [
+            "08. Master Battery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/diesels",
+      "method": "GET",
+      "path": "/master/diesels",
+      "summary": "디젤발전기 마스터 목록 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "09. Master-Diesel"
+          ],
+          "current": [
+            "10. Master Diesel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/diesels/{dslId}/{dslSeq}",
+      "method": "GET",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "summary": "디젤발전기 마스터 상세 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "09. Master-Diesel"
+          ],
+          "current": [
+            "10. Master Diesel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/inverters",
+      "method": "GET",
+      "path": "/master/inverters",
+      "summary": "인버터 마스터 목록 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "08. Master-Inverter"
+          ],
+          "current": [
+            "09. Master Inverter"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "GET",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "summary": "인버터 마스터 상세 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "08. Master-Inverter"
+          ],
+          "current": [
+            "09. Master Inverter"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/pcs",
+      "method": "GET",
+      "path": "/master/pcs",
+      "summary": "PCS 마스터 목록 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "06. Master-PCS"
+          ],
+          "current": [
+            "07. Master PCS"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "GET",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "summary": "PCS 마스터 상세 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "06. Master-PCS"
+          ],
+          "current": [
+            "07. Master PCS"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants",
+      "method": "GET",
+      "path": "/master/plants",
+      "summary": "발전소 마스터 목록 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "05. Master-Plant"
+          ],
+          "current": [
+            "06. Master Plant"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants/{plntId}/{plntSeq}",
+      "method": "GET",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "summary": "발전소 마스터 상세 조회",
+      "changes": [
+        {
+          "field": "tags",
+          "previous": [
+            "05. Master-Plant"
+          ],
+          "current": [
+            "06. Master Plant"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GET /report/daily",
+      "method": "GET",
+      "path": "/report/daily",
+      "summary": "일간 운전 보고서 조회",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseListOperationReportResponse",
+          "current": "ApiResponsePowerPageResponse"
+        }
+      ]
+    },
+    {
+      "key": "GET /report/monthly",
+      "method": "GET",
+      "path": "/report/monthly",
+      "summary": "월간 운전 보고서 조회",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseListOperationReportResponse",
+          "current": "ApiResponsePowerPageResponse"
+        }
+      ]
+    },
+    {
+      "key": "GET /report/weekly",
+      "method": "GET",
+      "path": "/report/weekly",
+      "summary": "주간 운전 보고서 조회",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseListOperationReportResponse",
+          "current": "ApiResponsePowerPageResponse"
+        }
+      ]
+    },
+    {
+      "key": "GET /report/yearly",
+      "method": "GET",
+      "path": "/report/yearly",
+      "summary": "년간 운전 보고서 조회",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseListOperationReportResponse",
+          "current": "ApiResponsePowerPageResponse"
+        }
+      ]
+    },
+    {
+      "key": "POST /master/batteries",
+      "method": "POST",
+      "path": "/master/batteries",
+      "summary": "배터리 마스터 등록",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseBatteryMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "07. Master-Battery"
+          ],
+          "current": [
+            "08. Master Battery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "POST /master/diesels",
+      "method": "POST",
+      "path": "/master/diesels",
+      "summary": "디젤발전기 마스터 등록",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseDieselMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "09. Master-Diesel"
+          ],
+          "current": [
+            "10. Master Diesel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "POST /master/inverters",
+      "method": "POST",
+      "path": "/master/inverters",
+      "summary": "인버터 마스터 등록",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseInverterMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "08. Master-Inverter"
+          ],
+          "current": [
+            "09. Master Inverter"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "POST /master/pcs",
+      "method": "POST",
+      "path": "/master/pcs",
+      "summary": "PCS 마스터 등록",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponsePcsMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "06. Master-PCS"
+          ],
+          "current": [
+            "07. Master PCS"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "POST /master/plants",
+      "method": "POST",
+      "path": "/master/plants",
+      "summary": "발전소 마스터 등록",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponsePlantMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "05. Master-Plant"
+          ],
+          "current": [
+            "06. Master Plant"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/batteries/{batId}/{batSeq}",
+      "method": "PUT",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "summary": "배터리 마스터 수정",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseBatteryMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "07. Master-Battery"
+          ],
+          "current": [
+            "08. Master Battery"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/diesels/{dslId}/{dslSeq}",
+      "method": "PUT",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "summary": "디젤발전기 마스터 수정",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseDieselMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "09. Master-Diesel"
+          ],
+          "current": [
+            "10. Master Diesel"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "PUT",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "summary": "인버터 마스터 수정",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponseInverterMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "08. Master-Inverter"
+          ],
+          "current": [
+            "09. Master Inverter"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "PUT",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "summary": "PCS 마스터 수정",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponsePcsMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "06. Master-PCS"
+          ],
+          "current": [
+            "07. Master PCS"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/plants/{plntId}/{plntSeq}",
+      "method": "PUT",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "summary": "발전소 마스터 수정",
+      "changes": [
+        {
+          "field": "response",
+          "previous": "ApiResponseVoid",
+          "current": "ApiResponsePlantMasterResponse"
+        },
+        {
+          "field": "tags",
+          "previous": [
+            "05. Master-Plant"
+          ],
+          "current": [
+            "06. Master Plant"
+          ]
+        }
+      ]
+    }
+  ],
+  "addedSchemas": [
+    "ApiResponseDashboardIndividualResponse",
+    "ApiResponseDashboardIntegratedResponse",
+    "ApiResponseListPowerDetailResponse",
+    "ApiResponseMasterInitResponse",
+    "ApiResponsePowerPageResponse",
+    "DashboardAcResponse",
+    "DashboardAgcResponse",
+    "DashboardBankResponse",
+    "DashboardBatteryResponse",
+    "DashboardDieselResponse",
+    "DashboardIndividualResponse",
+    "DashboardIntegratedResponse",
+    "DashboardInverterResponse",
+    "DashboardPcsResponse",
+    "DashboardSearchRequest",
+    "DashboardStorageResponse",
+    "MasterInitResponse",
+    "MonitoringSearchRequest",
+    "PowerChartResponse",
+    "PowerDetailResponse",
+    "PowerPageResponse",
+    "PowerSummaryResponse",
+    "PowerTableResponse",
+    "TrendSearchRequest"
+  ],
+  "removedSchemas": [
+    "AnalysisChartResponse",
+    "AnalysisSearchRequest",
+    "AnalysisSummaryResponse",
+    "ApiResponseAnalysisSummaryResponse",
+    "ApiResponseAssistPowerStatusResponse",
+    "ApiResponseBasePowerStatusResponse",
+    "ApiResponseDashboardPlantResponse",
+    "ApiResponseDashboardTotalResponse",
+    "ApiResponseDispatchPowerStatusResponse",
+    "ApiResponseListOperationReportResponse",
+    "ApiResponseStandbyPowerStatusResponse",
+    "AssistPowerStatusResponse",
+    "BasePowerStatusResponse",
+    "DashboardPlantResponse",
+    "DashboardTotalResponse",
+    "DispatchPowerStatusResponse",
+    "OperationReportResponse",
+    "StandbyPowerStatusResponse"
+  ],
+  "currentTags": [
+    "01. Auth",
+    "01. Dashboard",
+    "02. Monitoring",
+    "02. System-Role",
+    "03. System-Menu",
+    "03. Trend",
+    "04. Report",
+    "04. System-User",
+    "05. System-Code",
+    "06. Master Plant",
+    "07. Master PCS",
+    "08. Master Battery",
+    "09. Master Inverter",
+    "10. Master Diesel",
+    "18. Excel"
+  ],
+  "currentOperations": [
+    {
+      "key": "DELETE /master/batteries/{batId}/{batSeq}",
+      "method": "DELETE",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "tags": [
+        "08. Master Battery"
+      ],
+      "summary": "배터리 마스터 삭제",
+      "operationId": "delete_8",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "batId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "batSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/diesels/{dslId}/{dslSeq}",
+      "method": "DELETE",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "tags": [
+        "10. Master Diesel"
+      ],
+      "summary": "디젤발전기 마스터 삭제",
+      "operationId": "delete_7",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "dslId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "dslSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "DELETE",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "tags": [
+        "09. Master Inverter"
+      ],
+      "summary": "인버터 마스터 삭제",
+      "operationId": "delete_6",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "ivtId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ivtSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "DELETE",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "tags": [
+        "07. Master PCS"
+      ],
+      "summary": "PCS 마스터 삭제",
+      "operationId": "delete_5",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "pcsId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pcsSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /master/plants/{plntId}/{plntSeq}",
+      "method": "DELETE",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "발전소 마스터 삭제",
+      "operationId": "delete_4",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "plntId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "plntSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /system/codes/{cdId}",
+      "method": "DELETE",
+      "path": "/system/codes/{cdId}",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "코드 삭제",
+      "operationId": "delete_3",
+      "request": "DeleteRequestDto",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "cdId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /system/menus/{menuId}",
+      "method": "DELETE",
+      "path": "/system/menus/{menuId}",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "메뉴 삭제",
+      "operationId": "delete_2",
+      "request": "DeleteRequestDto",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "menuId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /system/roles/{roleId}",
+      "method": "DELETE",
+      "path": "/system/roles/{roleId}",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한 삭제",
+      "operationId": "delete_1",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "DELETE /system/users/{usrId}",
+      "method": "DELETE",
+      "path": "/system/users/{usrId}",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 삭제",
+      "operationId": "delete",
+      "request": "DeleteRequestDto",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "usrId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /dashboard/individual",
+      "method": "GET",
+      "path": "/dashboard/individual",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "대시보드 개별 조회",
+      "operationId": "individual",
+      "request": "-",
+      "response": "ApiResponseDashboardIndividualResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "DashboardSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /dashboard/integrated",
+      "method": "GET",
+      "path": "/dashboard/integrated",
+      "tags": [
+        "01. Dashboard"
+      ],
+      "summary": "대시보드 통합 조회",
+      "operationId": "integrated",
+      "request": "-",
+      "response": "ApiResponseDashboardIntegratedResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "DashboardSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /excel/{type}",
+      "method": "GET",
+      "path": "/excel/{type}",
+      "tags": [
+        "18. Excel"
+      ],
+      "summary": "엑셀 다운로드",
+      "operationId": "download",
+      "request": "-",
+      "response": "string",
+      "parameters": [
+        {
+          "name": "type",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "ExcelDownloadRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/batteries",
+      "method": "GET",
+      "path": "/master/batteries",
+      "tags": [
+        "08. Master Battery"
+      ],
+      "summary": "배터리 마스터 목록 조회",
+      "operationId": "list_8",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoBatteryMasterResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MasterSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/batteries/{batId}/{batSeq}",
+      "method": "GET",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "tags": [
+        "08. Master Battery"
+      ],
+      "summary": "배터리 마스터 상세 조회",
+      "operationId": "detail_8",
+      "request": "-",
+      "response": "ApiResponseBatteryMasterResponse",
+      "parameters": [
+        {
+          "name": "batId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "batSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/diesels",
+      "method": "GET",
+      "path": "/master/diesels",
+      "tags": [
+        "10. Master Diesel"
+      ],
+      "summary": "디젤발전기 마스터 목록 조회",
+      "operationId": "list_7",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoDieselMasterResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MasterSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/diesels/{dslId}/{dslSeq}",
+      "method": "GET",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "tags": [
+        "10. Master Diesel"
+      ],
+      "summary": "디젤발전기 마스터 상세 조회",
+      "operationId": "detail_7",
+      "request": "-",
+      "response": "ApiResponseDieselMasterResponse",
+      "parameters": [
+        {
+          "name": "dslId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "dslSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/inverters",
+      "method": "GET",
+      "path": "/master/inverters",
+      "tags": [
+        "09. Master Inverter"
+      ],
+      "summary": "인버터 마스터 목록 조회",
+      "operationId": "list_6",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoInverterMasterResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MasterSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "GET",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "tags": [
+        "09. Master Inverter"
+      ],
+      "summary": "인버터 마스터 상세 조회",
+      "operationId": "detail_6",
+      "request": "-",
+      "response": "ApiResponseInverterMasterResponse",
+      "parameters": [
+        {
+          "name": "ivtId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ivtSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/pcs",
+      "method": "GET",
+      "path": "/master/pcs",
+      "tags": [
+        "07. Master PCS"
+      ],
+      "summary": "PCS 마스터 목록 조회",
+      "operationId": "list_5",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoPcsMasterResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MasterSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "GET",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "tags": [
+        "07. Master PCS"
+      ],
+      "summary": "PCS 마스터 상세 조회",
+      "operationId": "detail_5",
+      "request": "-",
+      "response": "ApiResponsePcsMasterResponse",
+      "parameters": [
+        {
+          "name": "pcsId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pcsSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants",
+      "method": "GET",
+      "path": "/master/plants",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "발전소 마스터 목록 조회",
+      "operationId": "list_4",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoPlantMasterResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MasterSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants/{plntId}/{plntSeq}",
+      "method": "GET",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "발전소 마스터 상세 조회",
+      "operationId": "detail_4",
+      "request": "-",
+      "response": "ApiResponsePlantMasterResponse",
+      "parameters": [
+        {
+          "name": "plntId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "plntSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /master/plants/init",
+      "method": "GET",
+      "path": "/master/plants/init",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "마스터 화면 초기 로딩 데이터 조회",
+      "operationId": "init",
+      "request": "-",
+      "response": "ApiResponseMasterInitResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /me",
+      "method": "GET",
+      "path": "/me",
+      "tags": [
+        "01. Auth"
+      ],
+      "summary": "내 정보 조회",
+      "operationId": "me",
+      "request": "-",
+      "response": "ApiResponseMeResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /me/menus",
+      "method": "GET",
+      "path": "/me/menus",
+      "tags": [
+        "01. Auth"
+      ],
+      "summary": "내 권한 메뉴 조회",
+      "operationId": "myMenus",
+      "request": "-",
+      "response": "ApiResponseListMyMenuResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /monitoring/baseline",
+      "method": "GET",
+      "path": "/monitoring/baseline",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 운전현황 조회",
+      "operationId": "baseline_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/baseline/detail",
+      "method": "GET",
+      "path": "/monitoring/baseline/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "기저전력 운전현황 상세 조회",
+      "operationId": "baselineDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/peak-respond",
+      "method": "GET",
+      "path": "/monitoring/peak-respond",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "보조전력 운전현황 조회",
+      "operationId": "peakRespond_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/peak-respond/detail",
+      "method": "GET",
+      "path": "/monitoring/peak-respond/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "보조전력 운전현황 상세 조회",
+      "operationId": "peakRespondDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/power-supply",
+      "method": "GET",
+      "path": "/monitoring/power-supply",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "전력급전 운영현황 조회",
+      "operationId": "powerSupply_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/power-supply/detail",
+      "method": "GET",
+      "path": "/monitoring/power-supply/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "전력급전 운영현황 상세 조회",
+      "operationId": "powerSupplyDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/reserved",
+      "method": "GET",
+      "path": "/monitoring/reserved",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "예비전력 운전현황 조회",
+      "operationId": "reserved_1",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /monitoring/reserved/detail",
+      "method": "GET",
+      "path": "/monitoring/reserved/detail",
+      "tags": [
+        "02. Monitoring"
+      ],
+      "summary": "예비전력 운전현황 상세 조회",
+      "operationId": "reservedDetail",
+      "request": "-",
+      "response": "ApiResponseListPowerDetailResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "MonitoringSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /report/daily",
+      "method": "GET",
+      "path": "/report/daily",
+      "tags": [
+        "04. Report"
+      ],
+      "summary": "일간 운전 보고서 조회",
+      "operationId": "daily",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "ReportSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /report/monthly",
+      "method": "GET",
+      "path": "/report/monthly",
+      "tags": [
+        "04. Report"
+      ],
+      "summary": "월간 운전 보고서 조회",
+      "operationId": "monthly",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "ReportSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /report/weekly",
+      "method": "GET",
+      "path": "/report/weekly",
+      "tags": [
+        "04. Report"
+      ],
+      "summary": "주간 운전 보고서 조회",
+      "operationId": "weekly",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "ReportSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /report/yearly",
+      "method": "GET",
+      "path": "/report/yearly",
+      "tags": [
+        "04. Report"
+      ],
+      "summary": "년간 운전 보고서 조회",
+      "operationId": "yearly",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "ReportSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/codes",
+      "method": "GET",
+      "path": "/system/codes",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "코드 목록 조회",
+      "operationId": "list_3",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoCodeResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "SearchRequestDto",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/codes/{cdId}",
+      "method": "GET",
+      "path": "/system/codes/{cdId}",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "코드 상세 조회",
+      "operationId": "detail_3",
+      "request": "-",
+      "response": "ApiResponseCodeResponse",
+      "parameters": [
+        {
+          "name": "cdId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/codes/{cdId}/children",
+      "method": "GET",
+      "path": "/system/codes/{cdId}/children",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "하위 코드 조회",
+      "operationId": "children",
+      "request": "-",
+      "response": "ApiResponseListCodeResponse",
+      "parameters": [
+        {
+          "name": "cdId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/menus",
+      "method": "GET",
+      "path": "/system/menus",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "메뉴 목록 조회",
+      "operationId": "list_2",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoMenuResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "SearchRequestDto",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/menus/{menuId}",
+      "method": "GET",
+      "path": "/system/menus/{menuId}",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "메뉴 상세 조회",
+      "operationId": "detail_2",
+      "request": "-",
+      "response": "ApiResponseMenuResponse",
+      "parameters": [
+        {
+          "name": "menuId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/menus/tree",
+      "method": "GET",
+      "path": "/system/menus/tree",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "전체 메뉴 트리 조회",
+      "operationId": "tree",
+      "request": "-",
+      "response": "ApiResponseListMenuTreeResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /system/menus/use-tree",
+      "method": "GET",
+      "path": "/system/menus/use-tree",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "사용 메뉴 트리 조회",
+      "operationId": "useTree",
+      "request": "-",
+      "response": "ApiResponseListMenuTreeResponse",
+      "parameters": []
+    },
+    {
+      "key": "GET /system/roles",
+      "method": "GET",
+      "path": "/system/roles",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한 목록 조회",
+      "operationId": "list_1",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoRoleResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "SearchRequestDto",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/roles/{roleId}",
+      "method": "GET",
+      "path": "/system/roles/{roleId}",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한 상세 조회",
+      "operationId": "detail_1",
+      "request": "-",
+      "response": "ApiResponseRoleResponse",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/roles/{roleId}/menus",
+      "method": "GET",
+      "path": "/system/roles/{roleId}/menus",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한별 메뉴 목록 조회",
+      "operationId": "menus",
+      "request": "-",
+      "response": "ApiResponseListRoleMenuResponse",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/roles/{roleId}/menus/tree",
+      "method": "GET",
+      "path": "/system/roles/{roleId}/menus/tree",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한별 메뉴 트리 조회",
+      "operationId": "menuTree",
+      "request": "-",
+      "response": "ApiResponseListRoleMenuTreeResponse",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/users",
+      "method": "GET",
+      "path": "/system/users",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 목록 조회",
+      "operationId": "list",
+      "request": "-",
+      "response": "ApiResponsePageResponseDtoUserResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "SearchRequestDto",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/users/{usrId}",
+      "method": "GET",
+      "path": "/system/users/{usrId}",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 상세 조회",
+      "operationId": "detail",
+      "request": "-",
+      "response": "ApiResponseUserResponse",
+      "parameters": [
+        {
+          "name": "usrId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /system/users/{usrId}/roles",
+      "method": "GET",
+      "path": "/system/users/{usrId}/roles",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 권한 조회",
+      "operationId": "roles",
+      "request": "-",
+      "response": "ApiResponseListUserRoleResponse",
+      "parameters": [
+        {
+          "name": "usrId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/baseline",
+      "method": "GET",
+      "path": "/trend/baseline",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "기저전력 운영이력 조회",
+      "operationId": "baseline",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/peak-respond",
+      "method": "GET",
+      "path": "/trend/peak-respond",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "보조전력 운영이력 조회",
+      "operationId": "peakRespond",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/power-supply",
+      "method": "GET",
+      "path": "/trend/power-supply",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "전력급전 운영이력 조회",
+      "operationId": "powerSupply",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "GET /trend/reserved",
+      "method": "GET",
+      "path": "/trend/reserved",
+      "tags": [
+        "03. Trend"
+      ],
+      "summary": "예비전력 운영이력 조회",
+      "operationId": "reserved",
+      "request": "-",
+      "response": "ApiResponsePowerPageResponse",
+      "parameters": [
+        {
+          "name": "req",
+          "in": "query",
+          "required": true,
+          "schema": "TrendSearchRequest",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "POST /auth/login",
+      "method": "POST",
+      "path": "/auth/login",
+      "tags": [
+        "01. Auth"
+      ],
+      "summary": "로그인",
+      "operationId": "login",
+      "request": "LoginRequest",
+      "response": "ApiResponseLoginResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /auth/logout",
+      "method": "POST",
+      "path": "/auth/logout",
+      "tags": [
+        "01. Auth"
+      ],
+      "summary": "로그아웃",
+      "operationId": "logout",
+      "request": "-",
+      "response": "ApiResponseVoid",
+      "parameters": []
+    },
+    {
+      "key": "POST /master/batteries",
+      "method": "POST",
+      "path": "/master/batteries",
+      "tags": [
+        "08. Master Battery"
+      ],
+      "summary": "배터리 마스터 등록",
+      "operationId": "create_8",
+      "request": "BatteryMasterRequest",
+      "response": "ApiResponseBatteryMasterResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /master/diesels",
+      "method": "POST",
+      "path": "/master/diesels",
+      "tags": [
+        "10. Master Diesel"
+      ],
+      "summary": "디젤발전기 마스터 등록",
+      "operationId": "create_7",
+      "request": "DieselMasterRequest",
+      "response": "ApiResponseDieselMasterResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /master/inverters",
+      "method": "POST",
+      "path": "/master/inverters",
+      "tags": [
+        "09. Master Inverter"
+      ],
+      "summary": "인버터 마스터 등록",
+      "operationId": "create_6",
+      "request": "InverterMasterRequest",
+      "response": "ApiResponseInverterMasterResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /master/pcs",
+      "method": "POST",
+      "path": "/master/pcs",
+      "tags": [
+        "07. Master PCS"
+      ],
+      "summary": "PCS 마스터 등록",
+      "operationId": "create_5",
+      "request": "PcsMasterRequest",
+      "response": "ApiResponsePcsMasterResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /master/plants",
+      "method": "POST",
+      "path": "/master/plants",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "발전소 마스터 등록",
+      "operationId": "create_4",
+      "request": "PlantMasterRequest",
+      "response": "ApiResponsePlantMasterResponse",
+      "parameters": []
+    },
+    {
+      "key": "POST /system/codes",
+      "method": "POST",
+      "path": "/system/codes",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "코드 등록",
+      "operationId": "create_3",
+      "request": "CodeSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": []
+    },
+    {
+      "key": "POST /system/menus",
+      "method": "POST",
+      "path": "/system/menus",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "메뉴 등록",
+      "operationId": "create_2",
+      "request": "MenuSaveRequest",
+      "response": "ApiResponseMapStringString",
+      "parameters": []
+    },
+    {
+      "key": "POST /system/roles",
+      "method": "POST",
+      "path": "/system/roles",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한 등록",
+      "operationId": "create_1",
+      "request": "RoleSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": []
+    },
+    {
+      "key": "POST /system/roles/{roleId}/menus",
+      "method": "POST",
+      "path": "/system/roles/{roleId}/menus",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한별 메뉴 저장",
+      "operationId": "saveMenus",
+      "request": "RoleMenuSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "POST /system/users",
+      "method": "POST",
+      "path": "/system/users",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 등록",
+      "operationId": "create",
+      "request": "UserSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": []
+    },
+    {
+      "key": "PUT /master/batteries/{batId}/{batSeq}",
+      "method": "PUT",
+      "path": "/master/batteries/{batId}/{batSeq}",
+      "tags": [
+        "08. Master Battery"
+      ],
+      "summary": "배터리 마스터 수정",
+      "operationId": "update_8",
+      "request": "BatteryMasterRequest",
+      "response": "ApiResponseBatteryMasterResponse",
+      "parameters": [
+        {
+          "name": "batId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "batSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/diesels/{dslId}/{dslSeq}",
+      "method": "PUT",
+      "path": "/master/diesels/{dslId}/{dslSeq}",
+      "tags": [
+        "10. Master Diesel"
+      ],
+      "summary": "디젤발전기 마스터 수정",
+      "operationId": "update_7",
+      "request": "DieselMasterRequest",
+      "response": "ApiResponseDieselMasterResponse",
+      "parameters": [
+        {
+          "name": "dslId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "dslSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/inverters/{ivtId}/{ivtSeq}",
+      "method": "PUT",
+      "path": "/master/inverters/{ivtId}/{ivtSeq}",
+      "tags": [
+        "09. Master Inverter"
+      ],
+      "summary": "인버터 마스터 수정",
+      "operationId": "update_6",
+      "request": "InverterMasterRequest",
+      "response": "ApiResponseInverterMasterResponse",
+      "parameters": [
+        {
+          "name": "ivtId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "ivtSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/pcs/{pcsId}/{pcsSeq}",
+      "method": "PUT",
+      "path": "/master/pcs/{pcsId}/{pcsSeq}",
+      "tags": [
+        "07. Master PCS"
+      ],
+      "summary": "PCS 마스터 수정",
+      "operationId": "update_5",
+      "request": "PcsMasterRequest",
+      "response": "ApiResponsePcsMasterResponse",
+      "parameters": [
+        {
+          "name": "pcsId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "pcsSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /master/plants/{plntId}/{plntSeq}",
+      "method": "PUT",
+      "path": "/master/plants/{plntId}/{plntSeq}",
+      "tags": [
+        "06. Master Plant"
+      ],
+      "summary": "발전소 마스터 수정",
+      "operationId": "update_4",
+      "request": "PlantMasterRequest",
+      "response": "ApiResponsePlantMasterResponse",
+      "parameters": [
+        {
+          "name": "plntId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        },
+        {
+          "name": "plntSeq",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /system/codes/{cdId}",
+      "method": "PUT",
+      "path": "/system/codes/{cdId}",
+      "tags": [
+        "05. System-Code"
+      ],
+      "summary": "코드 수정",
+      "operationId": "update_3",
+      "request": "CodeSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "cdId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /system/menus/{menuId}",
+      "method": "PUT",
+      "path": "/system/menus/{menuId}",
+      "tags": [
+        "03. System-Menu"
+      ],
+      "summary": "메뉴 수정",
+      "operationId": "update_2",
+      "request": "MenuSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "menuId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /system/roles/{roleId}",
+      "method": "PUT",
+      "path": "/system/roles/{roleId}",
+      "tags": [
+        "02. System-Role"
+      ],
+      "summary": "권한 수정",
+      "operationId": "update_1",
+      "request": "RoleSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "roleId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "key": "PUT /system/users/{usrId}",
+      "method": "PUT",
+      "path": "/system/users/{usrId}",
+      "tags": [
+        "04. System-User"
+      ],
+      "summary": "사용자 수정",
+      "operationId": "update",
+      "request": "UserSaveRequest",
+      "response": "ApiResponseVoid",
+      "parameters": [
+        {
+          "name": "usrId",
+          "in": "path",
+          "required": true,
+          "schema": "string",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

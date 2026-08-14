@@ -1,0 +1,43 @@
+.excel-save-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 170px;
+  min-width: 170px;
+  height: 45px;
+  min-height: 45px;
+  padding: 12px 24px 12px 30px;
+  border-radius: 5px;
+  border-color: var(--control-border);
+  background-color: var(--control-bg);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.38px;
+  line-height: 1.4;
+}
+
+.excel-save-button__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.excel-save-button:hover {
+  border-color: #ffffff;
+  background-color: #ffffff;
+  color: var(--mzbk-action-button-hover-text);
+}
+
+@media (max-width: 720px) {
+  .excel-save-button {
+    width: 150px;
+    min-width: 150px;
+    height: 42px;
+    min-height: 42px;
+    padding-inline: 18px;
+    font-size: 14px;
+  }
+}

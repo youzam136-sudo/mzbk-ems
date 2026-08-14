@@ -1,0 +1,431 @@
+{
+  "checkedAt": "2026-05-22T06:55:26.683Z",
+  "baseUrl": "http://efd.iptime.org:2016",
+  "login": {
+    "status": 401,
+    "success": false,
+    "code": "C002",
+    "message": "아이디 또는 비밀번호가 올바르지 않습니다.",
+    "tokenPresent": false
+  },
+  "results": [
+    {
+      "method": "GET",
+      "path": "/dashboard/integrated",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/dashboard/individual",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/baseline",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/baseline/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/peak-respond",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/peak-respond/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/reserved",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/reserved/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/power-supply",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/power-supply/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/baseline",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/baseline/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/peak-respond",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/peak-respond/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/reserved",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/reserved/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/power-supply",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/trend/power-supply/detail",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/report/daily",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/report/weekly",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/report/monthly",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/report/yearly",
+      "status": 401,
+      "success": false,
+      "code": "C002",
+      "message": "인증이 필요합니다.",
+      "dataShape": {
+        "kind": "object",
+        "keys": [
+          "success",
+          "code",
+          "message"
+        ],
+        "success": false,
+        "code": "C002",
+        "message": "인증이 필요합니다."
+      }
+    }
+  ]
+}

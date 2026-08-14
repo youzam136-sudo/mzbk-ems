@@ -1,0 +1,28 @@
+.collapsible-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    grid-template-rows 0.24s ease,
+    opacity 0.2s ease,
+    transform 0.24s ease;
+}
+
+.collapsible-content.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.collapsible-content__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsible-content {
+    transition: none;
+    transform: none;
+  }
+}

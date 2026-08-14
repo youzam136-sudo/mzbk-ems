@@ -1,0 +1,25 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.8125rem;
+  color: var(--text-main);
+}
+
+.chip--positive {
+  background: rgba(55, 213, 124, 0.12);
+  color: #c9f8df;
+}
+
+.chip--warning {
+  background: rgba(255, 193, 77, 0.12);
+  color: #ffe7b8;
+}
+
+.chip--danger {
+  background: rgba(255, 93, 112, 0.12);
+  color: #ffd8de;
+}

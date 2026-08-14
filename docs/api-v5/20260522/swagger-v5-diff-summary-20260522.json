@@ -1,0 +1,442 @@
+{
+  "checkedAt": "2026-05-22T06:54:20.718Z",
+  "source": {
+    "swaggerUi": "http://efd.iptime.org:2016/swagger-ui/index.html",
+    "openapiJson": "http://efd.iptime.org:2016/v3/api-docs",
+    "compareFrom": "docs/api-v4/20260509/openapi-v4-20260509.json"
+  },
+  "counts": {
+    "previous": {
+      "pathItems": 48,
+      "operations": 76,
+      "schemas": 94
+    },
+    "current": {
+      "pathItems": 52,
+      "operations": 80,
+      "schemas": 95
+    }
+  },
+  "monitoringFamily": {
+    "addedOperations": [
+      {
+        "key": "GET /trend/baseline/detail",
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "기저전력 운영이력 상세 조회",
+        "operationId": "baselineDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": "TrendSearchRequest",
+            "description": ""
+          }
+        ],
+        "request": null,
+        "response": "ApiResponseListPowerDetailResponse"
+      },
+      {
+        "key": "GET /trend/peak-respond/detail",
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "보조전력 운영이력 상세 조회",
+        "operationId": "peakRespondDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": "TrendSearchRequest",
+            "description": ""
+          }
+        ],
+        "request": null,
+        "response": "ApiResponseListPowerDetailResponse"
+      },
+      {
+        "key": "GET /trend/power-supply/detail",
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "전력급전 운영이력 상세 조회",
+        "operationId": "powerSupplyDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": "TrendSearchRequest",
+            "description": ""
+          }
+        ],
+        "request": null,
+        "response": "ApiResponseListPowerDetailResponse"
+      },
+      {
+        "key": "GET /trend/reserved/detail",
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "예비전력 운영이력 상세 조회",
+        "operationId": "reservedDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": "TrendSearchRequest",
+            "description": ""
+          }
+        ],
+        "request": null,
+        "response": "ApiResponseListPowerDetailResponse"
+      }
+    ],
+    "removedOperations": [],
+    "changedOperations": [
+      {
+        "key": "GET /monitoring/baseline/detail",
+        "previous": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "기저전력 운전현황 상세 조회",
+          "operationId": "baselineDetail",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        },
+        "current": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "기저전력 상세 조회",
+          "operationId": "baselineDetail_1",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        }
+      },
+      {
+        "key": "GET /monitoring/peak-respond/detail",
+        "previous": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "보조전력 운전현황 상세 조회",
+          "operationId": "peakRespondDetail",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        },
+        "current": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "보조전력 상세 조회",
+          "operationId": "peakRespondDetail_1",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        }
+      },
+      {
+        "key": "GET /monitoring/power-supply/detail",
+        "previous": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "전력급전 운영현황 상세 조회",
+          "operationId": "powerSupplyDetail",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        },
+        "current": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "전력급전 상세 조회",
+          "operationId": "powerSupplyDetail_1",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        }
+      },
+      {
+        "key": "GET /monitoring/reserved/detail",
+        "previous": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "예비전력 운전현황 상세 조회",
+          "operationId": "reservedDetail",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        },
+        "current": {
+          "tags": [
+            "02. Monitoring"
+          ],
+          "summary": "예비전력 상세 조회",
+          "operationId": "reservedDetail_1",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "MonitoringSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponseListPowerDetailResponse"
+        }
+      },
+      {
+        "key": "GET /report/daily",
+        "previous": {
+          "tags": [
+            "04. Report"
+          ],
+          "summary": "일간 운전 보고서 조회",
+          "operationId": "daily",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        },
+        "current": {
+          "tags": [
+            "03. Report"
+          ],
+          "summary": "일간 운전 보고서 조회",
+          "operationId": "daily",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        }
+      },
+      {
+        "key": "GET /report/monthly",
+        "previous": {
+          "tags": [
+            "04. Report"
+          ],
+          "summary": "월간 운전 보고서 조회",
+          "operationId": "monthly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        },
+        "current": {
+          "tags": [
+            "03. Report"
+          ],
+          "summary": "월간 운전 보고서 조회",
+          "operationId": "monthly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        }
+      },
+      {
+        "key": "GET /report/weekly",
+        "previous": {
+          "tags": [
+            "04. Report"
+          ],
+          "summary": "주간 운전 보고서 조회",
+          "operationId": "weekly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        },
+        "current": {
+          "tags": [
+            "03. Report"
+          ],
+          "summary": "주간 운전 보고서 조회",
+          "operationId": "weekly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        }
+      },
+      {
+        "key": "GET /report/yearly",
+        "previous": {
+          "tags": [
+            "04. Report"
+          ],
+          "summary": "년간 운전 보고서 조회",
+          "operationId": "yearly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        },
+        "current": {
+          "tags": [
+            "03. Report"
+          ],
+          "summary": "년간 운전 보고서 조회",
+          "operationId": "yearly",
+          "parameters": [
+            {
+              "name": "req",
+              "in": "query",
+              "required": true,
+              "schema": "ReportSearchRequest",
+              "description": ""
+            }
+          ],
+          "request": null,
+          "response": "ApiResponsePowerPageResponse"
+        }
+      }
+    ]
+  },
+  "monitoringRelatedSchemas": {
+    "addedSchemas": [
+      "PowerMetricSummaryResponse"
+    ],
+    "removedSchemas": [],
+    "changedSchemas": [
+      "DashboardAcResponse",
+      "DashboardAgcResponse",
+      "DashboardBankResponse",
+      "DashboardBatteryResponse",
+      "DashboardDieselResponse",
+      "DashboardIndividualResponse",
+      "DashboardIntegratedResponse",
+      "DashboardInverterResponse",
+      "DashboardPcsResponse",
+      "DashboardSearchRequest",
+      "DashboardStorageResponse",
+      "MonitoringSearchRequest",
+      "PowerChartResponse",
+      "PowerDetailResponse",
+      "PowerPageResponse",
+      "PowerSummaryResponse",
+      "PowerTableResponse",
+      "ReportSearchRequest",
+      "TrendSearchRequest"
+    ]
+  }
+}

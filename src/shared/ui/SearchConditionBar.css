@@ -1,0 +1,290 @@
+.search-condition-bar {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.search-condition-bar--right {
+  justify-content: flex-end;
+}
+
+.search-condition-bar--left {
+  justify-content: flex-start;
+}
+
+.search-condition-bar--split {
+  justify-content: space-between;
+}
+
+.search-condition-bar__modes {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 0 1 auto;
+}
+
+.search-condition-bar__mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #8f96a7;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.search-condition-bar__check {
+  position: relative;
+  width: 25px;
+  height: 26px;
+  border-radius: 9px;
+  display: inline-grid;
+  place-items: center;
+  background: #272831;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+
+.search-condition-bar__check::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 7px;
+  border-left: 1.6px solid #fff;
+  border-bottom: 1.6px solid #fff;
+  transform: translateY(-1px) rotate(-45deg);
+  transform-origin: center;
+}
+
+.search-condition-bar__mode.is-active {
+  color: #dfe7ff;
+}
+
+.search-condition-bar__mode.is-active .search-condition-bar__check {
+  width: 26px;
+  background: var(--accent-blue);
+}
+
+.search-condition-bar__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  flex: 0 1 auto;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.search-condition-bar--left .search-condition-bar__controls,
+.search-condition-bar--split .search-condition-bar__controls {
+  justify-content: flex-start;
+}
+
+.search-condition-bar__date {
+  position: relative;
+  display: block;
+}
+
+.search-condition-bar__date input {
+  width: 240px;
+  height: 46px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background-color: #111219;
+  color: #ccc;
+  color-scheme: dark;
+  padding: 0 52px 0 24px;
+  font-size: 1rem;
+}
+
+.search-condition-bar__date input::-webkit-datetime-edit {
+  color: #ccc;
+}
+
+.search-condition-bar__date--year input {
+  width: 170px;
+}
+
+.search-condition-bar__date--month input {
+  width: 240px;
+}
+
+.search-condition-bar__date input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.search-condition-bar__date::after {
+  content: none;
+}
+
+.search-condition-bar__date::before {
+  content: none;
+}
+
+.search-condition-bar__date--year input {
+  padding-right: 24px;
+}
+
+.search-condition-bar__date--year::before,
+.search-condition-bar__date--year::after {
+  content: none;
+}
+
+.search-condition-bar__calendar {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.search-condition-bar__calendar span {
+  position: relative;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 1.7px solid #f4f6ff;
+  border-radius: 2px;
+}
+
+.search-condition-bar__calendar span::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 4px;
+  border-top: 1.7px solid #f4f6ff;
+}
+
+.search-condition-bar__calendar span::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: -4px;
+  height: 5px;
+  border-right: 1.7px solid #f4f6ff;
+  border-left: 1.7px solid #f4f6ff;
+}
+
+.search-condition-bar__dash {
+  color: #d9dfec;
+  font-weight: 400;
+}
+
+.search-condition-bar__week-nav {
+  position: relative;
+  display: inline-grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  flex: 0 0 46px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+  background: #1b1b2d;
+  color: #dfe7ff;
+}
+
+.search-condition-bar__week-nav:not(:disabled):hover,
+.search-condition-bar__week-nav:not(:disabled):focus-visible {
+  border-color: rgba(47, 156, 255, 0.72);
+  background: #23243a;
+}
+
+.search-condition-bar__week-nav:disabled {
+  cursor: not-allowed;
+  opacity: 0.36;
+}
+
+.search-condition-bar__week-nav-icon {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+}
+
+.search-condition-bar__week-nav-icon--prev {
+  transform: translateX(2px) rotate(-45deg);
+}
+
+.search-condition-bar__week-nav-icon--next {
+  transform: translateX(-2px) rotate(135deg);
+}
+
+.search-condition-bar__button {
+  min-width: 170px;
+  height: 46px;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1100px) {
+  .search-condition-bar {
+    gap: 18px;
+  }
+
+  .search-condition-bar__modes {
+    width: 100%;
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+
+  .search-condition-bar__controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .search-condition-bar__modes,
+  .search-condition-bar,
+  .search-condition-bar__controls {
+    gap: 12px;
+  }
+
+  .search-condition-bar__date input,
+  .search-condition-bar__date--month input {
+    width: 200px;
+  }
+
+  .search-condition-bar__date--year input,
+  .search-condition-bar__button {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  .search-condition-bar__dash {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .search-condition-bar__modes {
+    flex-wrap: wrap;
+  }
+
+  .search-condition-bar__date,
+  .search-condition-bar__date input,
+  .search-condition-bar__date--year input,
+  .search-condition-bar__date--month input,
+  .search-condition-bar__button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .search-condition-bar__dash {
+    display: none;
+  }
+}

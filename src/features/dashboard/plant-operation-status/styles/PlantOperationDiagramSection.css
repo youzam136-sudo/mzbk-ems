@@ -1,0 +1,934 @@
+.plant-operation-page {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.plant-operation-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.plant-operation-card .card__header {
+  align-items: center;
+}
+
+.plant-operation-card .card__actions {
+  flex: 0 0 auto;
+}
+
+.plant-operation-card__target-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 300;
+}
+
+.plant-operation-card__target-field select {
+  width: 180px;
+  height: 45px;
+  border: 1px solid var(--control-border);
+  border-radius: 5px;
+  background-color: var(--control-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L6 6L10 2' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  color: var(--text-white);
+  padding: 0 46px 0 18px;
+  appearance: none;
+  outline: none;
+}
+
+.plant-operation-card__target-field select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(var(--primary-blue-rgb), 0.18);
+}
+
+.plant-operation-card__target-field option {
+  color: var(--text-white);
+  background-color: var(--control-bg);
+}
+
+.plant-operation-card .card__body {
+  height: 100%;
+  padding: 0;
+}
+
+.plant-operation-status-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 240px;
+  border-radius: 22px;
+  background: var(--panel-bg);
+  color: var(--text-layout-soft);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.plant-operation-status-message--error {
+  color: var(--accent-red);
+}
+
+.plant-operation-scroll {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 2px;
+  border: var(--topology-outline-border-width, 1.5px) solid rgba(120, 120, 120, 0.6);
+  border-radius: 10px;
+  background: #12131a;
+  cursor: grab;
+  scrollbar-color: rgba(150, 160, 182, 0.34) rgba(255, 255, 255, 0.03);
+  scrollbar-width: thin;
+}
+
+.plant-operation-scroll--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.plant-operation-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.plant-operation-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.plant-operation-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(150, 160, 182, 0.72);
+}
+
+.plant-operation-canvas {
+  --topology-line: #0f68c9;
+  --topology-muted-border: rgba(120, 120, 120, 0.6);
+  --topology-outline-border-width: 1.5px;
+  --topology-cell-line: var(--topology-muted-border);
+  --topology-cell-border-width: 1px;
+  --topology-cell-font-size: 0.6875rem;
+  --topology-cell-height: 23px;
+  --topology-cell-line-height: 1.15;
+  --topology-cell-padding-x: 5px;
+  --topology-cell-left-padding-x: 10px;
+  --topology-cell-left-padding-tight: 6px;
+  --topology-table-border: var(--topology-muted-border);
+  --topology-table-bg: #12131a;
+  --topology-pill-bg: #12131a;
+  --topology-pill-border: var(--topology-muted-border);
+  box-sizing: border-box;
+  display: grid;
+  place-content: center;
+  width: max-content;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0;
+  color: var(--text-white);
+}
+
+.plant-operation-topology-board {
+  position: relative;
+  z-index: 1;
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: repeat(var(--plant-op-grid-columns), var(--plant-op-col-width));
+  grid-template-rows: repeat(var(--plant-op-grid-rows), var(--plant-op-row-height));
+  column-gap: var(--plant-op-col-gap);
+  row-gap: var(--plant-op-row-gap);
+  align-items: stretch;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  isolation: isolate;
+  background: transparent;
+}
+
+.plant-operation-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.plant-operation-line {
+  fill: none;
+  stroke: var(--topology-line);
+  stroke-width: 1px;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+
+.plant-operation-node-pill,
+.plant-operation-bank-table,
+.plant-operation-simple-table,
+.plant-operation-power-table,
+.plant-operation-pcs-table,
+.plant-operation-battery-table,
+.plant-operation-generator-table,
+.plant-operation-inverter-detail-table,
+.plant-operation-inverter-matrix-table {
+  position: relative;
+  z-index: 2;
+}
+
+.plant-operation-bank-table,
+.plant-operation-simple-table,
+.plant-operation-power-table,
+.plant-operation-pcs-table,
+.plant-operation-battery-table,
+.plant-operation-generator-table,
+.plant-operation-inverter-detail-table,
+.plant-operation-inverter-matrix-table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: separate;
+  overflow: hidden;
+  color: var(--text-white);
+  background: var(--topology-table-bg);
+  border: 0;
+  border-radius: 8px;
+  user-select: text;
+}
+
+.plant-operation-bank-table::after,
+.plant-operation-simple-table::after,
+.plant-operation-power-table::after,
+.plant-operation-pcs-table::after,
+.plant-operation-battery-table::after,
+.plant-operation-generator-table::after,
+.plant-operation-inverter-detail-table::after,
+.plant-operation-inverter-matrix-table::after {
+  position: absolute;
+  inset: 0;
+  border: var(--topology-outline-border-width) solid var(--topology-table-border);
+  border-radius: 8px;
+  content: '';
+  pointer-events: none;
+}
+
+.plant-operation-bank-table th,
+.plant-operation-bank-table td,
+.plant-operation-simple-table th,
+.plant-operation-simple-table td,
+.plant-operation-power-table th,
+.plant-operation-power-table td,
+.plant-operation-pcs-table th,
+.plant-operation-pcs-table td,
+.plant-operation-battery-table th,
+.plant-operation-battery-table td,
+.plant-operation-generator-table th,
+.plant-operation-generator-table td,
+.plant-operation-inverter-detail-table th,
+.plant-operation-inverter-detail-table td,
+.plant-operation-inverter-matrix-table th,
+.plant-operation-inverter-matrix-table td {
+  padding: 0 var(--topology-cell-padding-x);
+  text-align: center;
+  vertical-align: middle;
+  border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+  line-height: var(--topology-cell-line-height);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.plant-operation-bank-table thead th {
+  font-weight: 700;
+}
+
+.plant-operation-bank-table tbody {
+  height: calc(var(--topology-cell-height) * var(--topology-row-count, 4));
+}
+
+.plant-operation-bank-table tbody tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-simple-table tr,
+.plant-operation-power-table tr,
+.plant-operation-pcs-table tr,
+.plant-operation-battery-table tr,
+.plant-operation-generator-table tr,
+.plant-operation-inverter-detail-table tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-simple-table--bank-collector-left thead {
+  height: var(--topology-cell-height);
+  background: #2f303b;
+}
+
+.plant-operation-simple-table--bank-collector-left thead tr {
+  height: 100%;
+}
+
+.plant-operation-simple-table--bank-collector-left thead th {
+  padding: 0 18px;
+  text-align: left;
+  border-right: 0;
+  font-weight: 700;
+}
+
+.plant-operation-simple-table--bank-collector-left tbody {
+  height: calc(var(--topology-cell-height) * var(--topology-row-count, 1));
+}
+
+.plant-operation-simple-table--bank-collector-left tbody tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-simple-table--ac-status {
+  --topology-cell-height: 35px;
+}
+
+.plant-operation-simple-table__row-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.plant-operation-simple-table__row-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.plant-operation-simple-table--air-conditioner {
+  --topology-cell-height: 28px;
+}
+
+.plant-operation-battery-table {
+  --topology-cell-height: 28px;
+}
+
+.plant-operation-simple-table__col-label {
+  width: 66%;
+}
+
+.plant-operation-simple-table__col-value {
+  width: 34%;
+}
+
+.plant-operation-bank-table tr > :first-child {
+  width: 56%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.plant-operation-bank-table th,
+.plant-operation-bank-table td {
+  text-align: center;
+}
+
+.plant-operation-bank-table tr > :last-child {
+  width: 44%;
+}
+
+.plant-operation-bank-table tr > :last-child,
+.plant-operation-simple-table tr > :last-child,
+.plant-operation-power-table tr > :last-child,
+.plant-operation-pcs-table tr > :last-child,
+.plant-operation-battery-table tr > :last-child,
+.plant-operation-generator-table tr > :last-child,
+.plant-operation-inverter-detail-table tr > :last-child {
+  border-right: 0;
+}
+
+.plant-operation-bank-table tbody tr:last-child > *,
+.plant-operation-simple-table tbody tr:last-child > *,
+.plant-operation-power-table tbody tr:last-child > *,
+.plant-operation-pcs-table tbody tr:last-child > *,
+.plant-operation-battery-table tbody tr:last-child > *,
+.plant-operation-generator-table tbody tr:last-child > *,
+.plant-operation-inverter-detail-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.plant-operation-node-pill {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-self: center;
+  box-sizing: border-box;
+  border: var(--topology-outline-border-width) solid var(--topology-pill-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-white);
+  background: var(--topology-pill-bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  user-select: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.plant-operation-node-pill__label {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.plant-operation-node-pill--disabled .plant-operation-node-pill__icon,
+.plant-operation-node-pill--disabled .plant-operation-node-pill__label {
+  opacity: 0.5;
+}
+
+/* 설비 ON/OFF: 설비명(label) 색상만 구분한다. ON = 적색, OFF = 회색 */
+.plant-operation-node-pill--on .plant-operation-node-pill__label {
+  color: var(--accent-red, #ef4444);
+}
+
+.plant-operation-node-pill--off .plant-operation-node-pill__label {
+  color: #9aa0ac;
+}
+
+.plant-operation-node-pill:not(.plant-operation-node-pill--bank) .plant-operation-node-pill__label {
+  order: -1;
+}
+
+.plant-operation-node-pill__icon {
+  position: relative;
+  display: block;
+  width: 91px;
+  height: 57px;
+  flex: 0 0 auto;
+}
+
+.plant-operation-node-pill__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plant-operation-node-pill--solar .plant-operation-node-pill__image,
+.plant-operation-node-pill--btb .plant-operation-node-pill__image {
+  border-radius: 10px;
+}
+
+.plant-operation-node-pill__icon:has(.plant-operation-node-pill__image)::before,
+.plant-operation-node-pill__icon:has(.plant-operation-node-pill__image)::after {
+  display: none;
+}
+
+.plant-operation-node-pill__icon::before,
+.plant-operation-node-pill__icon::after {
+  position: absolute;
+  content: '';
+}
+
+.plant-operation-node-pill__icon--bank {
+  width: 28px;
+  height: 20px;
+}
+
+.plant-operation-node-pill__icon--bank::before {
+  inset: 1px 4px 1px 4px;
+  border: 2px solid #d8dbe3;
+  border-radius: 2px;
+}
+
+.plant-operation-node-pill__icon--bank::after {
+  right: 2px;
+  bottom: 1px;
+  left: 2px;
+  height: 2px;
+  background: #d8dbe3;
+}
+
+.plant-operation-node-pill__icon--btb::before,
+.plant-operation-node-pill__icon--pcs::before {
+  inset: 1px 4px 1px 4px;
+  border: 2px solid #7e8797;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.24) 50%, transparent 51%),
+    linear-gradient(#424956, #232832);
+}
+
+.plant-operation-node-pill__icon--btb,
+.plant-operation-node-pill__icon--pcs {
+  width: 64px;
+  height: 52px;
+}
+
+.plant-operation-node-pill__icon--solar {
+  width: 92px;
+  height: 56px;
+}
+
+.plant-operation-node-pill__icon--battery {
+  width: 48px;
+  height: 44px;
+}
+
+.plant-operation-node-pill__icon--generator {
+  width: 56px;
+  height: 37px;
+}
+
+.plant-operation-node-pill__icon--inverter {
+  width: 30px;
+  height: 24px;
+}
+
+.plant-operation-node-pill__icon--btb::after,
+.plant-operation-node-pill__icon--pcs::after {
+  right: 9px;
+  bottom: 5px;
+  left: 9px;
+  height: 4px;
+  border-radius: 1px;
+  background: #37d57c;
+}
+
+.plant-operation-node-pill__icon--solar::before {
+  inset: 4px 5px 5px;
+  border: 2px solid #a4ecff;
+  border-radius: 2px;
+  background:
+    linear-gradient(90deg, transparent 32%, rgba(255,255,255,0.45) 33%, rgba(255,255,255,0.45) 35%, transparent 36%, transparent 65%, rgba(255,255,255,0.45) 66%, rgba(255,255,255,0.45) 68%, transparent 69%),
+    linear-gradient(180deg, transparent 48%, rgba(255,255,255,0.45) 49%, rgba(255,255,255,0.45) 51%, transparent 52%),
+    linear-gradient(135deg, #37d57c, #20a1fb);
+  transform: skewX(-8deg);
+}
+
+.plant-operation-node-pill__icon--solar::after {
+  right: 14px;
+  bottom: 1px;
+  left: 14px;
+  height: 5px;
+  border-radius: 1px;
+  background: #37d57c;
+}
+
+.plant-operation-node-pill__icon--battery::before {
+  inset: 5px 3px 2px;
+  border: 2px solid #7e8797;
+  border-radius: 3px;
+  background: linear-gradient(#26313a, #15191f);
+}
+
+.plant-operation-node-pill__icon--battery::after {
+  right: 8px;
+  bottom: 6px;
+  left: 8px;
+  height: 6px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #37d57c 0 68%, rgba(55, 213, 124, 0.25) 68% 100%);
+}
+
+.plant-operation-node-pill__icon--generator::before {
+  inset: 6px 2px 4px 8px;
+  border: 2px solid #7e8797;
+  border-radius: 999px 5px 5px 999px;
+  background: linear-gradient(90deg, #2a303a, #9097a4);
+}
+
+.plant-operation-node-pill__icon--generator::after {
+  right: 2px;
+  bottom: 8px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #7e8797;
+  border-radius: 2px;
+  background: #1f242d;
+}
+
+.plant-operation-node-pill__icon--inverter::before {
+  inset: 2px 8px 1px;
+  border: 2px solid #8b94a4;
+  border-radius: 2px;
+  background: linear-gradient(#545c68, #d5d8dd 42%, #7b8491);
+}
+
+.plant-operation-node-pill__icon--inverter::after {
+  right: 14px;
+  bottom: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #37d57c;
+}
+
+.plant-operation-node-pill--bank {
+  min-height: 0;
+  flex-direction: row;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+  color: #e7e9ef;
+}
+
+.plant-operation-node-pill--btb,
+.plant-operation-node-pill--solar,
+.plant-operation-node-pill--storage-btb,
+.plant-operation-node-pill--pcs,
+.plant-operation-node-pill--battery,
+.plant-operation-node-pill--generator-agc,
+.plant-operation-node-pill--generator,
+.plant-operation-node-pill--inverter {
+  justify-self: stretch;
+  align-self: center;
+}
+
+.plant-operation-node-pill--inverter,
+.plant-operation-node-pill--generator {
+  gap: 3px;
+}
+
+.plant-operation-node-pill--generator {
+  flex-direction: row;
+  gap: 7px;
+  border: 0;
+  background: transparent;
+}
+
+.plant-operation-node-pill.plant-operation-node-pill--generator .plant-operation-node-pill__label {
+  order: 0;
+}
+
+.plant-operation-simple-table--bank-collector-left th,
+.plant-operation-simple-table--bank-collector-left td {
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+}
+
+.plant-operation-simple-table--bank-collector-left th {
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  text-align: left;
+}
+
+.plant-operation-simple-table--bank-collector-left td {
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  text-align: left;
+  font-weight: 700;
+}
+
+.plant-operation-simple-table__label {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  gap: 8px;
+}
+
+.plant-operation-simple-table__icon {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: #0082ff;
+}
+
+.plant-operation-simple-table__icon-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plant-operation-simple-table__icon::before,
+.plant-operation-simple-table__icon::after {
+  position: absolute;
+  content: '';
+}
+
+.plant-operation-simple-table__icon:has(.plant-operation-simple-table__icon-image)::before,
+.plant-operation-simple-table__icon:has(.plant-operation-simple-table__icon-image)::after {
+  display: none;
+}
+
+.plant-operation-simple-table__icon--status::before {
+  inset: 1px;
+  background:
+    linear-gradient(90deg, transparent 46%, currentColor 46% 54%, transparent 54%),
+    linear-gradient(0deg, transparent 46%, currentColor 46% 54%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, currentColor 46% 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, currentColor 46% 54%, transparent 54%);
+  border-radius: 50%;
+}
+
+.plant-operation-simple-table__icon--status::after {
+  inset: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.plant-operation-simple-table__icon--discharge::before,
+.plant-operation-simple-table__icon--temperature::before {
+  left: 7px;
+  top: 1px;
+  width: 5px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+.plant-operation-simple-table__icon--discharge::after,
+.plant-operation-simple-table__icon--temperature::after {
+  left: 5px;
+  bottom: 1px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.plant-operation-simple-table__icon--discharge {
+  transform: translateY(-1px);
+}
+
+.plant-operation-simple-table__icon--discharge::before {
+  box-shadow: 7px 3px 0 -4px currentColor;
+}
+
+.plant-operation-simple-table__icon--humidity::before {
+  inset: 1px 4px 2px;
+  border-radius: 70% 70% 70% 0;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+.plant-operation-simple-table__icon--humidity::after {
+  left: 10px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0 0 8px;
+}
+
+.plant-operation-power-table th {
+  min-width: 0;
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-tight);
+  text-align: left;
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+}
+
+.plant-operation-power-table td {
+  min-width: 0;
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  text-align: left;
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+}
+
+.plant-operation-power-table .plant-operation-power-table__pf-label {
+  min-width: 0;
+  padding: 0 2px;
+  text-align: center;
+  font-size: var(--topology-cell-font-size);
+  border-left: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  border-bottom: 0;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.plant-operation-power-table .plant-operation-power-table__pf-value {
+  min-width: 0;
+  padding: 0 2px;
+  text-align: center;
+  font-size: var(--topology-cell-font-size);
+  border-bottom: 0;
+  text-overflow: clip;
+}
+
+.plant-operation-power-table__col-label {
+  width: 32%;
+}
+
+.plant-operation-power-table__col-value {
+  width: 14%;
+}
+
+.plant-operation-power-table__col-pf-label {
+  width: 12%;
+}
+
+.plant-operation-power-table__col-pf-value {
+  width: 14%;
+}
+
+.plant-operation-power-table tr > :first-child {
+  width: 32%;
+}
+
+.plant-operation-power-table tr > :nth-child(4) {
+  border-right: 0;
+}
+
+.plant-operation-pcs-table th,
+.plant-operation-pcs-table td {
+  width: 50%;
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+}
+
+.plant-operation-pcs-table th {
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  text-align: left;
+}
+
+.plant-operation-pcs-table td {
+  text-align: center;
+}
+
+.plant-operation-battery-table th,
+.plant-operation-battery-table td {
+  min-width: 0;
+  padding: 0 2px;
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.plant-operation-battery-table thead {
+  height: calc(var(--topology-cell-height) * 2);
+}
+
+.plant-operation-battery-table thead tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-battery-table tbody {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-battery-table tbody tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-generator-table th,
+.plant-operation-generator-table td {
+  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+}
+
+.plant-operation-generator-table th {
+  width: 54%;
+  text-align: left;
+}
+
+.plant-operation-generator-table td {
+  width: 46%;
+  text-align: center;
+  padding-left: var(--topology-cell-left-padding-tight);
+}
+
+.plant-operation-generator-table td.plant-operation-empty-value {
+  color: rgba(231, 233, 239, 0.45);
+}
+
+.plant-operation-inverter-detail-table th,
+.plant-operation-inverter-detail-table td {
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+  text-align: center;
+}
+
+.plant-operation-inverter-detail-table thead,
+.plant-operation-inverter-detail-table tbody,
+.plant-operation-inverter-detail-table thead tr,
+.plant-operation-inverter-detail-table tbody tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-inverter-detail-table td.plant-operation-empty-value,
+.plant-operation-inverter-detail-table--disabled th,
+.plant-operation-inverter-detail-table--disabled td {
+  color: rgba(231, 233, 239, 0.45);
+}
+
+.plant-operation-topology-board--total .plant-operation-node-pill--inverter {
+  gap: 2px;
+  font-size: 0.75rem;
+}
+
+.plant-operation-topology-board--total .plant-operation-node-pill__icon--inverter {
+  width: 22px;
+  height: 26px;
+}
+
+.plant-operation-topology-board--total .plant-operation-inverter-detail-table {
+  --topology-cell-height: 23px;
+}
+
+@media (max-width: 920px) {
+  .plant-operation-card__target-field,
+  .plant-operation-card__target-field select {
+    width: 100%;
+  }
+
+  .plant-operation-card__target-field {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .plant-operation-card .card__body {
+    padding: 0;
+  }
+
+  .plant-operation-canvas {
+    padding: 0;
+  }
+}
+
+.plant-operation-inverter-matrix-table thead {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-inverter-matrix-table tbody tr {
+  height: var(--topology-cell-height);
+}
+
+.plant-operation-inverter-matrix-table th:first-child,
+.plant-operation-inverter-matrix-table td:first-child {
+  width: 14%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.plant-operation-inverter-matrix-table th[scope='col']:not(:first-child) {
+  color: var(--accent-red, #ef4444);
+  font-weight: 700;
+}
+
+.plant-operation-inverter-matrix-table tr > :last-child {
+  border-right: 0;
+}

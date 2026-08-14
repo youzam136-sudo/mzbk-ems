@@ -1,0 +1,4662 @@
+[
+  {
+    "name": "DashboardAcResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "AC0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "dischargeAirTemperature",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "A/C 배출공기 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "토출 공기 온도(℃)",
+          "example": "18.2",
+          "items": null
+        }
+      },
+      {
+        "field": "humidity",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "습도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "실내 습도(%)",
+          "example": "58.2",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "A/C 상태",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "example": "RUN",
+          "items": null
+        }
+      },
+      {
+        "field": "temperature",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "실내 온도(℃)",
+          "example": "24.1",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardAgcResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "GRID0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "activePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력(kW)",
+          "example": "852.1",
+          "items": null
+        }
+      },
+      {
+        "field": "apparentPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "피상전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "피상전력(kVA)",
+          "example": "881.2",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류(A)",
+          "example": "124.1",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류(A)",
+          "example": "123.8",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류(A)",
+          "example": "122.7",
+          "items": null
+        }
+      },
+      {
+        "field": "frequencyL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "frequencyL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 주파수(Hz)",
+          "example": "59.9",
+          "items": null
+        }
+      },
+      {
+        "field": "frequencyL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 주파수(Hz)",
+          "example": "60.1",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "reactivePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력(kVar)",
+          "example": "125.3",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL12",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압(V)",
+          "example": "381.2",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL23",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압(V)",
+          "example": "382.1",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL31",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압(V)",
+          "example": "380.4",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardBankResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "activePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "bankId",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Bank ID",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "bankName",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Bank 명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "reactivePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "singlePhasePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "단상 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "threePhasePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "3상 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "totalPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "총 사용 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardBatteryResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "BAT0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "chargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전량",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전량(kWh)",
+          "example": "523.1",
+          "items": null
+        }
+      },
+      {
+        "field": "dcCurrent",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전류(A)",
+          "example": "123.4",
+          "items": null
+        }
+      },
+      {
+        "field": "dcVoltage",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전압(V)",
+          "example": "720.2",
+          "items": null
+        }
+      },
+      {
+        "field": "dischargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전량",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전량(kWh)",
+          "example": "412.2",
+          "items": null
+        }
+      },
+      {
+        "field": "packTempAvg",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Pack 온도 AVG",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 평균 온도(℃)",
+          "example": "31.4",
+          "items": null
+        }
+      },
+      {
+        "field": "packTempMax",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Pack 온도 MAX",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 최대 온도(℃)",
+          "example": "35.5",
+          "items": null
+        }
+      },
+      {
+        "field": "packTempMin",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Pack 온도 MIN",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 최소 온도(℃)",
+          "example": "28.1",
+          "items": null
+        }
+      },
+      {
+        "field": "rackCurrentAvg",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전류 AVG",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 평균 전류(A)",
+          "example": "141.4",
+          "items": null
+        }
+      },
+      {
+        "field": "rackCurrentMax",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전류 MAX",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 최대 전류(A)",
+          "example": "153.2",
+          "items": null
+        }
+      },
+      {
+        "field": "rackCurrentMin",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전류 MIN",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 최소 전류(A)",
+          "example": "132.1",
+          "items": null
+        }
+      },
+      {
+        "field": "rackVoltageAvg",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전압 AVG",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 평균 전압(V)",
+          "example": "761.1",
+          "items": null
+        }
+      },
+      {
+        "field": "rackVoltageMax",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전압 MAX",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 최대 전압(V)",
+          "example": "782.5",
+          "items": null
+        }
+      },
+      {
+        "field": "rackVoltageMin",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 전압 MIN",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Rack 최소 전압(V)",
+          "example": "741.2",
+          "items": null
+        }
+      },
+      {
+        "field": "soc",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC(%)",
+          "example": "82.5",
+          "items": null
+        }
+      },
+      {
+        "field": "soh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH(%)",
+          "example": "96.3",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 상태",
+          "example": "NORMAL",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardDieselResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "DSL0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "coolantTemp",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "냉각수 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "냉각수 온도(℃)",
+          "example": "72.1",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류(A)",
+          "example": "124.2",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류(A)",
+          "example": "123.8",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류(A)",
+          "example": "122.5",
+          "items": null
+        }
+      },
+      {
+        "field": "frequency",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "fuel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "연료량",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "연료 잔량(%)",
+          "example": "71.5",
+          "items": null
+        }
+      },
+      {
+        "field": "oilPress",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력(bar)",
+          "example": "4.3",
+          "items": null
+        }
+      },
+      {
+        "field": "oilTemp",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 온도(℃)",
+          "example": "81.4",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.97",
+          "items": null
+        }
+      },
+      {
+        "field": "powerL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류(A)",
+          "example": "122.4",
+          "items": null
+        }
+      },
+      {
+        "field": "powerL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류(A)",
+          "example": "121.8",
+          "items": null
+        }
+      },
+      {
+        "field": "powerL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류(A)",
+          "example": "123.1",
+          "items": null
+        }
+      },
+      {
+        "field": "rpm",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "RPM",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "엔진 RPM",
+          "example": "1800",
+          "items": null
+        }
+      },
+      {
+        "field": "runningHour",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "가동시간",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "누적 운전시간(H)",
+          "example": "5231",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "디젤 발전기 상태",
+          "example": "RUN",
+          "items": null
+        }
+      },
+      {
+        "field": "totalPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "총 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "총 발전 전력(kW)",
+          "example": "523.1",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL12",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압(V)",
+          "example": "381.1",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL23",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압(V)",
+          "example": "382.2",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL31",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압(V)",
+          "example": "380.5",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardIndividualResponse",
+    "added": [
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부",
+          "example": false,
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "PCS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분",
+          "example": "PCS",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "inverterList",
+        "previous": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "인버터 개별 목록",
+          "items": "DashboardInverterResponse"
+        },
+        "current": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "인버터 목록",
+          "items": "DashboardInverterResponse"
+        }
+      },
+      {
+        "field": "menuId",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "메뉴 ID",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "메뉴 ID",
+          "example": "MNU000002",
+          "items": null
+        }
+      },
+      {
+        "field": "operTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준 시각",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준시간",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "pageTitle",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "화면명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "페이지 제목",
+          "example": "대시보드 개별",
+          "items": null
+        }
+      },
+      {
+        "field": "refreshSeconds",
+        "previous": {
+          "type": "integer",
+          "ref": null,
+          "format": "int32",
+          "description": "자동 갱신 주기 초",
+          "items": null
+        },
+        "current": {
+          "type": "integer",
+          "ref": null,
+          "format": "int32",
+          "description": "자동 새로고침 주기(초)",
+          "example": 60,
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardIntegratedResponse",
+    "added": [
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+          "example": false,
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "GRID0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\nAC   : 공조기\n",
+          "example": "GRID",
+          "items": null
+        }
+      },
+      {
+        "field": "totalBatteryCharge",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 총 충전량(kWh)",
+          "example": "5231.1",
+          "items": null
+        }
+      },
+      {
+        "field": "totalBatteryDischarge",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "배터리 총 방전량(kWh)",
+          "example": "4121.2",
+          "items": null
+        }
+      },
+      {
+        "field": "totalDieselPower",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "디젤 발전 총 전력량(kWh)",
+          "example": "8451.2",
+          "items": null
+        }
+      },
+      {
+        "field": "totalLoadPower",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "부하 총 사용 전력량(kWh)",
+          "example": "21521.1",
+          "items": null
+        }
+      },
+      {
+        "field": "totalPcsPower",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "PCS 총 전력량(kWh)",
+          "example": "12521.4",
+          "items": null
+        }
+      },
+      {
+        "field": "totalSolarActivePower",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "태양광 총 유효전력(kWh)",
+          "example": "15234.5",
+          "items": null
+        }
+      },
+      {
+        "field": "totalSolarReactivePower",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "태양광 총 무효전력(kVar)",
+          "example": "4211.2",
+          "items": null
+        }
+      },
+      {
+        "field": "useRate",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 사용률(%)",
+          "example": "82.4",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "bankList",
+        "previous": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "Bank 목록",
+          "items": "DashboardBankResponse"
+        },
+        "current": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "배터리 Bank 목록",
+          "items": "DashboardBankResponse"
+        }
+      },
+      {
+        "field": "inverterList",
+        "previous": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "인버터 개별 목록",
+          "items": "DashboardInverterResponse"
+        },
+        "current": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "인버터 목록",
+          "items": "DashboardInverterResponse"
+        }
+      },
+      {
+        "field": "menuId",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "메뉴 ID",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "메뉴 ID",
+          "example": "MNU000003",
+          "items": null
+        }
+      },
+      {
+        "field": "operTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준 시각",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준시간\n\nHH\nHH:mm:ss\n\n형식 지원\n",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "pageTitle",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "화면명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "페이지 제목",
+          "example": "대시보드 통합",
+          "items": null
+        }
+      },
+      {
+        "field": "refreshSeconds",
+        "previous": {
+          "type": "integer",
+          "ref": null,
+          "format": "int32",
+          "description": "자동 갱신 주기 초",
+          "items": null
+        },
+        "current": {
+          "type": "integer",
+          "ref": null,
+          "format": "int32",
+          "description": "자동 새로고침 주기(초)",
+          "example": 60,
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardInverterResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "GRID0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "acPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "AC 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "AC 전력(kW)",
+          "example": "792.1",
+          "items": null
+        }
+      },
+      {
+        "field": "activePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력(kW)",
+          "example": "785.3",
+          "items": null
+        }
+      },
+      {
+        "field": "apparentPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "피상전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "피상전력(kVA)",
+          "example": "812.4",
+          "items": null
+        }
+      },
+      {
+        "field": "dailyActiveAccmPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일 누적 유효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일간 유효전력 누적(kWh)",
+          "example": "15234.5",
+          "items": null
+        }
+      },
+      {
+        "field": "dailyReactiveAccmPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일 누적 무효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일간 무효전력 누적(kVarh)",
+          "example": "4211.2",
+          "items": null
+        }
+      },
+      {
+        "field": "dcPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전력(kW)",
+          "example": "812.2",
+          "items": null
+        }
+      },
+      {
+        "field": "efficiency",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "효율",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "변환 효율(%)",
+          "example": "97.5",
+          "items": null
+        }
+      },
+      {
+        "field": "inverterId",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "인버터 ID",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "인버터 ID",
+          "example": "IVT0001",
+          "items": null
+        }
+      },
+      {
+        "field": "inverterName",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "인버터 명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "인버터 명칭",
+          "example": "인버터 GRID0001",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "reactivePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력(kVar)",
+          "example": "51.2",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "example": "RUN",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardPcsResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "PCS0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "activePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "AC 유효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "유효전력(kW)",
+          "example": "81.2",
+          "items": null
+        }
+      },
+      {
+        "field": "ambientTemp",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "외기 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "외기 온도(℃)",
+          "example": "27.1",
+          "items": null
+        }
+      },
+      {
+        "field": "apparentPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "AC 피상전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "피상전력(kVA)",
+          "example": "85.2",
+          "items": null
+        }
+      },
+      {
+        "field": "cabinetTemp",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "캐비닛 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "함체 온도(℃)",
+          "example": "35.2",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류(A)",
+          "example": "124.1",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류(A)",
+          "example": "123.4",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류(A)",
+          "example": "122.8",
+          "items": null
+        }
+      },
+      {
+        "field": "dcCurrent",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전류(A)",
+          "example": "124.5",
+          "items": null
+        }
+      },
+      {
+        "field": "dcPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전력(kW)",
+          "example": "82.4",
+          "items": null
+        }
+      },
+      {
+        "field": "dcVoltage",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "DC 전압(V)",
+          "example": "720.2",
+          "items": null
+        }
+      },
+      {
+        "field": "moduleTemp",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "모듈 온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "모듈 온도(℃)",
+          "example": "41.2",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "reactivePower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "AC 무효전력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "무효전력(kVar)",
+          "example": "12.3",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 상태",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "PCS 상태",
+          "example": "RUN",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL12",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L12 전압(V)",
+          "example": "381.2",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL23",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L23 전압(V)",
+          "example": "382.1",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL31",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L31 전압(V)",
+          "example": "380.4",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardSearchRequest",
+    "added": [
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 조회\nfalse : 통합 조회\n",
+          "example": false,
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "GRID0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분\n\nGRID\nPCS\nBAT\nESS\nDSL\nAC\n",
+          "example": "GRID",
+          "items": null
+        }
+      }
+    ],
+    "removed": [
+      {
+        "field": "inverterId",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "인버터 ID. 개별 대시보드에서 특정 인버터 선택 시 사용",
+          "example": "IVT0001",
+          "items": null
+        }
+      }
+    ],
+    "changed": [
+      {
+        "field": "operTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준 시각. 미입력 시 해당 일자의 최신 시각",
+          "example": "13:20:00",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준시간",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일. 미입력 시 금일. 형식: YYYY-MM-DD",
+          "example": "2026-05-08",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "DashboardStorageResponse",
+    "added": [
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "ESS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "status",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Storage 상태",
+          "example": "RUN",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "dayKvar",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일 누적 kVar",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일간 무효전력(kVarh)",
+          "example": "5234.1",
+          "items": null
+        }
+      },
+      {
+        "field": "dayKw",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일 누적 kW",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일간 유효전력(kWh)",
+          "example": "15234.5",
+          "items": null
+        }
+      },
+      {
+        "field": "dayPf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일 평균 PF",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "일간 평균 역률(PF)",
+          "example": "0.97",
+          "items": null
+        }
+      },
+      {
+        "field": "nowKvar",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 kVar",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 무효전력(kVar)",
+          "example": "82.1",
+          "items": null
+        }
+      },
+      {
+        "field": "nowKw",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 kW",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 유효전력(kW)",
+          "example": "523.1",
+          "items": null
+        }
+      },
+      {
+        "field": "nowPf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 PF",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "현재 역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "MonitoringSearchRequest",
+    "added": [
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+          "example": true,
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호\n\n- 단일 설비 조회 시 사용\n- serialType 과 함께 사용\n",
+          "example": "PCS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\n",
+          "example": "PCS",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "operTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상세 조회 시간. HH 또는 HH:MI:SS",
+          "example": "13",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 기준시간\n\n- HH\n- HH:mm:ss\n\n입력 가능\n",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일. 미입력 시 금일. 형식: YYYY-MM-DD",
+          "example": "2026-05-08",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전 기준일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerChartResponse",
+    "added": [
+      {
+        "field": "avgChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 충전 전력량(kWh)",
+          "example": "65.7",
+          "items": null
+        }
+      },
+      {
+        "field": "avgDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 방전 전력량(kWh)",
+          "example": "71.5",
+          "items": null
+        }
+      },
+      {
+        "field": "maxChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 충전 전력량(kWh)",
+          "example": "125.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 방전 전력량(kWh)",
+          "example": "132.4",
+          "items": null
+        }
+      },
+      {
+        "field": "minChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 충전 전력량(kWh)",
+          "example": "12.1",
+          "items": null
+        }
+      },
+      {
+        "field": "minDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 방전 전력량(kWh)",
+          "example": "10.3",
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "PCS0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "barName",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "막대 그래프 명칭",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Bar 차트 명칭",
+          "example": "전력량(kWh)",
+          "items": null
+        }
+      },
+      {
+        "field": "barValue",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "막대 그래프 값",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Bar 차트 값",
+          "example": "523.5",
+          "items": null
+        }
+      },
+      {
+        "field": "baseLabel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 라벨. 시간대/일자/월",
+          "example": "13",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 라벨. 시간/일자/월",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "lineName1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "꺾은선 그래프 명칭 1",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Line 차트 이름 1",
+          "example": "평균 SOC",
+          "items": null
+        }
+      },
+      {
+        "field": "lineName2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "꺾은선 그래프 명칭 2",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Line 차트 이름 2",
+          "example": "평균 역률",
+          "items": null
+        }
+      },
+      {
+        "field": "lineValue1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "꺾은선 그래프 값 1",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Line 차트 값 1",
+          "example": "82.4",
+          "items": null
+        }
+      },
+      {
+        "field": "lineValue2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "꺾은선 그래프 값 2",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "Line 차트 값 2",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "outputUnit",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "출력 단위. HOUR, DAY, MONTH",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "출력 단위. HOUR/DAY/MONTH",
+          "example": "DAY",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerDetailResponse",
+    "added": [
+      {
+        "field": "avgChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 충전 전력량(kWh)",
+          "example": "65.7",
+          "items": null
+        }
+      },
+      {
+        "field": "avgDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 방전 전력량(kWh)",
+          "example": "71.5",
+          "items": null
+        }
+      },
+      {
+        "field": "chargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전 전력량(kWh)",
+          "example": "231.2",
+          "items": null
+        }
+      },
+      {
+        "field": "dischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전 전력량(kWh)",
+          "example": "114.5",
+          "items": null
+        }
+      },
+      {
+        "field": "maxChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 충전 전력량(kWh)",
+          "example": "125.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 방전 전력량(kWh)",
+          "example": "132.4",
+          "items": null
+        }
+      },
+      {
+        "field": "minChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 충전 전력량(kWh)",
+          "example": "12.1",
+          "items": null
+        }
+      },
+      {
+        "field": "minDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 방전 전력량(kWh)",
+          "example": "10.3",
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "ESS0001",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "calculationDesc",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "화면 출력값 계산 설명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "계산 설명",
+          "example": "예비전력은 ESS 전력과 배터리 충전/방전 상태를 조합하여 산출합니다.",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류 L1",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전류(A)",
+          "example": "123.4",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류 L2",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전류(A)",
+          "example": "124.1",
+          "items": null
+        }
+      },
+      {
+        "field": "currentL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류 L3",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전류(A)",
+          "example": "122.7",
+          "items": null
+        }
+      },
+      {
+        "field": "esmtOperTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "계측 실행 시각",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전시간",
+          "example": "13:00:00",
+          "items": null
+        }
+      },
+      {
+        "field": "esmtOperYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "계측 실행 일자",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "formula",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "계산 산식",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "계산식",
+          "example": "ESS_ATP_TOT + BAT_CHG_LMIT - BAT_DHG_LMIT",
+          "items": null
+        }
+      },
+      {
+        "field": "frequency",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "oilPress",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력(bar)",
+          "example": "4.2",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "powerColumn",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 원천 컬럼",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 계산 컬럼",
+          "example": "ESS_ATP_TOT, BAT_CHG_LMIT, BAT_DHG_LMIT",
+          "items": null
+        }
+      },
+      {
+        "field": "powerFlowType",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 구분",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 흐름 구분",
+          "example": "RESERVED",
+          "items": null
+        }
+      },
+      {
+        "field": "rawPower",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "원천 전력값",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "원본 전력값",
+          "example": "523.1",
+          "items": null
+        }
+      },
+      {
+        "field": "rpm",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "RPM",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "엔진 RPM",
+          "example": "1750",
+          "items": null
+        }
+      },
+      {
+        "field": "soc",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC(%)",
+          "example": "82.4",
+          "items": null
+        }
+      },
+      {
+        "field": "soh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH(%)",
+          "example": "96.2",
+          "items": null
+        }
+      },
+      {
+        "field": "sourceTable",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "원천 테이블",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 원본 테이블",
+          "example": "ESS_OPER_STATUS + BAT_OPER_STATUS",
+          "items": null
+        }
+      },
+      {
+        "field": "statusValue",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상태값",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상태 코드",
+          "example": "02",
+          "items": null
+        }
+      },
+      {
+        "field": "tankLevel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "탱크 레벨",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "연료 잔량(%)",
+          "example": "71.2",
+          "items": null
+        }
+      },
+      {
+        "field": "temperature",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도(℃)",
+          "example": "31.5",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL1",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압 L1",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L1 전압(V)",
+          "example": "381.2",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL2",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압 L2",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L2 전압(V)",
+          "example": "382.1",
+          "items": null
+        }
+      },
+      {
+        "field": "voltageL3",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압 L3",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "L3 전압(V)",
+          "example": "380.8",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerPageResponse",
+    "added": [
+      {
+        "field": "endDate",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 종료일",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부",
+          "example": true,
+          "items": null
+        }
+      },
+      {
+        "field": "metrics",
+        "current": {
+          "type": null,
+          "ref": "PowerMetricSummaryResponse",
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      },
+      {
+        "field": "operTime",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준시간",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "ESS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분",
+          "example": "ESS",
+          "items": null
+        }
+      },
+      {
+        "field": "startDate",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 시작일",
+          "example": "2026-05-01",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "chartList",
+        "previous": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "차트 데이터",
+          "items": "PowerChartResponse"
+        },
+        "current": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "차트 데이터 목록",
+          "items": "PowerChartResponse"
+        }
+      },
+      {
+        "field": "outputUnit",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "출력 단위",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "출력 단위",
+          "example": "DAY",
+          "items": null
+        }
+      },
+      {
+        "field": "pageTitle",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "화면명",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "페이지 제목",
+          "example": "예비전력 운전현황",
+          "items": null
+        }
+      },
+      {
+        "field": "powerFlowType",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 흐름 구분",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 흐름 유형 Enum\n\nBASELINE      : 기저전력\nPEAK_RESPOND  : 보조전력\nRESERVED      : 예비전력\nPOWER_SUPPLY  : 전력급전\n",
+          "example": "RESERVED",
+          "items": null
+        }
+      },
+      {
+        "field": "tableList",
+        "previous": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "표 데이터",
+          "items": "PowerTableResponse"
+        },
+        "current": {
+          "type": "array",
+          "ref": null,
+          "format": null,
+          "description": "테이블 데이터 목록",
+          "items": "PowerTableResponse"
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerSummaryResponse",
+    "added": [
+      {
+        "field": "metrics",
+        "current": {
+          "type": null,
+          "ref": "PowerMetricSummaryResponse",
+          "format": null,
+          "description": "",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "avgCurrent",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 전류(A)",
+          "example": "125.3",
+          "items": null
+        }
+      },
+      {
+        "field": "avgFrequency",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "avgOilPress",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 오일 압력(bar)",
+          "example": "4.3",
+          "items": null
+        }
+      },
+      {
+        "field": "avgPf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 역률(PF)",
+          "example": "0.98",
+          "items": null
+        }
+      },
+      {
+        "field": "avgRpm",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "RPM 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 엔진 RPM",
+          "example": "1750",
+          "items": null
+        }
+      },
+      {
+        "field": "avgSoc",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 SOC(%)",
+          "example": "82.5",
+          "items": null
+        }
+      },
+      {
+        "field": "avgSoh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 SOH(%)",
+          "example": "96.4",
+          "items": null
+        }
+      },
+      {
+        "field": "avgTankLevel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "탱크 레벨 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 연료 잔량(%)",
+          "example": "71.2",
+          "items": null
+        }
+      },
+      {
+        "field": "avgTemperature",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 온도(℃)",
+          "example": "32.5",
+          "items": null
+        }
+      },
+      {
+        "field": "avgVoltage",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압 평균",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 전압(V)",
+          "example": "381.2",
+          "items": null
+        }
+      },
+      {
+        "field": "chargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전량 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전 전력량(kWh)",
+          "example": "5243.1",
+          "items": null
+        }
+      },
+      {
+        "field": "dataCount",
+        "previous": {
+          "type": "integer",
+          "ref": null,
+          "format": "int64",
+          "description": "데이터 건수",
+          "items": null
+        },
+        "current": {
+          "type": "integer",
+          "ref": null,
+          "format": "int64",
+          "description": "조회 데이터 건수",
+          "example": 1440,
+          "items": null
+        }
+      },
+      {
+        "field": "dischargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전량 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전 전력량(kWh)",
+          "example": "3123.4",
+          "items": null
+        }
+      },
+      {
+        "field": "endDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 종료일",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 종료일",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "startDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일 또는 조회 시작일",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 시작일",
+          "example": "2026-05-01",
+          "items": null
+        }
+      },
+      {
+        "field": "totalPowerKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력 합계 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "총 전력량(kWh)",
+          "example": "15234.5",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerTableResponse",
+    "added": [
+      {
+        "field": "avgChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 충전 전력량(kWh)",
+          "example": "65.7",
+          "items": null
+        }
+      },
+      {
+        "field": "avgDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 방전 전력량(kWh)",
+          "example": "71.5",
+          "items": null
+        }
+      },
+      {
+        "field": "maxChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 충전 전력량(kWh)",
+          "example": "125.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 방전 전력량(kWh)",
+          "example": "132.4",
+          "items": null
+        }
+      },
+      {
+        "field": "minChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 충전 전력량(kWh)",
+          "example": "12.1",
+          "items": null
+        }
+      },
+      {
+        "field": "minDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 방전 전력량(kWh)",
+          "example": "10.3",
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "ESS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "statusValue",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상태 코드",
+          "example": "02",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "baseLabel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 라벨. 시간대/일자/월",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 라벨",
+          "example": "13",
+          "items": null
+        }
+      },
+      {
+        "field": "chargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전량 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "충전 전력량(kWh)",
+          "example": "231.2",
+          "items": null
+        }
+      },
+      {
+        "field": "current",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전류(A)",
+          "example": "112.3",
+          "items": null
+        }
+      },
+      {
+        "field": "detailYn",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상세 조회 가능 여부",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "상세 조회 가능 여부",
+          "example": "Y",
+          "items": null
+        }
+      },
+      {
+        "field": "dischargeKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전량 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "방전 전력량(kWh)",
+          "example": "114.5",
+          "items": null
+        }
+      },
+      {
+        "field": "frequency",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "oilPress",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "오일 압력(bar)",
+          "example": "4.1",
+          "items": null
+        }
+      },
+      {
+        "field": "operTime",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 시간",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전시간",
+          "example": "13:00:00",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 일자",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "운전일자",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "pf",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "역률(PF)",
+          "example": "0.97",
+          "items": null
+        }
+      },
+      {
+        "field": "powerKwh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력량 kWh",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전력량(kWh)",
+          "example": "1532.2",
+          "items": null
+        }
+      },
+      {
+        "field": "rpm",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "RPM",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "엔진 RPM",
+          "example": "1800",
+          "items": null
+        }
+      },
+      {
+        "field": "soc",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOC(%)",
+          "example": "82.4",
+          "items": null
+        }
+      },
+      {
+        "field": "soh",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "SOH(%)",
+          "example": "96.1",
+          "items": null
+        }
+      },
+      {
+        "field": "tankLevel",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "탱크 레벨",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "연료 잔량(%)",
+          "example": "73.1",
+          "items": null
+        }
+      },
+      {
+        "field": "temperature",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "온도(℃)",
+          "example": "31.5",
+          "items": null
+        }
+      },
+      {
+        "field": "voltage",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "전압(V)",
+          "example": "381.2",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "ReportSearchRequest",
+    "added": [
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+          "example": false,
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "GRID0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분\n\nGRID\nPCS\nBAT\nESS\nDSL\n",
+          "example": "GRID",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": [
+      {
+        "field": "baseMonth",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준월. 월간 보고서 기준. 형식: MM",
+          "example": "05",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준월",
+          "example": "05",
+          "items": null
+        }
+      },
+      {
+        "field": "baseWeek",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준 주차. 주간 보고서 기준",
+          "example": "19",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준주차",
+          "example": "21",
+          "items": null
+        }
+      },
+      {
+        "field": "baseYear",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준년도. 주간/월간/년간 보고서 기준",
+          "example": "2026",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준년도",
+          "example": "2026",
+          "items": null
+        }
+      },
+      {
+        "field": "operYmd",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준일. 일간 보고서 기준. 형식: YYYY-MM-DD",
+          "example": "2026-05-07",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기준일",
+          "example": "2026-05-21",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "TrendSearchRequest",
+    "added": [
+      {
+        "field": "baseMonth",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준월",
+          "example": "05",
+          "items": null
+        }
+      },
+      {
+        "field": "baseYear",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "기준년도",
+          "example": "2026",
+          "items": null
+        }
+      },
+      {
+        "field": "groupBySerial",
+        "current": {
+          "type": "boolean",
+          "ref": null,
+          "format": null,
+          "description": "시리얼별 그룹 조회 여부",
+          "example": true,
+          "items": null
+        }
+      },
+      {
+        "field": "searchType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 유형\n\nYEAR   : 년도 기준\nMONTH  : 월 기준\nPERIOD : 기간 기준\n",
+          "example": "PERIOD",
+          "items": null
+        }
+      },
+      {
+        "field": "serialNo",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 시리얼 번호",
+          "example": "ESS0001",
+          "items": null
+        }
+      },
+      {
+        "field": "serialType",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\n",
+          "example": "ESS",
+          "items": null
+        }
+      }
+    ],
+    "removed": [
+      {
+        "field": "resolvedEndDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "서버 계산 조회 종료일",
+          "items": null
+        }
+      },
+      {
+        "field": "resolvedStartDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "서버 계산 조회 시작일",
+          "items": null
+        }
+      },
+      {
+        "field": "searchDateType",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 기간 유형",
+          "example": "MONTH",
+          "items": null
+        }
+      }
+    ],
+    "changed": [
+      {
+        "field": "endDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 종료일. PERIOD 선택 시 필수. 형식: YYYY-MM-DD",
+          "example": "2026-05-08",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 종료일",
+          "example": "2026-05-21",
+          "items": null
+        }
+      },
+      {
+        "field": "outputUnit",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "출력 단위",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "통계/분석 출력 단위\n\nHOUR  : 시간별\nDAY   : 일자별\nMONTH : 월별\n",
+          "example": "DAY",
+          "items": null
+        }
+      },
+      {
+        "field": "startDate",
+        "previous": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 시작일. PERIOD 선택 시 필수. 형식: YYYY-MM-DD",
+          "example": "2026-05-01",
+          "items": null
+        },
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "조회 시작일",
+          "example": "2026-05-01",
+          "items": null
+        }
+      }
+    ]
+  },
+  {
+    "name": "PowerMetricSummaryResponse",
+    "added": [
+      {
+        "field": "avgChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 충전 전력량(kWh)",
+          "example": "65.7",
+          "items": null
+        }
+      },
+      {
+        "field": "avgCurrent",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 전류(A)",
+          "example": "121.4",
+          "items": null
+        }
+      },
+      {
+        "field": "avgDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 방전 전력량(kWh)",
+          "example": "71.5",
+          "items": null
+        }
+      },
+      {
+        "field": "avgFrequency",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 주파수(Hz)",
+          "example": "60.0",
+          "items": null
+        }
+      },
+      {
+        "field": "avgPf",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 역률(PF)",
+          "example": "0.97",
+          "items": null
+        }
+      },
+      {
+        "field": "avgPowerKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 전력량(kWh)",
+          "example": "231.5",
+          "items": null
+        }
+      },
+      {
+        "field": "avgSoc",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 SOC(%)",
+          "example": "78.5",
+          "items": null
+        }
+      },
+      {
+        "field": "avgTemperature",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 온도(℃)",
+          "example": "31.2",
+          "items": null
+        }
+      },
+      {
+        "field": "avgVoltage",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "평균 전압(V)",
+          "example": "381.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 충전 전력량(kWh)",
+          "example": "125.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxCurrent",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 전류(A)",
+          "example": "145.2",
+          "items": null
+        }
+      },
+      {
+        "field": "maxDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 방전 전력량(kWh)",
+          "example": "132.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxFrequency",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 주파수(Hz)",
+          "example": "60.2",
+          "items": null
+        }
+      },
+      {
+        "field": "maxPf",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 역률(PF)",
+          "example": "0.99",
+          "items": null
+        }
+      },
+      {
+        "field": "maxPowerKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 전력량(kWh)",
+          "example": "512.4",
+          "items": null
+        }
+      },
+      {
+        "field": "maxSoc",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 SOC(%)",
+          "example": "95.1",
+          "items": null
+        }
+      },
+      {
+        "field": "maxTemperature",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 온도(℃)",
+          "example": "42.1",
+          "items": null
+        }
+      },
+      {
+        "field": "maxVoltage",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최대 전압(V)",
+          "example": "389.2",
+          "items": null
+        }
+      },
+      {
+        "field": "minChargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 충전 전력량(kWh)",
+          "example": "12.1",
+          "items": null
+        }
+      },
+      {
+        "field": "minCurrent",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 전류(A)",
+          "example": "88.1",
+          "items": null
+        }
+      },
+      {
+        "field": "minDischargeKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 방전 전력량(kWh)",
+          "example": "10.3",
+          "items": null
+        }
+      },
+      {
+        "field": "minFrequency",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 주파수(Hz)",
+          "example": "59.8",
+          "items": null
+        }
+      },
+      {
+        "field": "minPf",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 역률(PF)",
+          "example": "0.91",
+          "items": null
+        }
+      },
+      {
+        "field": "minPowerKwh",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 전력량(kWh)",
+          "example": "21.2",
+          "items": null
+        }
+      },
+      {
+        "field": "minSoc",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 SOC(%)",
+          "example": "42.3",
+          "items": null
+        }
+      },
+      {
+        "field": "minTemperature",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 온도(℃)",
+          "example": "24.3",
+          "items": null
+        }
+      },
+      {
+        "field": "minVoltage",
+        "current": {
+          "type": "string",
+          "ref": null,
+          "format": null,
+          "description": "최소 전압(V)",
+          "example": "372.1",
+          "items": null
+        }
+      }
+    ],
+    "removed": [],
+    "changed": []
+  }
+]

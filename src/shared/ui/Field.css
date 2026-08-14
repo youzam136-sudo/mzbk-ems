@@ -1,0 +1,55 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field__label {
+  color: #7e879d;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.field__required {
+  margin-left: 4px;
+  color: #ff0000;
+  font-weight: 500;
+}
+
+.input,
+.select {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(19, 24, 39, 0.92);
+  color: var(--text-main);
+  padding: 0 24px;
+  outline: none;
+}
+
+.select {
+  appearance: none;
+  padding-right: 52px;
+  background-color: rgba(19, 24, 39, 0.92);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L6 6L10 2' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 24px center;
+}
+
+.select option {
+  background-color: var(--control-bg);
+  color: var(--text-white);
+}
+
+.select option:checked {
+  background: linear-gradient(0deg, var(--control-option-active-bg), var(--control-option-active-bg));
+  color: var(--text-white);
+}
+
+.input:focus,
+.select:focus {
+  border-color: rgba(55, 175, 255, 0.78);
+  box-shadow: 0 0 0 4px rgba(55, 175, 255, 0.12);
+}

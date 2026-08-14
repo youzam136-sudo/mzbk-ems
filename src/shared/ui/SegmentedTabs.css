@@ -1,0 +1,30 @@
+.segmented {
+  display: inline-flex;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  gap: 8px;
+}
+
+.segmented__item {
+  min-width: 96px;
+  min-height: 40px;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+
+.segmented__item.is-active {
+  background: linear-gradient(90deg, rgba(51, 200, 255, 0.9), rgba(39, 139, 255, 0.95));
+  color: white;
+}
+
+@media (max-width: 720px) {
+  .segmented {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .segmented__item {
+    flex: 1 1 calc(50% - 8px);
+  }
+}

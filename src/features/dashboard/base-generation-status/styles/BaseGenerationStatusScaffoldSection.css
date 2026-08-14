@@ -1,0 +1,9 @@
+.base-generation-status-scaffold {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.base-generation-status-scaffold__chart {
+  margin-top: 28px;
+}

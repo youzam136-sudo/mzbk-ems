@@ -1,0 +1,426 @@
+.plant-operation-page {
+  height: calc(100dvh - 146px);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.plant-operation-card {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.plant-operation-card .card__header {
+  align-items: center;
+}
+
+.plant-operation-card .card__actions {
+  flex: 0 0 auto;
+}
+
+.plant-operation-card__target-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  font-weight: 300;
+}
+
+.plant-operation-card__target-field select {
+  width: 180px;
+  height: 45px;
+  border: 1px solid var(--control-border);
+  border-radius: 5px;
+  background-color: var(--control-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L6 6L10 2' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  color: var(--text-white);
+  padding: 0 46px 0 18px;
+  appearance: none;
+  outline: none;
+}
+
+.plant-operation-card__target-field select:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(var(--primary-blue-rgb), 0.18);
+}
+
+.plant-operation-card__target-field option {
+  color: var(--text-white);
+  background-color: var(--control-bg);
+}
+
+.plant-operation-card .card__body {
+  height: calc(100% - 72px);
+  padding: 24px;
+}
+
+.plant-operation-status-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 240px;
+  border-radius: 22px;
+  background: var(--panel-bg);
+  color: var(--text-layout-soft);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.plant-operation-status-message--error {
+  color: var(--accent-red);
+}
+
+.plant-operation-scroll {
+  max-width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-radius: 22px;
+  background: #1f1f23;
+  cursor: grab;
+  scrollbar-color: rgba(150, 160, 182, 0.34) rgba(255, 255, 255, 0.03);
+  scrollbar-width: thin;
+}
+
+.plant-operation-scroll--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.plant-operation-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.plant-operation-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.plant-operation-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(150, 160, 182, 0.72);
+}
+
+.plant-operation-canvas {
+  --topology-line: #1c65ac;
+  --topology-cell-line: rgba(120, 120, 120, 0.86);
+  --topology-cell-border-width: 1.5px;
+  --topology-table-border: var(--mzbk-outer-border-color);
+  --topology-table-bg: linear-gradient(125deg, rgba(0, 0, 0, 0.7), rgba(18, 31, 42, 0.7));
+  --topology-pill-bg: #12131a;
+  --topology-pill-border: var(--mzbk-outer-border-color);
+  width: max-content;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 58px 80px 76px;
+  color: var(--text-white);
+}
+
+.plant-operation-topology-board {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--plant-op-grid-columns), var(--plant-op-col-width));
+  grid-template-rows: repeat(var(--plant-op-grid-rows), var(--plant-op-row-height));
+  column-gap: var(--plant-op-col-gap);
+  row-gap: var(--plant-op-row-gap);
+  align-items: stretch;
+  margin: 0 auto;
+  isolation: isolate;
+}
+
+.plant-operation-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.plant-operation-line {
+  fill: none;
+  stroke: var(--topology-line);
+  stroke-width: 2px;
+  stroke-dasharray: 2 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plant-operation-node-pill,
+.plant-operation-bank-table,
+.plant-operation-simple-table,
+.plant-operation-power-table,
+.plant-operation-pcs-table,
+.plant-operation-battery-table,
+.plant-operation-generator-table {
+  position: relative;
+  z-index: 2;
+}
+
+.plant-operation-bank-table,
+.plant-operation-simple-table,
+.plant-operation-power-table,
+.plant-operation-pcs-table,
+.plant-operation-battery-table,
+.plant-operation-generator-table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: separate;
+  overflow: hidden;
+  color: var(--text-white);
+  background: var(--topology-table-bg);
+  border: 0;
+  border-radius: 11px;
+  user-select: text;
+}
+
+.plant-operation-bank-table::after,
+.plant-operation-simple-table::after,
+.plant-operation-power-table::after,
+.plant-operation-pcs-table::after,
+.plant-operation-battery-table::after,
+.plant-operation-generator-table::after {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--topology-table-border);
+  border-radius: 11px;
+  content: '';
+  pointer-events: none;
+}
+
+.plant-operation-bank-table th,
+.plant-operation-bank-table td,
+.plant-operation-simple-table th,
+.plant-operation-simple-table td,
+.plant-operation-power-table th,
+.plant-operation-power-table td,
+.plant-operation-pcs-table th,
+.plant-operation-pcs-table td,
+.plant-operation-battery-table th,
+.plant-operation-battery-table td,
+.plant-operation-generator-table th,
+.plant-operation-generator-table td {
+  padding: 0 13px;
+  text-align: center;
+  vertical-align: middle;
+  border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.plant-operation-bank-table thead th {
+  font-weight: 700;
+}
+
+.plant-operation-bank-table thead {
+  height: 33.333%;
+}
+
+.plant-operation-bank-table tbody {
+  height: 66.667%;
+}
+
+.plant-operation-bank-table tbody tr {
+  height: 50%;
+}
+
+.plant-operation-simple-table tr,
+.plant-operation-power-table tr,
+.plant-operation-pcs-table tr,
+.plant-operation-battery-table tr,
+.plant-operation-generator-table tr {
+  height: calc(100% / var(--topology-row-count, 1));
+}
+
+.plant-operation-bank-table tr > :first-child {
+  width: 28%;
+}
+
+.plant-operation-bank-table tr > :nth-child(2),
+.plant-operation-bank-table tr > :nth-child(3) {
+  width: 36%;
+}
+
+.plant-operation-bank-table tr > :last-child,
+.plant-operation-simple-table tr > :last-child,
+.plant-operation-power-table tr > :last-child,
+.plant-operation-pcs-table tr > :last-child,
+.plant-operation-battery-table tr > :last-child,
+.plant-operation-generator-table tr > :last-child {
+  border-right: 0;
+}
+
+.plant-operation-bank-table tbody tr:last-child > *,
+.plant-operation-simple-table tbody tr:last-child > *,
+.plant-operation-power-table tbody tr:last-child > *,
+.plant-operation-pcs-table tbody tr:last-child > *,
+.plant-operation-battery-table tbody tr:last-child > *,
+.plant-operation-generator-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.plant-operation-node-pill {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-self: center;
+  box-sizing: border-box;
+  border: 1px solid var(--topology-pill-border);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  background: var(--topology-pill-bg);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  user-select: text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.plant-operation-node-pill--bank {
+  min-height: 0;
+}
+
+.plant-operation-node-pill--btb,
+.plant-operation-node-pill--solar,
+.plant-operation-node-pill--storage-btb,
+.plant-operation-node-pill--pcs,
+.plant-operation-node-pill--battery,
+.plant-operation-node-pill--generator-agc,
+.plant-operation-node-pill--generator,
+.plant-operation-node-pill--inverter {
+  justify-self: stretch;
+  align-self: center;
+}
+
+.plant-operation-simple-table--bank-collector-left th,
+.plant-operation-simple-table--bank-collector-left td {
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.plant-operation-simple-table--bank-collector-left th {
+  width: 62%;
+}
+
+.plant-operation-simple-table--bank-collector-left td {
+  width: 38%;
+}
+
+.plant-operation-power-table th {
+  min-width: 0;
+  padding: 0 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.plant-operation-power-table td {
+  min-width: 0;
+  padding: 0 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.plant-operation-power-table__pf-label {
+  width: 12%;
+  min-width: 0;
+  border-left: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  border-bottom: 0;
+}
+
+.plant-operation-power-table__pf-value {
+  width: 14%;
+  min-width: 0;
+  border-bottom: 0;
+}
+
+.plant-operation-power-table tr > :first-child {
+  width: 32%;
+}
+
+.plant-operation-power-table tr > :nth-child(2) {
+  width: 42%;
+}
+
+.plant-operation-pcs-table th,
+.plant-operation-pcs-table td {
+  width: 50%;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.plant-operation-battery-table th,
+.plant-operation-battery-table td {
+  min-width: 0;
+  padding: 0 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.plant-operation-battery-table thead {
+  height: 66.667%;
+}
+
+.plant-operation-battery-table thead tr {
+  height: 50%;
+}
+
+.plant-operation-battery-table tbody {
+  height: 33.333%;
+}
+
+.plant-operation-battery-table tbody tr {
+  height: 100%;
+}
+
+.plant-operation-generator-table th,
+.plant-operation-generator-table td {
+  padding: 0 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.plant-operation-generator-table th {
+  width: 54%;
+}
+
+.plant-operation-generator-table td {
+  width: 46%;
+}
+
+@media (max-width: 920px) {
+  .plant-operation-card__target-field,
+  .plant-operation-card__target-field select {
+    width: 100%;
+  }
+
+  .plant-operation-card__target-field {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .plant-operation-card .card__body {
+    padding: 16px;
+  }
+
+  .plant-operation-canvas {
+    padding: 54px 60px 72px;
+  }
+}

@@ -1,0 +1,49 @@
+.ac-status-page__message {
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  color: var(--text-muted);
+  background: rgba(10, 13, 22, 0.82);
+}
+
+.ac-status-page__latest-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.ac-status-page__latest-item {
+  min-height: 92px;
+  padding: 20px 22px;
+  border: 1px solid var(--table-line);
+  border-radius: 16px;
+  background: rgba(18, 19, 26, 0.92);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ac-status-page__latest-item span {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.ac-status-page__latest-item strong {
+  color: var(--text-strong);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+@media (max-width: 960px) {
+  .ac-status-page__latest-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .ac-status-page__latest-list {
+    grid-template-columns: 1fr;
+  }
+}

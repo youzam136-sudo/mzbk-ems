@@ -1,0 +1,104 @@
+:root {
+  --font-main: "NotoSansKR-Regular", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  --body-bg: #1c1f2b;
+  --sidebar-bg: #060b18;
+  --panel-bg: #12131a;
+  --panel-gray-bg: #12131a;
+  --panel-bg-alt: #232735;
+  --primary-blue: #20a1fb;
+  --primary-blue-rgb: 32, 161, 251;
+  --primary-blue-type-btn: #25b6fe;
+  --panel-line-blue: #1988f6;
+  --panel-line-blue-rgb: 25, 136, 246;
+  --mzbk-outer-border-color: #787878;
+  --panel-border: var(--mzbk-outer-border-color);
+  --line-soft: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.24);
+  --table-line: rgba(255, 255, 255, 0.21);
+  --text-white: #ffffff;
+  --text-main: #eef3ff;
+  --text-header-muted: #c9c9c9;
+  --text-layout-soft: #d7d8d8;
+  --text-muted: #96a0b6;
+  --text-subtle: #727d96;
+  --accent-cyan: #25b8fb;
+  --accent-blue: #1a8afa;
+  --mzbk-action-button-bg: #1a8af6;
+  --mzbk-action-button-hover-text: #12131a;
+  --mzbk-sidebar-text: #ffffff;
+  --mzbk-sidebar-hover-bg: #1a8af6;
+  --mzbk-sidebar-active-bg: #1a8af6;
+  --mzbk-sidebar-active-text: #ffffff;
+  --mzbk-sidebar-state-text: #0082ff;
+  --mzbk-sidebar-state-active-text: #006fe0;
+  --mzbk-sidebar-subitem-state-bg: #142f4f;
+  --mzbk-sidebar-panel-bg: #12131a;
+  --mzbk-sidebar-panel-border: var(--mzbk-outer-border-color);
+  --accent-purple: #6150f7;
+  --accent-green: #37d57c;
+  --accent-red: #ff5d70;
+  --chart-bar-start: #25affa;
+  --chart-bar-end: #1988f6;
+  --chart-donut-primary: #25b6fe;
+  --chart-donut-secondary: #396985;
+  --chart-donut-muted: #cdced2;
+  --mzbk-space-1: 4px;
+  --mzbk-space-2: 6px;
+  --mzbk-space-3: 8px;
+  --mzbk-space-4: 10px;
+  --mzbk-space-5: 12px;
+  --mzbk-space-6: 16px;
+  --mzbk-space-7: 20px;
+  --mzbk-space-8: 24px;
+  --mzbk-space-9: 27px;
+  --mzbk-space-10: 37px;
+  --mzbk-common-content-gap: var(--mzbk-space-10);
+  --neutral-soft: #979797;
+  --warm-gray: #707070;
+  --table-head-bg: #272831;
+  --table-cell-bg: #12131a;
+  --control-bg: #1b1b2d;
+  --control-border: #28273e;
+  --control-option-active-bg: rgba(var(--primary-blue-rgb), 0.78);
+  --toggle-off-bg: rgba(151, 151, 151, 0.28);
+  --toggle-on-bg: rgba(var(--primary-blue-rgb), 0.32);
+  --login-form-border: var(--primary-blue);
+  --login-button-gradient: linear-gradient(to left, #1a8afa 100%, #25b8fb 0%);
+  --login-background-glow: rgba(37, 184, 251, 0.32);
+  --login-background-glow-soft: rgba(151, 151, 151, 0.1);
+  --login-switch-off-bg: var(--toggle-off-bg);
+  --login-switch-on-bg: var(--toggle-on-bg);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-card: 0 24px 54px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: var(--font-main);
+  font-weight: 300;
+  background:
+    radial-gradient(circle at 20% 100%, rgba(35, 187, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 18%, rgba(43, 112, 255, 0.12), transparent 18%),
+    linear-gradient(180deg, #21232f 0%, #1b1e2a 100%);
+  color: var(--text-main);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

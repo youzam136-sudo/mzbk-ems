@@ -1,0 +1,2 @@
+/api/* http://efd.iptime.org:2016/:splat 200!
+/* /index.html 200

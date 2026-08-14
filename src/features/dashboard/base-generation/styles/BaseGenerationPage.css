@@ -1,0 +1,9 @@
+.base-generation-page__message {
+  padding: 28px;
+  border: 1px solid rgba(37, 175, 250, 0.72);
+  border-radius: var(--radius-panel);
+  background: var(--surface-panel);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 300;
+}

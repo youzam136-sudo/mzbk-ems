@@ -1,0 +1,31 @@
+.grid-base-history-result .card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mzbk-space-7);
+  padding: var(--mzbk-space-7);
+}
+
+@media (max-width: 720px) {
+  .grid-base-history-result .card__body {
+    gap: var(--mzbk-space-5);
+    min-height: auto;
+    padding: var(--mzbk-space-5) var(--mzbk-space-4) var(--mzbk-space-6);
+  }
+
+  .grid-base-history-result .chart {
+    height: 300px !important;
+  }
+
+  .grid-base-history-result__table-card .table {
+    min-width: max(100%, 680px) !important;
+    table-layout: fixed;
+  }
+
+  .grid-base-history-result__table-card .table thead th,
+  .grid-base-history-result__table-card .table tbody td {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+    line-height: 1.35;
+  }
+}

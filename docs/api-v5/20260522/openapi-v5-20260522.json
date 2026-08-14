@@ -1,0 +1,6952 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MZBK EMS API",
+    "description": "MZBK EMS 화면설계서 기반 API 문서입니다.\n\n주요 영역:\n1. 인증/권한\n2. 시스템관리\n3. 마스터관리\n4. 모니터링\n5. 보고서\n6. 엑셀 다운로드\n",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://efd.iptime.org:2016",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "06. Master Plant",
+      "description": "발전소 마스터 관리 API"
+    },
+    {
+      "name": "03. System-Menu",
+      "description": "시스템관리 메뉴 관리 API"
+    },
+    {
+      "name": "08. Master Battery",
+      "description": "배터리 마스터 관리 API"
+    },
+    {
+      "name": "10. Master Diesel",
+      "description": "디젤발전기 마스터 관리 API"
+    },
+    {
+      "name": "04. System-User",
+      "description": "시스템관리 사용자 관리 API"
+    },
+    {
+      "name": "09. Master Inverter",
+      "description": "인버터 마스터 관리 API"
+    },
+    {
+      "name": "01. Dashboard",
+      "description": "대시보드 API"
+    },
+    {
+      "name": "02. Monitoring",
+      "description": "모니터링 현황 API"
+    },
+    {
+      "name": "03. Report",
+      "description": "운전 보고서 API"
+    },
+    {
+      "name": "02. System-Role",
+      "description": "시스템관리 권한 관리 API"
+    },
+    {
+      "name": "01. Auth",
+      "description": "로그인, 로그아웃, 내 정보, 내 권한 메뉴 API"
+    },
+    {
+      "name": "07. Master PCS",
+      "description": "PCS 마스터 관리 API"
+    },
+    {
+      "name": "18. Excel",
+      "description": "화면별 엑셀 다운로드 API"
+    },
+    {
+      "name": "05. System-Code",
+      "description": "시스템관리 코드 관리 API"
+    },
+    {
+      "name": "03. Trend",
+      "description": "통계/분석 운영이력 API"
+    }
+  ],
+  "paths": {
+    "/system/users/{usrId}": {
+      "get": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 상세 조회",
+        "description": "사용자 ID 기준으로 사용자 상세 정보를 조회합니다.",
+        "operationId": "detail",
+        "parameters": [
+          {
+            "name": "usrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseUserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 수정",
+        "description": "사용자 정보를 수정합니다.\n\n처리 내용:\n1. 사용자 존재 여부 확인\n2. 기본정보 수정\n3. 비밀번호 입력 시 비밀번호 정책 검증 후 변경\n4. 사용자 권한 재저장\n5. 감사로그 저장\n",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "usrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 삭제",
+        "description": "사용자를 삭제합니다.\n\n처리 내용:\n1. 기본 admin 계정 삭제 차단\n2. SYS_USR_MSTR_TRNK에 삭제보관\n3. 사용자 권한 매핑 삭제\n4. 사용자 원본 삭제\n5. 감사로그 저장\n",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "usrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/roles/{roleId}": {
+      "get": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한 상세 조회",
+        "description": "권한 ID 기준으로 권한 상세 정보를 조회합니다.",
+        "operationId": "detail_1",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한 수정",
+        "description": "권한명, 권한 설명, 사용 여부를 수정합니다.",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한 삭제",
+        "description": "권한을 논리 삭제합니다.\n\n삭제 제한:\n1. ROLE_ADMIN은 삭제할 수 없습니다.\n2. 사용자에게 매핑된 권한은 삭제할 수 없습니다.\n3. 권한 삭제 전 권한별 메뉴 매핑을 먼저 삭제합니다.\n",
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/menus/{menuId}": {
+      "get": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "메뉴 상세 조회",
+        "description": "메뉴 ID 기준으로 메뉴 상세 정보를 조회합니다.",
+        "operationId": "detail_2",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMenuResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "메뉴 수정",
+        "description": "메뉴명, URL, 정렬순서, 사용 여부 등을 수정합니다.",
+        "operationId": "update_2",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "메뉴 삭제",
+        "description": "메뉴를 삭제합니다.\n\n처리 내용:\n1. 하위 메뉴 존재 여부 확인\n2. 권한 매핑 여부 확인\n3. SYS_MENU_MSTR_TRNK에 삭제 보관\n4. 원본 삭제\n5. 감사로그 저장\n",
+        "operationId": "delete_2",
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/codes/{cdId}": {
+      "get": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "코드 상세 조회",
+        "description": "코드 ID 기준으로 코드 상세 정보를 조회합니다.",
+        "operationId": "detail_3",
+        "parameters": [
+          {
+            "name": "cdId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseCodeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "코드 수정",
+        "description": "기존 공통 코드 정보를 수정합니다.",
+        "operationId": "update_3",
+        "parameters": [
+          {
+            "name": "cdId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "코드 삭제",
+        "description": "공통 코드를 삭제합니다.\n\n처리 내용:\n1. 하위 코드 존재 여부 확인\n2. SYS_CD_MSTR_TRNK에 삭제 보관\n3. 원본 삭제\n4. 감사로그 저장\n",
+        "operationId": "delete_3",
+        "parameters": [
+          {
+            "name": "cdId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/plants/{plntId}/{plntSeq}": {
+      "get": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "발전소 마스터 상세 조회",
+        "description": "발전소 ID와 발전소 순번 기준으로 발전소 마스터 상세 정보를 조회합니다.",
+        "operationId": "detail_4",
+        "parameters": [
+          {
+            "name": "plntId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "plntSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePlantMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "발전소 마스터 수정",
+        "description": "발전소 마스터를 수정합니다.\n\n처리 기준:\n- URL의 발전소 ID/순번을 기준으로 수정합니다.\n- 요청 Body의 ID/SEQ 값은 사용하지 않습니다.\n- 수정 후 수정된 전체 데이터를 반환합니다.\n",
+        "operationId": "update_4",
+        "parameters": [
+          {
+            "name": "plntId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "plntSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlantMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePlantMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "발전소 마스터 삭제",
+        "description": "발전소 마스터를 삭제 처리합니다.\n\n처리 기준:\n- 물리 삭제가 아니라 삭제 여부 컬럼을 Y로 변경합니다.\n- 감사 로그를 기록합니다.\n",
+        "operationId": "delete_4",
+        "parameters": [
+          {
+            "name": "plntId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "plntSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/pcs/{pcsId}/{pcsSeq}": {
+      "get": {
+        "tags": [
+          "07. Master PCS"
+        ],
+        "summary": "PCS 마스터 상세 조회",
+        "description": "PCS ID와 순번 기준으로 상세 정보를 조회합니다.",
+        "operationId": "detail_5",
+        "parameters": [
+          {
+            "name": "pcsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pcsSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePcsMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "07. Master PCS"
+        ],
+        "summary": "PCS 마스터 수정",
+        "description": "PCS 마스터 정보를 수정하고 수정된 전체 데이터를 반환합니다.",
+        "operationId": "update_5",
+        "parameters": [
+          {
+            "name": "pcsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pcsSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PcsMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePcsMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "07. Master PCS"
+        ],
+        "summary": "PCS 마스터 삭제",
+        "description": "PCS 마스터를 삭제 처리합니다.",
+        "operationId": "delete_5",
+        "parameters": [
+          {
+            "name": "pcsId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pcsSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/inverters/{ivtId}/{ivtSeq}": {
+      "get": {
+        "tags": [
+          "09. Master Inverter"
+        ],
+        "summary": "인버터 마스터 상세 조회",
+        "description": "인버터 ID와 순번 기준으로 상세 정보를 조회합니다.",
+        "operationId": "detail_6",
+        "parameters": [
+          {
+            "name": "ivtId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ivtSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseInverterMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "09. Master Inverter"
+        ],
+        "summary": "인버터 마스터 수정",
+        "description": "인버터 마스터 정보를 수정하고 수정된 전체 데이터를 반환합니다.",
+        "operationId": "update_6",
+        "parameters": [
+          {
+            "name": "ivtId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ivtSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InverterMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseInverterMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "09. Master Inverter"
+        ],
+        "summary": "인버터 마스터 삭제",
+        "description": "인버터 마스터를 삭제 처리합니다.",
+        "operationId": "delete_6",
+        "parameters": [
+          {
+            "name": "ivtId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ivtSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/diesels/{dslId}/{dslSeq}": {
+      "get": {
+        "tags": [
+          "10. Master Diesel"
+        ],
+        "summary": "디젤발전기 마스터 상세 조회",
+        "description": "디젤발전기 ID와 순번 기준으로 상세 정보를 조회합니다.",
+        "operationId": "detail_7",
+        "parameters": [
+          {
+            "name": "dslId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dslSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDieselMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "10. Master Diesel"
+        ],
+        "summary": "디젤발전기 마스터 수정",
+        "description": "디젤발전기 마스터 정보를 수정하고 수정된 전체 데이터를 반환합니다.",
+        "operationId": "update_7",
+        "parameters": [
+          {
+            "name": "dslId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dslSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DieselMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDieselMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "10. Master Diesel"
+        ],
+        "summary": "디젤발전기 마스터 삭제",
+        "description": "디젤발전기 마스터를 삭제 처리합니다.",
+        "operationId": "delete_7",
+        "parameters": [
+          {
+            "name": "dslId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dslSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/batteries/{batId}/{batSeq}": {
+      "get": {
+        "tags": [
+          "08. Master Battery"
+        ],
+        "summary": "배터리 마스터 상세 조회",
+        "description": "배터리 ID와 순번 기준으로 상세 정보를 조회합니다.",
+        "operationId": "detail_8",
+        "parameters": [
+          {
+            "name": "batId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "batSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseBatteryMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "08. Master Battery"
+        ],
+        "summary": "배터리 마스터 수정",
+        "description": "배터리 마스터 정보를 수정하고 수정된 전체 데이터를 반환합니다.",
+        "operationId": "update_8",
+        "parameters": [
+          {
+            "name": "batId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "batSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatteryMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseBatteryMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "08. Master Battery"
+        ],
+        "summary": "배터리 마스터 삭제",
+        "description": "배터리 마스터를 삭제 처리합니다.",
+        "operationId": "delete_8",
+        "parameters": [
+          {
+            "name": "batId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "batSeq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/users": {
+      "get": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 목록 조회",
+        "description": "사용자 목록을 페이징 조회합니다.\n\n처리 내용:\n1. 사용자 ID, 사용자명, 이메일 검색\n2. 사용 여부 필터\n3. 페이징 처리\n4. 비밀번호는 응답하지 않음\n",
+        "operationId": "list",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoUserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 등록",
+        "description": "신규 사용자를 등록합니다.\n\n처리 내용:\n1. 사용자 ID 중복 확인\n2. 비밀번호 정책 검증\n3. BCrypt 비밀번호 암호화\n4. 사용자 기본정보 저장\n5. 사용자 권한 매핑 저장\n6. 감사로그 저장\n",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/roles": {
+      "get": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한 목록 조회",
+        "description": "시스템 권한 목록을 페이징 조회합니다.\n\n처리 내용:\n1. 권한 ID, 권한명, 권한 설명 검색\n2. 사용 여부 필터\n3. 페이징 처리\n",
+        "operationId": "list_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한 등록",
+        "description": "신규 권한 ROLE을 등록합니다.\n\n주의:\n- ROLE_ID는 중복될 수 없습니다.\n- 기본 권한 예: ROLE_ADMIN, ROLE_USER\n",
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/roles/{roleId}/menus": {
+      "get": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한별 메뉴 목록 조회",
+        "description": "특정 권한에 매핑된 메뉴 권한 목록을 조회합니다.",
+        "operationId": "menus",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListRoleMenuResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한별 메뉴 저장",
+        "description": "특정 권한의 메뉴 READ/WRITE/USE 설정을 저장합니다.",
+        "operationId": "saveMenus",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleMenuSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/menus": {
+      "get": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "메뉴 목록 조회",
+        "description": "시스템 메뉴 목록을 페이징 조회합니다.\n\n처리 내용:\n1. 메뉴 ID, 메뉴명, 메뉴 URL 검색\n2. 사용 여부 필터\n3. 페이징 처리\n",
+        "operationId": "list_2",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoMenuResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "메뉴 등록",
+        "description": "신규 메뉴를 등록합니다.\n\n처리 내용:\n1. FN_NEXT_MENU_ID()로 메뉴 ID 자동채번\n2. 메뉴 기본정보 저장\n3. 감사로그 저장\n",
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenuSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMapStringString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/codes": {
+      "get": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "코드 목록 조회",
+        "description": "공통 코드 목록을 페이징 조회합니다.\n\n처리 내용:\n1. 코드 ID, 코드명, 코드 설명 검색\n2. 사용 여부 필터\n3. 페이징 처리\n",
+        "operationId": "list_3",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoCodeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "코드 등록",
+        "description": "신규 공통 코드를 등록합니다.",
+        "operationId": "create_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CodeSaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/plants": {
+      "get": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "발전소 마스터 목록 조회",
+        "description": "발전소 마스터 목록을 페이징 조회합니다.\n\n화면 기준:\n- 화면 로딩 시 등록된 발전소 데이터를 출력합니다.\n- 전체 컬럼을 응답합니다.\n- keyword 조건으로 ID, 순번, 발전소명, 주소, 시공사, 유지보수 담당자 등을 검색합니다.\n",
+        "operationId": "list_4",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MasterSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoPlantMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "발전소 마스터 등록",
+        "description": "발전소 마스터를 등록합니다.\n\n처리 기준:\n- 발전소 ID와 순번은 화면에서 입력하지 않습니다.\n- 시스템 등록 시점에 자동 채번합니다.\n- 필수값 및 위도/경도 입력 형식을 검증합니다.\n- 등록 후 등록된 전체 데이터를 반환합니다.\n",
+        "operationId": "create_4",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlantMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePlantMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/pcs": {
+      "get": {
+        "tags": [
+          "07. Master PCS"
+        ],
+        "summary": "PCS 마스터 목록 조회",
+        "description": "PCS 마스터 목록을 페이징 조회합니다.\n\n화면 기준:\n- PCS 전체 컬럼을 응답합니다.\n- keyword 조건으로 ID, 순번, 시리얼, 제조사, 모델명, 메모 등을 검색합니다.\n",
+        "operationId": "list_5",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MasterSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoPcsMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "07. Master PCS"
+        ],
+        "summary": "PCS 마스터 등록",
+        "description": "PCS 마스터를 등록합니다.\n\n처리 기준:\n- PCS ID와 순번은 시스템에서 자동 채번합니다.\n- 화면 입력값은 시리얼, 제조사, 모델명, 용량, 전압, 전류, 메모 등을 사용합니다.\n- 등록 후 등록된 전체 데이터를 반환합니다.\n",
+        "operationId": "create_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PcsMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePcsMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/inverters": {
+      "get": {
+        "tags": [
+          "09. Master Inverter"
+        ],
+        "summary": "인버터 마스터 목록 조회",
+        "description": "인버터 마스터 목록을 페이징 조회합니다.\n\n화면 기준:\n- 인버터 전체 컬럼을 응답합니다.\n- keyword 조건으로 ID, 순번, 시리얼, 제조사, 모델명, 메모 등을 검색합니다.\n",
+        "operationId": "list_6",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MasterSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoInverterMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "09. Master Inverter"
+        ],
+        "summary": "인버터 마스터 등록",
+        "description": "인버터 마스터를 등록합니다.\n\n처리 기준:\n- 인버터 ID와 순번은 시스템에서 자동 채번합니다.\n- 등록 후 등록된 전체 데이터를 반환합니다.\n",
+        "operationId": "create_6",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InverterMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseInverterMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/diesels": {
+      "get": {
+        "tags": [
+          "10. Master Diesel"
+        ],
+        "summary": "디젤발전기 마스터 목록 조회",
+        "description": "디젤발전기 마스터 목록을 페이징 조회합니다.\n\n화면 기준:\n- 디젤발전기 전체 컬럼을 응답합니다.\n- keyword 조건으로 ID, 순번, 시리얼, 제조사, 모델명, 메모 등을 검색합니다.\n",
+        "operationId": "list_7",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MasterSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoDieselMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "10. Master Diesel"
+        ],
+        "summary": "디젤발전기 마스터 등록",
+        "description": "디젤발전기 마스터를 등록합니다.\n\n처리 기준:\n- 디젤발전기 ID와 순번은 시스템에서 자동 채번합니다.\n- 등록 후 등록된 전체 데이터를 반환합니다.\n",
+        "operationId": "create_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DieselMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDieselMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/batteries": {
+      "get": {
+        "tags": [
+          "08. Master Battery"
+        ],
+        "summary": "배터리 마스터 목록 조회",
+        "description": "배터리 마스터 목록을 페이징 조회합니다.\n\n화면 기준:\n- 배터리 전체 컬럼을 응답합니다.\n- keyword 조건으로 ID, 순번, 시리얼, 제조사, 모델명, 메모 등을 검색합니다.\n",
+        "operationId": "list_8",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MasterSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePageResponseDtoBatteryMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "08. Master Battery"
+        ],
+        "summary": "배터리 마스터 등록",
+        "description": "배터리 마스터를 등록합니다.\n\n처리 기준:\n- 배터리 ID와 순번은 시스템에서 자동 채번합니다.\n- 등록 후 등록된 전체 데이터를 반환합니다.\n",
+        "operationId": "create_8",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatteryMasterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseBatteryMasterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "01. Auth"
+        ],
+        "summary": "로그아웃",
+        "description": "현재 로그인 사용자의 LAST_LOGOUT_DTTM을 갱신합니다.\n\n처리 내용:\n1. 현재 로그인 사용자 식별\n2. LAST_LOGOUT_DTTM 갱신\n3. 이후 기존 JWT issuedAt과 비교하여 토큰 무효화\n4. 감사로그 저장\n",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "01. Auth"
+        ],
+        "summary": "로그인",
+        "description": "사용자 ID와 비밀번호를 검증하고 JWT Access Token을 발급합니다.\n\n처리 내용:\n1. 사용자 존재 여부 확인\n2. 사용 여부 및 잠금 여부 확인\n3. BCrypt 비밀번호 검증\n4. 로그인 실패 횟수 초기화 또는 증가\n5. 사용자 권한 목록 조회\n6. JWT 발급\n7. 감사로그 저장\n",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseLoginResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/reserved": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "예비전력 운영이력 조회",
+        "operationId": "reserved",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/reserved/detail": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "예비전력 운영이력 상세 조회",
+        "operationId": "reservedDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/power-supply": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "전력급전 운영이력 조회",
+        "operationId": "powerSupply",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/power-supply/detail": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "전력급전 운영이력 상세 조회",
+        "operationId": "powerSupplyDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/peak-respond": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "보조전력 운영이력 조회",
+        "operationId": "peakRespond",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/peak-respond/detail": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "보조전력 운영이력 상세 조회",
+        "operationId": "peakRespondDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/baseline": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "기저전력 운영이력 조회",
+        "operationId": "baseline",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trend/baseline/detail": {
+      "get": {
+        "tags": [
+          "03. Trend"
+        ],
+        "summary": "기저전력 운영이력 상세 조회",
+        "operationId": "baselineDetail",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/TrendSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/users/{usrId}/roles": {
+      "get": {
+        "tags": [
+          "04. System-User"
+        ],
+        "summary": "사용자 권한 조회",
+        "description": "사용자에게 매핑된 권한 목록을 조회합니다.",
+        "operationId": "roles",
+        "parameters": [
+          {
+            "name": "usrId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListUserRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/roles/{roleId}/menus/tree": {
+      "get": {
+        "tags": [
+          "02. System-Role"
+        ],
+        "summary": "권한별 메뉴 트리 조회",
+        "description": "전체 메뉴 기준으로 특정 권한의 메뉴 권한 상태를 트리 구조로 조회합니다.\n\n화면설계서 반영:\n- 좌측 ROLE 선택\n- 우측 전체 메뉴 권한 목록 표시\n- READ/WRITE 권한 체크 가능\n",
+        "operationId": "menuTree",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListRoleMenuTreeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/menus/use-tree": {
+      "get": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "사용 메뉴 트리 조회",
+        "description": "사용 중인 메뉴만 트리 구조로 조회합니다.",
+        "operationId": "useTree",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMenuTreeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/menus/tree": {
+      "get": {
+        "tags": [
+          "03. System-Menu"
+        ],
+        "summary": "전체 메뉴 트리 조회",
+        "description": "전체 메뉴를 트리 구조로 조회합니다.",
+        "operationId": "tree",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMenuTreeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system/codes/{cdId}/children": {
+      "get": {
+        "tags": [
+          "05. System-Code"
+        ],
+        "summary": "하위 코드 조회",
+        "description": "상위 코드 ID 기준으로 하위 코드를 조회합니다.",
+        "operationId": "children",
+        "parameters": [
+          {
+            "name": "cdId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListCodeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/yearly": {
+      "get": {
+        "tags": [
+          "03. Report"
+        ],
+        "summary": "년간 운전 보고서 조회",
+        "operationId": "yearly",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ReportSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/weekly": {
+      "get": {
+        "tags": [
+          "03. Report"
+        ],
+        "summary": "주간 운전 보고서 조회",
+        "operationId": "weekly",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ReportSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/monthly": {
+      "get": {
+        "tags": [
+          "03. Report"
+        ],
+        "summary": "월간 운전 보고서 조회",
+        "operationId": "monthly",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ReportSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/daily": {
+      "get": {
+        "tags": [
+          "03. Report"
+        ],
+        "summary": "일간 운전 보고서 조회",
+        "operationId": "daily",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ReportSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/reserved": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "예비전력 운전현황 조회",
+        "operationId": "reserved_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/reserved/detail": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "예비전력 상세 조회",
+        "operationId": "reservedDetail_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/power-supply": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "전력급전 운영현황 조회",
+        "operationId": "powerSupply_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/power-supply/detail": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "전력급전 상세 조회",
+        "operationId": "powerSupplyDetail_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/peak-respond": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "보조전력 운전현황 조회",
+        "operationId": "peakRespond_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/peak-respond/detail": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "보조전력 상세 조회",
+        "operationId": "peakRespondDetail_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/baseline": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "기저전력 운전현황 조회",
+        "operationId": "baseline_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponsePowerPageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/baseline/detail": {
+      "get": {
+        "tags": [
+          "02. Monitoring"
+        ],
+        "summary": "기저전력 상세 조회",
+        "operationId": "baselineDetail_1",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MonitoringSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListPowerDetailResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": [
+          "01. Auth"
+        ],
+        "summary": "내 정보 조회",
+        "description": "JWT 인증 정보를 기준으로 현재 로그인 사용자의 ID, 이름, 권한 목록을 조회합니다.",
+        "operationId": "me",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMeResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/menus": {
+      "get": {
+        "tags": [
+          "01. Auth"
+        ],
+        "summary": "내 권한 메뉴 조회",
+        "description": "로그인 사용자의 ROLE 기준으로 접근 가능한 메뉴를 트리 구조로 조회합니다.\n\n화면설계서 반영:\n1. 로그인 후 시스템 권한별 할당 메뉴 추출\n2. 추출된 메뉴 기준으로 화면 구성\n3. READ 권한이 있는 메뉴만 반환\n",
+        "operationId": "myMenus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMyMenuResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/master/plants/init": {
+      "get": {
+        "tags": [
+          "06. Master Plant"
+        ],
+        "summary": "마스터 화면 초기 로딩 데이터 조회",
+        "description": "발전소 및 발전설비 마스터 전체 데이터를 조회합니다.\n\n포함 데이터:\n- 발전소 마스터\n- PCS 마스터\n- 배터리 마스터\n- 인버터 마스터\n- 디젤발전기 마스터\n\n화면 처리:\n- 등록 데이터가 있으면 목록으로 출력합니다.\n- 등록 데이터가 없으면 화면에서 헤드라인과 등록 버튼만 출력할 수 있도록 빈 배열을 반환합니다.\n",
+        "operationId": "init",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMasterInitResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/excel/{type}": {
+      "get": {
+        "tags": [
+          "18. Excel"
+        ],
+        "summary": "엑셀 다운로드",
+        "description": "화면별 데이터를 XLSX 파일로 다운로드합니다.\n\n지원 type:\n- plant\n- pcs\n- inverter\n- battery\n- diesel\n- dashboard\n- pcs-status\n- pcs-history\n- inverter-status\n- inverter-history\n- battery-status\n- battery-history\n- diesel1-status\n- diesel1-history\n- diesel2-status\n- diesel2-history\n- grid-status\n- grid-history\n- daily-report\n- weekly-report\n- monthly-report\n- yearly-report\n",
+        "operationId": "download",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ExcelDownloadRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "byte"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/integrated": {
+      "get": {
+        "tags": [
+          "01. Dashboard"
+        ],
+        "summary": "대시보드 통합 조회",
+        "description": "메뉴 ID: MNU000003\n화면명: 대시보드 통합\n\n조회 조건:\n- operYmd: 조회 기준일\n- operTime: 조회 기준 시각\n- serialType: AC, GRID, ESS, PCS, BAT, DSL\n- serialNo: 장비 시리얼 번호\n- groupBySerial: 시리얼별 그룹 조회 여부\n\n기준:\n- operYmd 미입력 시 금일\n- operTime 미입력 시 최신 측정 시각\n- 화면 자동 갱신 주기 60초\n",
+        "operationId": "integrated",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DashboardSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDashboardIntegratedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dashboard/individual": {
+      "get": {
+        "tags": [
+          "01. Dashboard"
+        ],
+        "summary": "대시보드 개별 조회",
+        "description": "메뉴 ID: MNU000002\n화면명: 대시보드 개별\n\n조회 조건:\n- operYmd: 조회 기준일\n- operTime: 조회 기준 시각\n- serialType: AC, GRID, ESS, PCS, BAT, DSL\n- serialNo: 장비 시리얼 번호\n- groupBySerial: 시리얼별 그룹 조회 여부\n\n기준:\n- operYmd 미입력 시 금일\n- operTime 미입력 시 최신 측정 시각\n- 화면 자동 갱신 주기 60초\n",
+        "operationId": "individual",
+        "parameters": [
+          {
+            "name": "req",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DashboardSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseDashboardIndividualResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserSaveRequest": {
+        "required": [
+          "usrId",
+          "usrNm"
+        ],
+        "type": "object",
+        "properties": {
+          "usrId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "user01"
+          },
+          "usrNm": {
+            "type": "string",
+            "description": "사용자명",
+            "example": "일반사용자"
+          },
+          "usrPwd": {
+            "type": "string",
+            "description": "비밀번호. 등록 시 필수, 수정 시 입력하면 변경",
+            "example": "User123!"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일",
+            "example": "user01@local.test"
+          },
+          "mobileNo": {
+            "type": "string",
+            "description": "휴대폰번호",
+            "example": "010-0000-0000"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          },
+          "lockYn": {
+            "type": "string",
+            "description": "잠금 여부",
+            "example": "N"
+          },
+          "roleIds": {
+            "type": "array",
+            "description": "권한 ID 목록",
+            "example": [
+              "ROLE_USER"
+            ],
+            "items": {
+              "type": "string",
+              "description": "권한 ID 목록",
+              "example": "[\"ROLE_USER\"]"
+            }
+          }
+        },
+        "description": "사용자 저장 요청 DTO"
+      },
+      "ApiResponseVoid": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "object",
+            "description": "응답 데이터"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "RoleSaveRequest": {
+        "required": [
+          "roleId",
+          "roleNm"
+        ],
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "description": "권한 ID",
+            "example": "ROLE_MANAGER"
+          },
+          "roleNm": {
+            "type": "string",
+            "description": "권한명",
+            "example": "운영관리자"
+          },
+          "roleDesc": {
+            "type": "string",
+            "description": "권한 설명",
+            "example": "운영 화면 접근 권한"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "권한 저장 요청 DTO"
+      },
+      "MenuSaveRequest": {
+        "required": [
+          "menuLvl",
+          "menuNm",
+          "sortOrd"
+        ],
+        "type": "object",
+        "properties": {
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID. 등록 시 자동채번",
+            "example": "MNU000001"
+          },
+          "sysUprmenuId": {
+            "type": "string",
+            "description": "상위 메뉴 ID",
+            "example": "MNU000000"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명",
+            "example": "사용자관리"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL",
+            "example": "/system/users"
+          },
+          "menuLvl": {
+            "type": "integer",
+            "description": "메뉴 레벨",
+            "format": "int32",
+            "example": 2
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32",
+            "example": 1
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "메뉴 저장 요청 DTO"
+      },
+      "CodeSaveRequest": {
+        "required": [
+          "cdId",
+          "cdNm"
+        ],
+        "type": "object",
+        "properties": {
+          "cdId": {
+            "type": "string",
+            "description": "코드 ID",
+            "example": "ROLE_ADMIN"
+          },
+          "cdNm": {
+            "type": "string",
+            "description": "코드명",
+            "example": "관리자"
+          },
+          "uprCdId": {
+            "type": "string",
+            "description": "상위 코드 ID",
+            "example": "ROLE_GRP"
+          },
+          "cdDesc": {
+            "type": "string",
+            "description": "코드 설명",
+            "example": "관리자 권한"
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32",
+            "example": 1
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "코드 저장 요청 DTO"
+      },
+      "PlantMasterRequest": {
+        "required": [
+          "plntNm",
+          "pplntGpsLatd",
+          "pplntGpsLntd"
+        ],
+        "type": "object",
+        "properties": {
+          "plntId": {
+            "type": "string",
+            "description": "발전소 ID. 시스템 등록 시 자동 채번되므로 등록 요청 시 입력하지 않습니다.",
+            "readOnly": true
+          },
+          "plntSeq": {
+            "type": "string",
+            "description": "발전소 순번. 시스템 등록 시 자동 채번되므로 등록 요청 시 입력하지 않습니다.",
+            "readOnly": true
+          },
+          "plntNm": {
+            "type": "string",
+            "description": "발전소명",
+            "example": "샘플 발전소"
+          },
+          "plntComtYmd": {
+            "type": "string",
+            "description": "준공일자",
+            "example": "2026-04-01"
+          },
+          "plntOperYmd": {
+            "type": "string",
+            "description": "운영시작일자",
+            "example": "2026-04-24"
+          },
+          "pplntGpsLatd": {
+            "pattern": "^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "GPS 위도. 숫자, 소수점, 음수 기호만 허용",
+            "example": "34.95"
+          },
+          "pplntGpsLntd": {
+            "pattern": "^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "GPS 경도. 숫자, 소수점, 음수 기호만 허용",
+            "example": "127.48"
+          },
+          "plntAddr": {
+            "type": "string",
+            "description": "발전소 주소",
+            "example": "전라남도 순천시"
+          },
+          "plntVndrNm": {
+            "type": "string",
+            "description": "시공사명",
+            "example": "EFD"
+          },
+          "plntVndrPhon": {
+            "type": "string",
+            "description": "시공사 연락처",
+            "example": "061-000-0000"
+          },
+          "plntVndrEmail": {
+            "type": "string",
+            "description": "시공사 이메일",
+            "example": "efd@local.test"
+          },
+          "plntMntcNm": {
+            "type": "string",
+            "description": "유지보수 담당자명",
+            "example": "EFD"
+          },
+          "plntMntcPhon": {
+            "type": "string",
+            "description": "유지보수 연락처",
+            "example": "061-000-0000"
+          },
+          "plntMntcEmail": {
+            "type": "string",
+            "description": "유지보수 이메일",
+            "example": "efd@local.test"
+          },
+          "pplntMemo": {
+            "type": "string",
+            "description": "메모",
+            "example": "초기 샘플 발전소"
+          }
+        },
+        "description": "발전소 마스터 저장 요청 DTO"
+      },
+      "ApiResponsePlantMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PlantMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PlantMasterResponse": {
+        "type": "object",
+        "properties": {
+          "plntId": {
+            "type": "string",
+            "description": "발전소 ID"
+          },
+          "plntSeq": {
+            "type": "string",
+            "description": "발전소 순번"
+          },
+          "plntNm": {
+            "type": "string",
+            "description": "발전소명"
+          },
+          "plntComtYmd": {
+            "type": "string",
+            "description": "준공일자"
+          },
+          "plntOperYmd": {
+            "type": "string",
+            "description": "운영시작일자"
+          },
+          "pplntGpsLatd": {
+            "type": "string",
+            "description": "GPS 위도"
+          },
+          "pplntGpsLntd": {
+            "type": "string",
+            "description": "GPS 경도"
+          },
+          "plntAddr": {
+            "type": "string",
+            "description": "주소"
+          },
+          "plntVndrNm": {
+            "type": "string",
+            "description": "시공사명"
+          },
+          "plntVndrPhon": {
+            "type": "string",
+            "description": "시공사 전화번호"
+          },
+          "plntVndrEmail": {
+            "type": "string",
+            "description": "시공사 이메일"
+          },
+          "plntMntcNm": {
+            "type": "string",
+            "description": "유지보수 담당자명"
+          },
+          "plntMntcPhon": {
+            "type": "string",
+            "description": "유지보수 전화번호"
+          },
+          "plntMntcEmail": {
+            "type": "string",
+            "description": "유지보수 이메일"
+          },
+          "pplntMemo": {
+            "type": "string",
+            "description": "메모"
+          },
+          "pplntDelyn": {
+            "type": "string",
+            "description": "삭제 여부"
+          },
+          "regtDttm": {
+            "type": "string",
+            "description": "등록 일시"
+          },
+          "regtId": {
+            "type": "string",
+            "description": "등록자"
+          },
+          "updtDttm": {
+            "type": "string",
+            "description": "수정 일시"
+          },
+          "updtId": {
+            "type": "string",
+            "description": "수정자"
+          }
+        },
+        "description": "발전소 마스터 응답 DTO"
+      },
+      "PcsMasterRequest": {
+        "required": [
+          "pcsSeril"
+        ],
+        "type": "object",
+        "properties": {
+          "pcsId": {
+            "type": "string",
+            "description": "PCS ID. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "pcsSeq": {
+            "type": "string",
+            "description": "PCS 순번. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "pcsSeril": {
+            "type": "string",
+            "description": "PCS 시리얼",
+            "example": "PCS-SERIAL-001"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사명",
+            "example": "EFD"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명",
+            "example": "PCS-MODEL-001"
+          },
+          "capaSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "용량",
+            "example": "100"
+          },
+          "nmalInpV": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 입력 전압",
+            "example": "750"
+          },
+          "nmalInpA": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 입력 전류",
+            "example": "100"
+          },
+          "nmalOutV": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전압",
+            "example": "380"
+          },
+          "nmalOutA": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전류",
+            "example": "150"
+          },
+          "pcsMemo": {
+            "type": "string",
+            "description": "PCS 메모",
+            "example": "샘플 PCS"
+          }
+        },
+        "description": "PCS 마스터 저장 요청 DTO"
+      },
+      "ApiResponsePcsMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PcsMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PcsMasterResponse": {
+        "type": "object",
+        "properties": {
+          "pcsId": {
+            "type": "string",
+            "description": "PCS ID"
+          },
+          "pcsSeq": {
+            "type": "string",
+            "description": "PCS 순번"
+          },
+          "pcsSeril": {
+            "type": "string",
+            "description": "시리얼"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명"
+          },
+          "capaSize": {
+            "type": "string",
+            "description": "용량"
+          },
+          "nmalInpV": {
+            "type": "string",
+            "description": "입력 전압"
+          },
+          "nmalInpA": {
+            "type": "string",
+            "description": "입력 전류"
+          },
+          "nmalOutV": {
+            "type": "string",
+            "description": "출력 전압"
+          },
+          "nmalOutA": {
+            "type": "string",
+            "description": "출력 전류"
+          },
+          "pcsMemo": {
+            "type": "string",
+            "description": "메모"
+          },
+          "pcsDelyn": {
+            "type": "string",
+            "description": "삭제 여부"
+          },
+          "regtDttm": {
+            "type": "string",
+            "description": "등록 일시"
+          },
+          "regtId": {
+            "type": "string",
+            "description": "등록자"
+          },
+          "updtDttm": {
+            "type": "string",
+            "description": "수정 일시"
+          },
+          "updtId": {
+            "type": "string",
+            "description": "수정자"
+          }
+        },
+        "description": "PCS 마스터 응답 DTO"
+      },
+      "InverterMasterRequest": {
+        "required": [
+          "ivtSeril"
+        ],
+        "type": "object",
+        "properties": {
+          "ivtId": {
+            "type": "string",
+            "description": "인버터 ID. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "ivtSeq": {
+            "type": "string",
+            "description": "인버터 순번. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "ivtSeril": {
+            "type": "string",
+            "description": "인버터 시리얼",
+            "example": "IVT-SERIAL-001"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사명",
+            "example": "EFD"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명",
+            "example": "IVT-MODEL-001"
+          },
+          "capaSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "용량",
+            "example": "100"
+          },
+          "nmalInpV": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 입력 전압",
+            "example": "750"
+          },
+          "nmalInpA": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 입력 전류",
+            "example": "100"
+          },
+          "nmalOutV": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전압",
+            "example": "380"
+          },
+          "nmalOutA": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전류",
+            "example": "150"
+          },
+          "ivtMemo": {
+            "type": "string",
+            "description": "인버터 메모",
+            "example": "샘플 인버터"
+          }
+        },
+        "description": "인버터 마스터 저장 요청 DTO"
+      },
+      "ApiResponseInverterMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/InverterMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "InverterMasterResponse": {
+        "type": "object",
+        "properties": {
+          "ivtId": {
+            "type": "string",
+            "description": "인버터 ID"
+          },
+          "ivtSeq": {
+            "type": "string",
+            "description": "인버터 순번"
+          },
+          "ivtSeril": {
+            "type": "string",
+            "description": "시리얼"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명"
+          },
+          "capaSize": {
+            "type": "string",
+            "description": "용량"
+          },
+          "nmalInpV": {
+            "type": "string",
+            "description": "입력 전압"
+          },
+          "nmalInpA": {
+            "type": "string",
+            "description": "입력 전류"
+          },
+          "nmalOutV": {
+            "type": "string",
+            "description": "출력 전압"
+          },
+          "nmalOutA": {
+            "type": "string",
+            "description": "출력 전류"
+          },
+          "ivtMemo": {
+            "type": "string",
+            "description": "메모"
+          },
+          "ivtDelyn": {
+            "type": "string",
+            "description": "삭제 여부"
+          },
+          "regtDttm": {
+            "type": "string",
+            "description": "등록 일시"
+          },
+          "regtId": {
+            "type": "string",
+            "description": "등록자"
+          },
+          "updtDttm": {
+            "type": "string",
+            "description": "수정 일시"
+          },
+          "updtId": {
+            "type": "string",
+            "description": "수정자"
+          }
+        },
+        "description": "인버터 마스터 응답 DTO"
+      },
+      "DieselMasterRequest": {
+        "required": [
+          "dslSeril"
+        ],
+        "type": "object",
+        "properties": {
+          "dslId": {
+            "type": "string",
+            "description": "디젤발전기 ID. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "dslSeq": {
+            "type": "string",
+            "description": "디젤발전기 순번. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "dslSeril": {
+            "type": "string",
+            "description": "디젤발전기 시리얼",
+            "example": "DSL-SERIAL-001"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사명",
+            "example": "EFD"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명",
+            "example": "DSL-MODEL-001"
+          },
+          "capaSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "용량",
+            "example": "100"
+          },
+          "fuelCd": {
+            "type": "string",
+            "description": "연료 코드",
+            "example": "DIESEL"
+          },
+          "stndRpmSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "기준 RPM",
+            "example": "1800"
+          },
+          "nmalOutV": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전압",
+            "example": "380"
+          },
+          "nmalOutA": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "정격 출력 전류",
+            "example": "150"
+          },
+          "dslMemo": {
+            "type": "string",
+            "description": "디젤발전기 메모",
+            "example": "샘플 디젤발전기"
+          }
+        },
+        "description": "디젤발전기 마스터 저장 요청 DTO"
+      },
+      "ApiResponseDieselMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/DieselMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "DieselMasterResponse": {
+        "type": "object",
+        "properties": {
+          "dslId": {
+            "type": "string",
+            "description": "디젤 ID"
+          },
+          "dslSeq": {
+            "type": "string",
+            "description": "디젤 순번"
+          },
+          "dslSeril": {
+            "type": "string",
+            "description": "시리얼"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명"
+          },
+          "capaSize": {
+            "type": "string",
+            "description": "용량"
+          },
+          "fuelCd": {
+            "type": "string",
+            "description": "연료 코드"
+          },
+          "stndRpmSize": {
+            "type": "string",
+            "description": "기준 RPM"
+          },
+          "nmalOutV": {
+            "type": "string",
+            "description": "출력 전압"
+          },
+          "nmalOutA": {
+            "type": "string",
+            "description": "출력 전류"
+          },
+          "dslMemo": {
+            "type": "string",
+            "description": "메모"
+          },
+          "dslDelyn": {
+            "type": "string",
+            "description": "삭제 여부"
+          },
+          "regtDttm": {
+            "type": "string",
+            "description": "등록 일시"
+          },
+          "regtId": {
+            "type": "string",
+            "description": "등록자"
+          },
+          "updtDttm": {
+            "type": "string",
+            "description": "수정 일시"
+          },
+          "updtId": {
+            "type": "string",
+            "description": "수정자"
+          }
+        },
+        "description": "디젤발전기 마스터 응답 DTO"
+      },
+      "BatteryMasterRequest": {
+        "required": [
+          "batSeril"
+        ],
+        "type": "object",
+        "properties": {
+          "batId": {
+            "type": "string",
+            "description": "배터리 ID. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "batSeq": {
+            "type": "string",
+            "description": "배터리 순번. 시스템 등록 시 자동 채번됩니다.",
+            "readOnly": true
+          },
+          "batSeril": {
+            "type": "string",
+            "description": "배터리 시리얼",
+            "example": "BAT-SERIAL-001"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사명",
+            "example": "EFD"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명",
+            "example": "BAT-MODEL-001"
+          },
+          "capaSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "용량",
+            "example": "100"
+          },
+          "rackCnt": {
+            "pattern": "^$|^\\d+$",
+            "type": "string",
+            "description": "랙 수",
+            "example": "1"
+          },
+          "rackMdulCnt": {
+            "pattern": "^$|^\\d+$",
+            "type": "string",
+            "description": "랙 모듈 수",
+            "example": "10"
+          },
+          "mdulCapaSize": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "모듈 용량",
+            "example": "10"
+          },
+          "dodRatio": {
+            "pattern": "^$|^-?\\d+(\\.\\d+)?$",
+            "type": "string",
+            "description": "DOD 비율",
+            "example": "80"
+          },
+          "batMemo": {
+            "type": "string",
+            "description": "배터리 메모",
+            "example": "샘플 배터리"
+          }
+        },
+        "description": "배터리 마스터 저장 요청 DTO"
+      },
+      "ApiResponseBatteryMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/BatteryMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "BatteryMasterResponse": {
+        "type": "object",
+        "properties": {
+          "batId": {
+            "type": "string",
+            "description": "배터리 ID"
+          },
+          "batSeq": {
+            "type": "string",
+            "description": "배터리 순번"
+          },
+          "batSeril": {
+            "type": "string",
+            "description": "시리얼"
+          },
+          "makerNm": {
+            "type": "string",
+            "description": "제조사"
+          },
+          "modlNm": {
+            "type": "string",
+            "description": "모델명"
+          },
+          "capaSize": {
+            "type": "string",
+            "description": "용량"
+          },
+          "rackCnt": {
+            "type": "string",
+            "description": "랙 수"
+          },
+          "rackMdulCnt": {
+            "type": "string",
+            "description": "랙 모듈 수"
+          },
+          "mdulCapaSize": {
+            "type": "string",
+            "description": "모듈 용량"
+          },
+          "dodRatio": {
+            "type": "string",
+            "description": "DOD 비율"
+          },
+          "batMemo": {
+            "type": "string",
+            "description": "메모"
+          },
+          "batDelyn": {
+            "type": "string",
+            "description": "삭제 여부"
+          },
+          "regtDttm": {
+            "type": "string",
+            "description": "등록 일시"
+          },
+          "regtId": {
+            "type": "string",
+            "description": "등록자"
+          },
+          "updtDttm": {
+            "type": "string",
+            "description": "수정 일시"
+          },
+          "updtId": {
+            "type": "string",
+            "description": "수정자"
+          }
+        },
+        "description": "배터리 마스터 응답 DTO"
+      },
+      "Item": {
+        "required": [
+          "sysMenuId"
+        ],
+        "type": "object",
+        "properties": {
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000001"
+          },
+          "readYn": {
+            "type": "string",
+            "description": "읽기 권한",
+            "example": "Y"
+          },
+          "writeYn": {
+            "type": "string",
+            "description": "쓰기 권한",
+            "example": "N"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "권한별 메뉴 설정 항목"
+      },
+      "RoleMenuSaveRequest": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "권한별 메뉴 설정 목록",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
+          }
+        },
+        "description": "권한별 메뉴 저장 요청 DTO"
+      },
+      "ApiResponseMapStringString": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "description": "응답 데이터"
+            },
+            "description": "응답 데이터"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "LoginRequest": {
+        "required": [
+          "password",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "admin"
+          },
+          "password": {
+            "type": "string",
+            "description": "비밀번호",
+            "example": "Admin123!"
+          }
+        },
+        "description": "로그인 요청 DTO"
+      },
+      "ApiResponseLoginResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/LoginResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "JWT Access Token"
+          },
+          "tokenType": {
+            "type": "string",
+            "description": "토큰 타입",
+            "example": "Bearer"
+          },
+          "userId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "admin"
+          },
+          "userName": {
+            "type": "string",
+            "description": "사용자명",
+            "example": "시스템관리자"
+          },
+          "roleIds": {
+            "type": "array",
+            "description": "권한 목록",
+            "items": {
+              "type": "string",
+              "description": "권한 목록"
+            }
+          }
+        },
+        "description": "로그인 응답 DTO"
+      },
+      "TrendSearchRequest": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "조회 시작일",
+            "example": "2026-05-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "조회 종료일",
+            "example": "2026-05-21"
+          },
+          "baseYear": {
+            "type": "string",
+            "description": "기준년도",
+            "example": "2026"
+          },
+          "baseMonth": {
+            "type": "string",
+            "description": "기준월",
+            "example": "05"
+          },
+          "searchType": {
+            "type": "string",
+            "description": "조회 유형\n\nYEAR   : 년도 기준\nMONTH  : 월 기준\nPERIOD : 기간 기준\n",
+            "example": "PERIOD",
+            "enum": [
+              "YEAR",
+              "MONTH",
+              "PERIOD"
+            ]
+          },
+          "outputUnit": {
+            "type": "string",
+            "description": "통계/분석 출력 단위\n\nHOUR  : 시간별\nDAY   : 일자별\nMONTH : 월별\n",
+            "example": "DAY",
+            "enum": [
+              "HOUR",
+              "DAY",
+              "MONTH"
+            ]
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\n",
+            "example": "ESS"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "ESS0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼별 그룹 조회 여부",
+            "example": true
+          }
+        },
+        "description": "통계/분석 조회 요청 DTO\n\n- /trend/baseline\n- /trend/peak-respond\n- /trend/reserved\n- /trend/power-supply\n\n공통 조회조건\n"
+      },
+      "ApiResponsePowerPageResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PowerPageResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PowerChartResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "PCS0001"
+          },
+          "baseLabel": {
+            "type": "string",
+            "description": "기준 라벨. 시간/일자/월",
+            "example": "2026-05-21"
+          },
+          "outputUnit": {
+            "type": "string",
+            "description": "출력 단위. HOUR/DAY/MONTH",
+            "example": "DAY"
+          },
+          "barValue": {
+            "type": "string",
+            "description": "Bar 차트 값",
+            "example": "523.5"
+          },
+          "barName": {
+            "type": "string",
+            "description": "Bar 차트 명칭",
+            "example": "전력량(kWh)"
+          },
+          "lineValue1": {
+            "type": "string",
+            "description": "Line 차트 값 1",
+            "example": "82.4"
+          },
+          "lineName1": {
+            "type": "string",
+            "description": "Line 차트 이름 1",
+            "example": "평균 SOC"
+          },
+          "lineValue2": {
+            "type": "string",
+            "description": "Line 차트 값 2",
+            "example": "0.98"
+          },
+          "lineName2": {
+            "type": "string",
+            "description": "Line 차트 이름 2",
+            "example": "평균 역률"
+          },
+          "maxChargeKwh": {
+            "type": "string",
+            "description": "최대 충전 전력량(kWh)",
+            "example": "125.4"
+          },
+          "minChargeKwh": {
+            "type": "string",
+            "description": "최소 충전 전력량(kWh)",
+            "example": "12.1"
+          },
+          "avgChargeKwh": {
+            "type": "string",
+            "description": "평균 충전 전력량(kWh)",
+            "example": "65.7"
+          },
+          "maxDischargeKwh": {
+            "type": "string",
+            "description": "최대 방전 전력량(kWh)",
+            "example": "132.4"
+          },
+          "minDischargeKwh": {
+            "type": "string",
+            "description": "최소 방전 전력량(kWh)",
+            "example": "10.3"
+          },
+          "avgDischargeKwh": {
+            "type": "string",
+            "description": "평균 방전 전력량(kWh)",
+            "example": "71.5"
+          }
+        },
+        "description": "전력 차트 응답 DTO\n\nBar/Line 혼합 차트에 사용합니다.\n시리얼별 그룹 조회 시 serialNo 기준으로 차트 그룹을 구분합니다.\n"
+      },
+      "PowerMetricSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "maxChargeKwh": {
+            "type": "string",
+            "description": "최대 충전 전력량(kWh)",
+            "example": "125.4"
+          },
+          "minChargeKwh": {
+            "type": "string",
+            "description": "최소 충전 전력량(kWh)",
+            "example": "12.1"
+          },
+          "avgChargeKwh": {
+            "type": "string",
+            "description": "평균 충전 전력량(kWh)",
+            "example": "65.7"
+          },
+          "maxDischargeKwh": {
+            "type": "string",
+            "description": "최대 방전 전력량(kWh)",
+            "example": "132.4"
+          },
+          "minDischargeKwh": {
+            "type": "string",
+            "description": "최소 방전 전력량(kWh)",
+            "example": "10.3"
+          },
+          "avgDischargeKwh": {
+            "type": "string",
+            "description": "평균 방전 전력량(kWh)",
+            "example": "71.5"
+          },
+          "maxPowerKwh": {
+            "type": "string",
+            "description": "최대 전력량(kWh)",
+            "example": "512.4"
+          },
+          "minPowerKwh": {
+            "type": "string",
+            "description": "최소 전력량(kWh)",
+            "example": "21.2"
+          },
+          "avgPowerKwh": {
+            "type": "string",
+            "description": "평균 전력량(kWh)",
+            "example": "231.5"
+          },
+          "maxVoltage": {
+            "type": "string",
+            "description": "최대 전압(V)",
+            "example": "389.2"
+          },
+          "minVoltage": {
+            "type": "string",
+            "description": "최소 전압(V)",
+            "example": "372.1"
+          },
+          "avgVoltage": {
+            "type": "string",
+            "description": "평균 전압(V)",
+            "example": "381.4"
+          },
+          "maxCurrent": {
+            "type": "string",
+            "description": "최대 전류(A)",
+            "example": "145.2"
+          },
+          "minCurrent": {
+            "type": "string",
+            "description": "최소 전류(A)",
+            "example": "88.1"
+          },
+          "avgCurrent": {
+            "type": "string",
+            "description": "평균 전류(A)",
+            "example": "121.4"
+          },
+          "maxFrequency": {
+            "type": "string",
+            "description": "최대 주파수(Hz)",
+            "example": "60.2"
+          },
+          "minFrequency": {
+            "type": "string",
+            "description": "최소 주파수(Hz)",
+            "example": "59.8"
+          },
+          "avgFrequency": {
+            "type": "string",
+            "description": "평균 주파수(Hz)",
+            "example": "60.0"
+          },
+          "maxPf": {
+            "type": "string",
+            "description": "최대 역률(PF)",
+            "example": "0.99"
+          },
+          "minPf": {
+            "type": "string",
+            "description": "최소 역률(PF)",
+            "example": "0.91"
+          },
+          "avgPf": {
+            "type": "string",
+            "description": "평균 역률(PF)",
+            "example": "0.97"
+          },
+          "maxSoc": {
+            "type": "string",
+            "description": "최대 SOC(%)",
+            "example": "95.1"
+          },
+          "minSoc": {
+            "type": "string",
+            "description": "최소 SOC(%)",
+            "example": "42.3"
+          },
+          "avgSoc": {
+            "type": "string",
+            "description": "평균 SOC(%)",
+            "example": "78.5"
+          },
+          "maxTemperature": {
+            "type": "string",
+            "description": "최대 온도(℃)",
+            "example": "42.1"
+          },
+          "minTemperature": {
+            "type": "string",
+            "description": "최소 온도(℃)",
+            "example": "24.3"
+          },
+          "avgTemperature": {
+            "type": "string",
+            "description": "평균 온도(℃)",
+            "example": "31.2"
+          }
+        },
+        "description": "전력 지표 요약 DTO\n\n화면설계서의 Max/Min/Avg 계열 값을 표현합니다.\n- Max C kWh\n- Min C kWh\n- Avg C kWh\n- Max D kWh\n- Min D kWh\n- Avg D kWh\n- Max 전압/전류/주파수/역률\n- Min 전압/전류/주파수/역률\n- Avg 전압/전류/주파수/역률\n"
+      },
+      "PowerPageResponse": {
+        "type": "object",
+        "properties": {
+          "powerFlowType": {
+            "type": "string",
+            "description": "전력 흐름 유형 Enum\n\nBASELINE      : 기저전력\nPEAK_RESPOND  : 보조전력\nRESERVED      : 예비전력\nPOWER_SUPPLY  : 전력급전\n",
+            "example": "RESERVED",
+            "enum": [
+              "BASELINE",
+              "PEAK_RESPOND",
+              "RESERVED",
+              "POWER_SUPPLY"
+            ]
+          },
+          "pageTitle": {
+            "type": "string",
+            "description": "페이지 제목",
+            "example": "예비전력 운전현황"
+          },
+          "operYmd": {
+            "type": "string",
+            "description": "조회 기준일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "조회 기준시간",
+            "example": "13"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "조회 시작일",
+            "example": "2026-05-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "조회 종료일",
+            "example": "2026-05-21"
+          },
+          "outputUnit": {
+            "type": "string",
+            "description": "출력 단위",
+            "example": "DAY"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분",
+            "example": "ESS"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "ESS0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부",
+            "example": true
+          },
+          "summary": {
+            "$ref": "#/components/schemas/PowerSummaryResponse"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/PowerMetricSummaryResponse"
+          },
+          "chartList": {
+            "type": "array",
+            "description": "차트 데이터 목록",
+            "items": {
+              "$ref": "#/components/schemas/PowerChartResponse"
+            }
+          },
+          "tableList": {
+            "type": "array",
+            "description": "테이블 데이터 목록",
+            "items": {
+              "$ref": "#/components/schemas/PowerTableResponse"
+            }
+          }
+        },
+        "description": "전력 현황/이력 페이지 응답 DTO\n\nSummary, Metrics, Chart, Table을 통합 제공합니다.\n상세 조회는 별도 Detail API에서 PowerDetailResponse 목록으로 제공합니다.\n"
+      },
+      "PowerSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string",
+            "description": "조회 시작일",
+            "example": "2026-05-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "조회 종료일",
+            "example": "2026-05-21"
+          },
+          "dataCount": {
+            "type": "integer",
+            "description": "조회 데이터 건수",
+            "format": "int64",
+            "example": 1440
+          },
+          "totalPowerKwh": {
+            "type": "string",
+            "description": "총 전력량(kWh)",
+            "example": "15234.5"
+          },
+          "chargeKwh": {
+            "type": "string",
+            "description": "충전 전력량(kWh)",
+            "example": "5243.1"
+          },
+          "dischargeKwh": {
+            "type": "string",
+            "description": "방전 전력량(kWh)",
+            "example": "3123.4"
+          },
+          "avgVoltage": {
+            "type": "string",
+            "description": "평균 전압(V)",
+            "example": "381.2"
+          },
+          "avgCurrent": {
+            "type": "string",
+            "description": "평균 전류(A)",
+            "example": "125.3"
+          },
+          "avgFrequency": {
+            "type": "string",
+            "description": "평균 주파수(Hz)",
+            "example": "60.0"
+          },
+          "avgPf": {
+            "type": "string",
+            "description": "평균 역률(PF)",
+            "example": "0.98"
+          },
+          "avgSoc": {
+            "type": "string",
+            "description": "평균 SOC(%)",
+            "example": "82.5"
+          },
+          "avgSoh": {
+            "type": "string",
+            "description": "평균 SOH(%)",
+            "example": "96.4"
+          },
+          "avgTemperature": {
+            "type": "string",
+            "description": "평균 온도(℃)",
+            "example": "32.5"
+          },
+          "avgRpm": {
+            "type": "string",
+            "description": "평균 엔진 RPM",
+            "example": "1750"
+          },
+          "avgTankLevel": {
+            "type": "string",
+            "description": "평균 연료 잔량(%)",
+            "example": "71.2"
+          },
+          "avgOilPress": {
+            "type": "string",
+            "description": "평균 오일 압력(bar)",
+            "example": "4.3"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/PowerMetricSummaryResponse"
+          }
+        },
+        "description": "전력 현황/이력 요약 응답 DTO\n\n화면 상단 요약 지표와 Max/Min/Avg 계열 지표를 함께 제공합니다.\n현황 화면은 STATUS 테이블 기준,\n이력 화면은 HIS 테이블 기준으로 산출합니다.\n"
+      },
+      "PowerTableResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "ESS0001"
+          },
+          "operYmd": {
+            "type": "string",
+            "description": "운전일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "운전시간",
+            "example": "13:00:00"
+          },
+          "baseLabel": {
+            "type": "string",
+            "description": "기준 라벨",
+            "example": "13"
+          },
+          "powerKwh": {
+            "type": "string",
+            "description": "전력량(kWh)",
+            "example": "1532.2"
+          },
+          "chargeKwh": {
+            "type": "string",
+            "description": "충전 전력량(kWh)",
+            "example": "231.2"
+          },
+          "dischargeKwh": {
+            "type": "string",
+            "description": "방전 전력량(kWh)",
+            "example": "114.5"
+          },
+          "maxChargeKwh": {
+            "type": "string",
+            "description": "최대 충전 전력량(kWh)",
+            "example": "125.4"
+          },
+          "minChargeKwh": {
+            "type": "string",
+            "description": "최소 충전 전력량(kWh)",
+            "example": "12.1"
+          },
+          "avgChargeKwh": {
+            "type": "string",
+            "description": "평균 충전 전력량(kWh)",
+            "example": "65.7"
+          },
+          "maxDischargeKwh": {
+            "type": "string",
+            "description": "최대 방전 전력량(kWh)",
+            "example": "132.4"
+          },
+          "minDischargeKwh": {
+            "type": "string",
+            "description": "최소 방전 전력량(kWh)",
+            "example": "10.3"
+          },
+          "avgDischargeKwh": {
+            "type": "string",
+            "description": "평균 방전 전력량(kWh)",
+            "example": "71.5"
+          },
+          "voltage": {
+            "type": "string",
+            "description": "전압(V)",
+            "example": "381.2"
+          },
+          "current": {
+            "type": "string",
+            "description": "전류(A)",
+            "example": "112.3"
+          },
+          "frequency": {
+            "type": "string",
+            "description": "주파수(Hz)",
+            "example": "60.0"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.97"
+          },
+          "soc": {
+            "type": "string",
+            "description": "SOC(%)",
+            "example": "82.4"
+          },
+          "soh": {
+            "type": "string",
+            "description": "SOH(%)",
+            "example": "96.1"
+          },
+          "temperature": {
+            "type": "string",
+            "description": "온도(℃)",
+            "example": "31.5"
+          },
+          "rpm": {
+            "type": "string",
+            "description": "엔진 RPM",
+            "example": "1800"
+          },
+          "tankLevel": {
+            "type": "string",
+            "description": "연료 잔량(%)",
+            "example": "73.1"
+          },
+          "oilPress": {
+            "type": "string",
+            "description": "오일 압력(bar)",
+            "example": "4.1"
+          },
+          "statusValue": {
+            "type": "string",
+            "description": "상태 코드",
+            "example": "02"
+          },
+          "detailYn": {
+            "type": "string",
+            "description": "상세 조회 가능 여부",
+            "example": "Y"
+          }
+        },
+        "description": "전력 테이블 응답 DTO\n\n현황/이력 화면의 표 영역에 사용합니다.\n상세 조회 버튼이 필요한 경우 detailYn=Y로 내려갑니다.\n"
+      },
+      "ApiResponseListPowerDetailResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/PowerDetailResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PowerDetailResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "ESS0001"
+          },
+          "esmtOperYmd": {
+            "type": "string",
+            "description": "운전일자",
+            "example": "2026-05-21"
+          },
+          "esmtOperTime": {
+            "type": "string",
+            "description": "운전시간",
+            "example": "13:00:00"
+          },
+          "powerFlowType": {
+            "type": "string",
+            "description": "전력 흐름 구분",
+            "example": "RESERVED"
+          },
+          "sourceTable": {
+            "type": "string",
+            "description": "조회 원본 테이블",
+            "example": "ESS_OPER_STATUS + BAT_OPER_STATUS"
+          },
+          "powerColumn": {
+            "type": "string",
+            "description": "전력 계산 컬럼",
+            "example": "ESS_ATP_TOT, BAT_CHG_LMIT, BAT_DHG_LMIT"
+          },
+          "calculationDesc": {
+            "type": "string",
+            "description": "계산 설명",
+            "example": "예비전력은 ESS 전력과 배터리 충전/방전 상태를 조합하여 산출합니다."
+          },
+          "formula": {
+            "type": "string",
+            "description": "계산식",
+            "example": "ESS_ATP_TOT + BAT_CHG_LMIT - BAT_DHG_LMIT"
+          },
+          "rawPower": {
+            "type": "string",
+            "description": "원본 전력값",
+            "example": "523.1"
+          },
+          "chargeKwh": {
+            "type": "string",
+            "description": "충전 전력량(kWh)",
+            "example": "231.2"
+          },
+          "dischargeKwh": {
+            "type": "string",
+            "description": "방전 전력량(kWh)",
+            "example": "114.5"
+          },
+          "maxChargeKwh": {
+            "type": "string",
+            "description": "최대 충전 전력량(kWh)",
+            "example": "125.4"
+          },
+          "minChargeKwh": {
+            "type": "string",
+            "description": "최소 충전 전력량(kWh)",
+            "example": "12.1"
+          },
+          "avgChargeKwh": {
+            "type": "string",
+            "description": "평균 충전 전력량(kWh)",
+            "example": "65.7"
+          },
+          "maxDischargeKwh": {
+            "type": "string",
+            "description": "최대 방전 전력량(kWh)",
+            "example": "132.4"
+          },
+          "minDischargeKwh": {
+            "type": "string",
+            "description": "최소 방전 전력량(kWh)",
+            "example": "10.3"
+          },
+          "avgDischargeKwh": {
+            "type": "string",
+            "description": "평균 방전 전력량(kWh)",
+            "example": "71.5"
+          },
+          "voltageL1": {
+            "type": "string",
+            "description": "L1 전압(V)",
+            "example": "381.2"
+          },
+          "voltageL2": {
+            "type": "string",
+            "description": "L2 전압(V)",
+            "example": "382.1"
+          },
+          "voltageL3": {
+            "type": "string",
+            "description": "L3 전압(V)",
+            "example": "380.8"
+          },
+          "currentL1": {
+            "type": "string",
+            "description": "L1 전류(A)",
+            "example": "123.4"
+          },
+          "currentL2": {
+            "type": "string",
+            "description": "L2 전류(A)",
+            "example": "124.1"
+          },
+          "currentL3": {
+            "type": "string",
+            "description": "L3 전류(A)",
+            "example": "122.7"
+          },
+          "frequency": {
+            "type": "string",
+            "description": "주파수(Hz)",
+            "example": "60.0"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.98"
+          },
+          "soc": {
+            "type": "string",
+            "description": "SOC(%)",
+            "example": "82.4"
+          },
+          "soh": {
+            "type": "string",
+            "description": "SOH(%)",
+            "example": "96.2"
+          },
+          "temperature": {
+            "type": "string",
+            "description": "온도(℃)",
+            "example": "31.5"
+          },
+          "rpm": {
+            "type": "string",
+            "description": "엔진 RPM",
+            "example": "1750"
+          },
+          "tankLevel": {
+            "type": "string",
+            "description": "연료 잔량(%)",
+            "example": "71.2"
+          },
+          "oilPress": {
+            "type": "string",
+            "description": "오일 압력(bar)",
+            "example": "4.2"
+          },
+          "statusValue": {
+            "type": "string",
+            "description": "상태 코드",
+            "example": "02"
+          }
+        },
+        "description": "전력 상세 조회 응답 DTO\n\n현황 및 이력 화면의 상세 조회 팝업/상세 영역에 사용합니다.\n화면설계서의 상세 항목과 원본 계산 컬럼 정보를 포함합니다.\n"
+      },
+      "SearchRequestDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "페이지 번호. 1부터 시작합니다.",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "keyword": {
+            "type": "string",
+            "description": "검색어",
+            "example": "관리자"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "시작일자",
+            "example": "2026-04-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "종료일자",
+            "example": "2026-04-24"
+          }
+        },
+        "description": "공통 검색 요청 DTO"
+      },
+      "ApiResponsePageResponseDtoUserResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoUserResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoUserResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/UserResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "usrId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "admin"
+          },
+          "usrNm": {
+            "type": "string",
+            "description": "사용자명",
+            "example": "시스템관리자"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일",
+            "example": "admin@local.test"
+          },
+          "mobileNo": {
+            "type": "string",
+            "description": "휴대폰번호",
+            "example": "010-0000-0000"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          },
+          "lockYn": {
+            "type": "string",
+            "description": "잠금 여부",
+            "example": "N"
+          },
+          "failCnt": {
+            "type": "integer",
+            "description": "로그인 실패 횟수",
+            "format": "int32",
+            "example": 0
+          },
+          "lastLoginDttm": {
+            "type": "string",
+            "description": "마지막 로그인 일시",
+            "format": "date-time"
+          },
+          "lastLogoutDttm": {
+            "type": "string",
+            "description": "마지막 로그아웃 일시",
+            "format": "date-time"
+          }
+        },
+        "description": "사용자 응답 DTO"
+      },
+      "ApiResponseUserResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "ApiResponseListUserRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/UserRoleResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "UserRoleResponse": {
+        "type": "object",
+        "properties": {
+          "usrId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "admin"
+          },
+          "roleId": {
+            "type": "string",
+            "description": "권한 ID",
+            "example": "ROLE_ADMIN"
+          },
+          "roleNm": {
+            "type": "string",
+            "description": "권한명",
+            "example": "관리자"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "사용자 권한 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoRoleResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoRoleResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/RoleResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "RoleResponse": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "description": "권한 ID",
+            "example": "ROLE_ADMIN"
+          },
+          "roleNm": {
+            "type": "string",
+            "description": "권한명",
+            "example": "관리자"
+          },
+          "roleDesc": {
+            "type": "string",
+            "description": "권한 설명",
+            "example": "시스템 관리자 권한"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "권한 응답 DTO"
+      },
+      "ApiResponseRoleResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/RoleResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "ApiResponseListRoleMenuResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/RoleMenuResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "RoleMenuResponse": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "description": "권한 ID",
+            "example": "ROLE_ADMIN"
+          },
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000001"
+          },
+          "sysUprmenuId": {
+            "type": "string",
+            "description": "상위 메뉴 ID"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명",
+            "example": "사용자관리"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL",
+            "example": "/system/users"
+          },
+          "menuLvl": {
+            "type": "integer",
+            "description": "메뉴 레벨",
+            "format": "int32",
+            "example": 2
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32",
+            "example": 1
+          },
+          "mappedYn": {
+            "type": "string",
+            "description": "매핑 여부",
+            "example": "Y"
+          },
+          "readYn": {
+            "type": "string",
+            "description": "읽기 권한",
+            "example": "Y"
+          },
+          "writeYn": {
+            "type": "string",
+            "description": "쓰기 권한",
+            "example": "Y"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "권한별 메뉴 응답 DTO"
+      },
+      "ApiResponseListRoleMenuTreeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/RoleMenuTreeResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "RoleMenuTreeResponse": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "string",
+            "description": "권한 ID",
+            "example": "ROLE_ADMIN"
+          },
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000001"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명",
+            "example": "시스템관리"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL",
+            "example": "/system/users"
+          },
+          "mappedYn": {
+            "type": "string",
+            "description": "매핑 여부",
+            "example": "Y"
+          },
+          "readYn": {
+            "type": "string",
+            "description": "읽기 권한",
+            "example": "Y"
+          },
+          "writeYn": {
+            "type": "string",
+            "description": "쓰기 권한",
+            "example": "Y"
+          },
+          "children": {
+            "type": "array",
+            "description": "하위 메뉴 목록",
+            "items": {
+              "$ref": "#/components/schemas/RoleMenuTreeResponse"
+            }
+          }
+        },
+        "description": "권한별 메뉴 트리 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoMenuResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoMenuResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "MenuResponse": {
+        "type": "object",
+        "properties": {
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000001"
+          },
+          "sysUprmenuId": {
+            "type": "string",
+            "description": "상위 메뉴 ID",
+            "example": "MNU000000"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명",
+            "example": "사용자관리"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL",
+            "example": "/system/users"
+          },
+          "menuLvl": {
+            "type": "integer",
+            "description": "메뉴 레벨",
+            "format": "int32",
+            "example": 2
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32",
+            "example": 1
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "메뉴 응답 DTO"
+      },
+      "PageResponseDtoMenuResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/MenuResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponseMenuResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/MenuResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "ApiResponseListMenuTreeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/MenuTreeResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "MenuTreeResponse": {
+        "type": "object",
+        "properties": {
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL"
+          },
+          "menuLvl": {
+            "type": "integer",
+            "description": "메뉴 레벨",
+            "format": "int32"
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32"
+          },
+          "children": {
+            "type": "array",
+            "description": "하위 메뉴 목록",
+            "items": {
+              "$ref": "#/components/schemas/MenuTreeResponse"
+            }
+          }
+        },
+        "description": "메뉴 트리 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoCodeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoCodeResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "CodeResponse": {
+        "type": "object",
+        "properties": {
+          "cdId": {
+            "type": "string",
+            "description": "코드 ID",
+            "example": "USE_YN"
+          },
+          "cdNm": {
+            "type": "string",
+            "description": "코드명",
+            "example": "사용여부"
+          },
+          "uprCdId": {
+            "type": "string",
+            "description": "상위 코드 ID",
+            "example": "ROLE_GRP"
+          },
+          "cdDesc": {
+            "type": "string",
+            "description": "코드 설명",
+            "example": "사용 여부 코드"
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32",
+            "example": 1
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          }
+        },
+        "description": "코드 응답 DTO"
+      },
+      "PageResponseDtoCodeResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/CodeResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponseCodeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/CodeResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "ApiResponseListCodeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/CodeResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "ReportSearchRequest": {
+        "type": "object",
+        "properties": {
+          "operYmd": {
+            "type": "string",
+            "description": "조회 기준일",
+            "example": "2026-05-21"
+          },
+          "baseYear": {
+            "type": "string",
+            "description": "기준년도",
+            "example": "2026"
+          },
+          "baseMonth": {
+            "type": "string",
+            "description": "기준월",
+            "example": "05"
+          },
+          "baseWeek": {
+            "type": "string",
+            "description": "기준주차",
+            "example": "21"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분\n\nGRID\nPCS\nBAT\nESS\nDSL\n",
+            "example": "GRID"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "GRID0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+            "example": false
+          }
+        },
+        "description": "보고서 조회 요청 DTO\n\n- 일간\n- 주간\n- 월간\n- 년간\n\n운전 보고서 조회조건\n"
+      },
+      "MonitoringSearchRequest": {
+        "type": "object",
+        "properties": {
+          "operYmd": {
+            "type": "string",
+            "description": "운전 기준일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "운전 기준시간\n\n- HH\n- HH:mm:ss\n\n입력 가능\n",
+            "example": "13"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\n",
+            "example": "PCS",
+            "enum": [
+              "GRID",
+              "PCS",
+              "BAT",
+              "ESS",
+              "DSL"
+            ]
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호\n\n- 단일 설비 조회 시 사용\n- serialType 과 함께 사용\n",
+            "example": "PCS0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+            "example": true,
+            "default": false
+          }
+        },
+        "description": "모니터링 조회 요청 DTO\n\n- 모니터링 화면 공통 조회조건\n- 화면설계서 기준 조회조건 구성\n- 시리얼 단건 조회 및 시리얼 그룹 조회 지원\n"
+      },
+      "ApiResponseMeResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/MeResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "MeResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "사용자 ID",
+            "example": "admin"
+          },
+          "userName": {
+            "type": "string",
+            "description": "사용자명",
+            "example": "시스템관리자"
+          },
+          "roleIds": {
+            "type": "array",
+            "description": "권한 목록",
+            "items": {
+              "type": "string",
+              "description": "권한 목록"
+            }
+          }
+        },
+        "description": "내 정보 응답 DTO"
+      },
+      "ApiResponseListMyMenuResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "type": "array",
+            "description": "응답 데이터",
+            "items": {
+              "$ref": "#/components/schemas/MyMenuResponse"
+            }
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "MyMenuResponse": {
+        "type": "object",
+        "properties": {
+          "sysMenuId": {
+            "type": "string",
+            "description": "메뉴 ID"
+          },
+          "sysUprmenuId": {
+            "type": "string",
+            "description": "상위 메뉴 ID"
+          },
+          "menuNm": {
+            "type": "string",
+            "description": "메뉴명"
+          },
+          "menuUrl": {
+            "type": "string",
+            "description": "메뉴 URL"
+          },
+          "menuLvl": {
+            "type": "integer",
+            "description": "메뉴 레벨",
+            "format": "int32"
+          },
+          "sortOrd": {
+            "type": "integer",
+            "description": "정렬순서",
+            "format": "int32"
+          },
+          "children": {
+            "type": "array",
+            "description": "하위 메뉴 목록",
+            "items": {
+              "$ref": "#/components/schemas/MyMenuResponse"
+            }
+          }
+        },
+        "description": "로그인 사용자 메뉴 응답 DTO"
+      },
+      "MasterSearchRequest": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "페이지 번호. 1부터 시작합니다.",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "keyword": {
+            "type": "string",
+            "description": "검색어. ID, SEQ, 시리얼, 제조사, 모델명, 명칭, 메모 등을 통합 검색합니다.",
+            "example": "EFD"
+          },
+          "useYn": {
+            "type": "string",
+            "description": "사용 여부",
+            "example": "Y"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "시작일자",
+            "example": "2026-04-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "종료일자",
+            "example": "2026-04-24"
+          }
+        },
+        "description": "마스터 검색 요청 DTO"
+      },
+      "ApiResponsePageResponseDtoPlantMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoPlantMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoPlantMasterResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/PlantMasterResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponseMasterInitResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/MasterInitResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "MasterInitResponse": {
+        "type": "object",
+        "properties": {
+          "plants": {
+            "type": "array",
+            "description": "발전소 마스터 목록",
+            "items": {
+              "$ref": "#/components/schemas/PlantMasterResponse"
+            }
+          },
+          "pcsList": {
+            "type": "array",
+            "description": "PCS 마스터 목록",
+            "items": {
+              "$ref": "#/components/schemas/PcsMasterResponse"
+            }
+          },
+          "batteries": {
+            "type": "array",
+            "description": "배터리 마스터 목록",
+            "items": {
+              "$ref": "#/components/schemas/BatteryMasterResponse"
+            }
+          },
+          "inverters": {
+            "type": "array",
+            "description": "인버터 마스터 목록",
+            "items": {
+              "$ref": "#/components/schemas/InverterMasterResponse"
+            }
+          },
+          "diesels": {
+            "type": "array",
+            "description": "디젤발전기 마스터 목록",
+            "items": {
+              "$ref": "#/components/schemas/DieselMasterResponse"
+            }
+          }
+        },
+        "description": "마스터 화면 초기 로딩 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoPcsMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoPcsMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoPcsMasterResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/PcsMasterResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoInverterMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoInverterMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoInverterMasterResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/InverterMasterResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoDieselMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoDieselMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoDieselMasterResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/DieselMasterResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ApiResponsePageResponseDtoBatteryMasterResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/PageResponseDtoBatteryMasterResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "PageResponseDtoBatteryMasterResponse": {
+        "type": "object",
+        "properties": {
+          "contents": {
+            "type": "array",
+            "description": "목록",
+            "items": {
+              "$ref": "#/components/schemas/BatteryMasterResponse"
+            }
+          },
+          "totalCount": {
+            "type": "integer",
+            "description": "전체 건수",
+            "format": "int64",
+            "example": 100
+          },
+          "page": {
+            "type": "integer",
+            "description": "현재 페이지",
+            "format": "int32",
+            "example": 1
+          },
+          "size": {
+            "type": "integer",
+            "description": "페이지 크기",
+            "format": "int32",
+            "example": 20
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "전체 페이지 수",
+            "format": "int64",
+            "example": 5
+          }
+        },
+        "description": "공통 페이징 응답 DTO"
+      },
+      "ExcelDownloadRequest": {
+        "type": "object",
+        "properties": {
+          "plntId": {
+            "type": "string",
+            "description": "발전소 ID",
+            "example": "PLNT001"
+          },
+          "plntSeq": {
+            "type": "string",
+            "description": "발전소 순번",
+            "example": "001"
+          },
+          "deviceId": {
+            "type": "string",
+            "description": "설비 ID",
+            "example": "PCS001"
+          },
+          "deviceSeq": {
+            "type": "string",
+            "description": "설비 순번",
+            "example": "001"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "시작일자",
+            "example": "2026-04-01"
+          },
+          "endDate": {
+            "type": "string",
+            "description": "종료일자",
+            "example": "2026-04-24"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "검색어"
+          }
+        },
+        "description": "엑셀 다운로드 요청 DTO"
+      },
+      "DashboardSearchRequest": {
+        "type": "object",
+        "properties": {
+          "operYmd": {
+            "type": "string",
+            "description": "조회 기준일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "조회 기준시간",
+            "example": "13"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분\n\nGRID\nPCS\nBAT\nESS\nDSL\nAC\n",
+            "example": "GRID"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "GRID0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 조회\nfalse : 통합 조회\n",
+            "example": false
+          }
+        },
+        "description": "대시보드 조회 요청 DTO\n\n- 대시보드 개별\n- 대시보드 통합\n\n공통 조회조건\n"
+      },
+      "ApiResponseDashboardIntegratedResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/DashboardIntegratedResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "DashboardAcResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "AC0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "운전 상태",
+            "example": "RUN"
+          },
+          "dischargeAirTemperature": {
+            "type": "string",
+            "description": "토출 공기 온도(℃)",
+            "example": "18.2"
+          },
+          "temperature": {
+            "type": "string",
+            "description": "실내 온도(℃)",
+            "example": "24.1"
+          },
+          "humidity": {
+            "type": "string",
+            "description": "실내 습도(%)",
+            "example": "58.2"
+          }
+        },
+        "description": "공조기(A/C) 상태 응답 DTO\n\n- 냉방 상태\n- 온도/습도\n- 토출 온도\n정보 제공\n"
+      },
+      "DashboardAgcResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "GRID0001"
+          },
+          "activePower": {
+            "type": "string",
+            "description": "유효전력(kW)",
+            "example": "852.1"
+          },
+          "reactivePower": {
+            "type": "string",
+            "description": "무효전력(kVar)",
+            "example": "125.3"
+          },
+          "apparentPower": {
+            "type": "string",
+            "description": "피상전력(kVA)",
+            "example": "881.2"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.98"
+          },
+          "voltageL12": {
+            "type": "string",
+            "description": "L12 전압(V)",
+            "example": "381.2"
+          },
+          "voltageL23": {
+            "type": "string",
+            "description": "L23 전압(V)",
+            "example": "382.1"
+          },
+          "voltageL31": {
+            "type": "string",
+            "description": "L31 전압(V)",
+            "example": "380.4"
+          },
+          "currentL1": {
+            "type": "string",
+            "description": "L1 전류(A)",
+            "example": "124.1"
+          },
+          "currentL2": {
+            "type": "string",
+            "description": "L2 전류(A)",
+            "example": "123.8"
+          },
+          "currentL3": {
+            "type": "string",
+            "description": "L3 전류(A)",
+            "example": "122.7"
+          },
+          "frequencyL1": {
+            "type": "string",
+            "description": "L1 주파수(Hz)",
+            "example": "60.0"
+          },
+          "frequencyL2": {
+            "type": "string",
+            "description": "L2 주파수(Hz)",
+            "example": "59.9"
+          },
+          "frequencyL3": {
+            "type": "string",
+            "description": "L3 주파수(Hz)",
+            "example": "60.1"
+          }
+        },
+        "description": "AGC/태양광/BTB 상태 응답 DTO\n\n- 유효전력\n- 무효전력\n- 피상전력\n- 전압/전류\n- 주파수\n정보 제공\n"
+      },
+      "DashboardBankResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string"
+          },
+          "bankId": {
+            "type": "string"
+          },
+          "bankName": {
+            "type": "string"
+          },
+          "totalPower": {
+            "type": "string"
+          },
+          "threePhasePower": {
+            "type": "string"
+          },
+          "singlePhasePower": {
+            "type": "string"
+          },
+          "activePower": {
+            "type": "string"
+          },
+          "reactivePower": {
+            "type": "string"
+          },
+          "pf": {
+            "type": "string"
+          }
+        },
+        "description": "Bank 전력 사용 상태 응답 DTO"
+      },
+      "DashboardBatteryResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "BAT0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "배터리 상태",
+            "example": "NORMAL"
+          },
+          "soc": {
+            "type": "string",
+            "description": "SOC(%)",
+            "example": "82.5"
+          },
+          "soh": {
+            "type": "string",
+            "description": "SOH(%)",
+            "example": "96.3"
+          },
+          "rackVoltageMax": {
+            "type": "string",
+            "description": "Rack 최대 전압(V)",
+            "example": "782.5"
+          },
+          "rackVoltageMin": {
+            "type": "string",
+            "description": "Rack 최소 전압(V)",
+            "example": "741.2"
+          },
+          "rackVoltageAvg": {
+            "type": "string",
+            "description": "Rack 평균 전압(V)",
+            "example": "761.1"
+          },
+          "rackCurrentMax": {
+            "type": "string",
+            "description": "Rack 최대 전류(A)",
+            "example": "153.2"
+          },
+          "rackCurrentMin": {
+            "type": "string",
+            "description": "Rack 최소 전류(A)",
+            "example": "132.1"
+          },
+          "rackCurrentAvg": {
+            "type": "string",
+            "description": "Rack 평균 전류(A)",
+            "example": "141.4"
+          },
+          "packTempMax": {
+            "type": "string",
+            "description": "배터리 최대 온도(℃)",
+            "example": "35.5"
+          },
+          "packTempMin": {
+            "type": "string",
+            "description": "배터리 최소 온도(℃)",
+            "example": "28.1"
+          },
+          "packTempAvg": {
+            "type": "string",
+            "description": "배터리 평균 온도(℃)",
+            "example": "31.4"
+          },
+          "dcVoltage": {
+            "type": "string",
+            "description": "DC 전압(V)",
+            "example": "720.2"
+          },
+          "dcCurrent": {
+            "type": "string",
+            "description": "DC 전류(A)",
+            "example": "123.4"
+          },
+          "chargeKwh": {
+            "type": "string",
+            "description": "충전량(kWh)",
+            "example": "523.1"
+          },
+          "dischargeKwh": {
+            "type": "string",
+            "description": "방전량(kWh)",
+            "example": "412.2"
+          }
+        },
+        "description": "배터리 상태 응답 DTO\n\n- SOC/SOH\n- Rack 전압/전류\n- 충전/방전량\n정보 제공\n"
+      },
+      "DashboardDieselResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "DSL0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "디젤 발전기 상태",
+            "example": "RUN"
+          },
+          "totalPower": {
+            "type": "string",
+            "description": "총 발전 전력(kW)",
+            "example": "523.1"
+          },
+          "powerL1": {
+            "type": "string",
+            "description": "L1 전류(A)",
+            "example": "122.4"
+          },
+          "powerL2": {
+            "type": "string",
+            "description": "L2 전류(A)",
+            "example": "121.8"
+          },
+          "powerL3": {
+            "type": "string",
+            "description": "L3 전류(A)",
+            "example": "123.1"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.97"
+          },
+          "voltageL12": {
+            "type": "string",
+            "description": "L12 전압(V)",
+            "example": "381.1"
+          },
+          "voltageL23": {
+            "type": "string",
+            "description": "L23 전압(V)",
+            "example": "382.2"
+          },
+          "voltageL31": {
+            "type": "string",
+            "description": "L31 전압(V)",
+            "example": "380.5"
+          },
+          "currentL1": {
+            "type": "string",
+            "description": "L1 전류(A)",
+            "example": "124.2"
+          },
+          "currentL2": {
+            "type": "string",
+            "description": "L2 전류(A)",
+            "example": "123.8"
+          },
+          "currentL3": {
+            "type": "string",
+            "description": "L3 전류(A)",
+            "example": "122.5"
+          },
+          "frequency": {
+            "type": "string",
+            "description": "주파수(Hz)",
+            "example": "60.0"
+          },
+          "rpm": {
+            "type": "string",
+            "description": "엔진 RPM",
+            "example": "1800"
+          },
+          "fuel": {
+            "type": "string",
+            "description": "연료 잔량(%)",
+            "example": "71.5"
+          },
+          "coolantTemp": {
+            "type": "string",
+            "description": "냉각수 온도(℃)",
+            "example": "72.1"
+          },
+          "oilTemp": {
+            "type": "string",
+            "description": "오일 온도(℃)",
+            "example": "81.4"
+          },
+          "oilPress": {
+            "type": "string",
+            "description": "오일 압력(bar)",
+            "example": "4.3"
+          },
+          "runningHour": {
+            "type": "string",
+            "description": "누적 운전시간(H)",
+            "example": "5231"
+          }
+        },
+        "description": "디젤 발전기 상태 응답 DTO\n\n- 발전 전력\n- RPM\n- 연료량\n- 냉각수/오일 상태\n정보 제공\n"
+      },
+      "DashboardIntegratedResponse": {
+        "type": "object",
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000003"
+          },
+          "pageTitle": {
+            "type": "string",
+            "description": "페이지 제목",
+            "example": "대시보드 통합"
+          },
+          "operYmd": {
+            "type": "string",
+            "description": "조회 기준일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "조회 기준시간\n\nHH\nHH:mm:ss\n\n형식 지원\n",
+            "example": "13"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분\n\nGRID : 계통전력\nPCS  : PCS\nBAT  : 배터리\nESS  : ESS\nDSL  : 디젤발전기\nAC   : 공조기\n",
+            "example": "GRID"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "GRID0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부\n\ntrue  : 시리얼별 그룹 조회\nfalse : 전체 통합 조회\n",
+            "example": false
+          },
+          "refreshSeconds": {
+            "type": "integer",
+            "description": "자동 새로고침 주기(초)",
+            "format": "int32",
+            "example": 60
+          },
+          "totalSolarActivePower": {
+            "type": "string",
+            "description": "태양광 총 유효전력(kWh)",
+            "example": "15234.5"
+          },
+          "totalSolarReactivePower": {
+            "type": "string",
+            "description": "태양광 총 무효전력(kVar)",
+            "example": "4211.2"
+          },
+          "totalPcsPower": {
+            "type": "string",
+            "description": "PCS 총 전력량(kWh)",
+            "example": "12521.4"
+          },
+          "totalDieselPower": {
+            "type": "string",
+            "description": "디젤 발전 총 전력량(kWh)",
+            "example": "8451.2"
+          },
+          "totalBatteryCharge": {
+            "type": "string",
+            "description": "배터리 총 충전량(kWh)",
+            "example": "5231.1"
+          },
+          "totalBatteryDischarge": {
+            "type": "string",
+            "description": "배터리 총 방전량(kWh)",
+            "example": "4121.2"
+          },
+          "totalLoadPower": {
+            "type": "string",
+            "description": "부하 총 사용 전력량(kWh)",
+            "example": "21521.1"
+          },
+          "useRate": {
+            "type": "string",
+            "description": "전력 사용률(%)",
+            "example": "82.4"
+          },
+          "ac": {
+            "$ref": "#/components/schemas/DashboardAcResponse"
+          },
+          "battery": {
+            "$ref": "#/components/schemas/DashboardBatteryResponse"
+          },
+          "pcs": {
+            "$ref": "#/components/schemas/DashboardPcsResponse"
+          },
+          "diesel": {
+            "$ref": "#/components/schemas/DashboardDieselResponse"
+          },
+          "solar": {
+            "$ref": "#/components/schemas/DashboardAgcResponse"
+          },
+          "btb": {
+            "$ref": "#/components/schemas/DashboardAgcResponse"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/DashboardStorageResponse"
+          },
+          "inverterList": {
+            "type": "array",
+            "description": "인버터 목록",
+            "items": {
+              "$ref": "#/components/schemas/DashboardInverterResponse"
+            }
+          },
+          "bankList": {
+            "type": "array",
+            "description": "배터리 Bank 목록",
+            "items": {
+              "$ref": "#/components/schemas/DashboardBankResponse"
+            }
+          }
+        },
+        "description": "대시보드 통합 응답 DTO\n\n화면:\n- MNU000003 대시보드 통합\n\n기능:\n- 태양광 발전 현황\n- PCS 상태\n- 배터리 상태\n- 디젤 발전기 상태\n- Storage 상태\n- 인버터 상태\n- Bank 상태\n\n통합 정보 제공\n"
+      },
+      "DashboardInverterResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "GRID0001"
+          },
+          "inverterId": {
+            "type": "string",
+            "description": "인버터 ID",
+            "example": "IVT0001"
+          },
+          "inverterName": {
+            "type": "string",
+            "description": "인버터 명칭",
+            "example": "인버터 GRID0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "운전 상태",
+            "example": "RUN"
+          },
+          "dcPower": {
+            "type": "string",
+            "description": "DC 전력(kW)",
+            "example": "812.2"
+          },
+          "acPower": {
+            "type": "string",
+            "description": "AC 전력(kW)",
+            "example": "792.1"
+          },
+          "efficiency": {
+            "type": "string",
+            "description": "변환 효율(%)",
+            "example": "97.5"
+          },
+          "activePower": {
+            "type": "string",
+            "description": "유효전력(kW)",
+            "example": "785.3"
+          },
+          "reactivePower": {
+            "type": "string",
+            "description": "무효전력(kVar)",
+            "example": "51.2"
+          },
+          "apparentPower": {
+            "type": "string",
+            "description": "피상전력(kVA)",
+            "example": "812.4"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.98"
+          },
+          "dailyActiveAccmPower": {
+            "type": "string",
+            "description": "일간 유효전력 누적(kWh)",
+            "example": "15234.5"
+          },
+          "dailyReactiveAccmPower": {
+            "type": "string",
+            "description": "일간 무효전력 누적(kVarh)",
+            "example": "4211.2"
+          }
+        },
+        "description": "인버터 상태 응답 DTO\n\n- 인버터 상태\n- 전력량\n- 효율\n- 일간 누적 발전량\n정보 제공\n"
+      },
+      "DashboardPcsResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "PCS0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "PCS 상태",
+            "example": "RUN"
+          },
+          "dcVoltage": {
+            "type": "string",
+            "description": "DC 전압(V)",
+            "example": "720.2"
+          },
+          "dcCurrent": {
+            "type": "string",
+            "description": "DC 전류(A)",
+            "example": "124.5"
+          },
+          "dcPower": {
+            "type": "string",
+            "description": "DC 전력(kW)",
+            "example": "82.4"
+          },
+          "activePower": {
+            "type": "string",
+            "description": "유효전력(kW)",
+            "example": "81.2"
+          },
+          "reactivePower": {
+            "type": "string",
+            "description": "무효전력(kVar)",
+            "example": "12.3"
+          },
+          "apparentPower": {
+            "type": "string",
+            "description": "피상전력(kVA)",
+            "example": "85.2"
+          },
+          "pf": {
+            "type": "string",
+            "description": "역률(PF)",
+            "example": "0.98"
+          },
+          "voltageL12": {
+            "type": "string",
+            "description": "L12 전압(V)",
+            "example": "381.2"
+          },
+          "voltageL23": {
+            "type": "string",
+            "description": "L23 전압(V)",
+            "example": "382.1"
+          },
+          "voltageL31": {
+            "type": "string",
+            "description": "L31 전압(V)",
+            "example": "380.4"
+          },
+          "currentL1": {
+            "type": "string",
+            "description": "L1 전류(A)",
+            "example": "124.1"
+          },
+          "currentL2": {
+            "type": "string",
+            "description": "L2 전류(A)",
+            "example": "123.4"
+          },
+          "currentL3": {
+            "type": "string",
+            "description": "L3 전류(A)",
+            "example": "122.8"
+          },
+          "moduleTemp": {
+            "type": "string",
+            "description": "모듈 온도(℃)",
+            "example": "41.2"
+          },
+          "ambientTemp": {
+            "type": "string",
+            "description": "외기 온도(℃)",
+            "example": "27.1"
+          },
+          "cabinetTemp": {
+            "type": "string",
+            "description": "함체 온도(℃)",
+            "example": "35.2"
+          }
+        },
+        "description": "PCS 상태 응답 DTO\n\n- DC/AC 전력\n- 전압/전류\n- 역률\n- 온도\n정보 제공\n"
+      },
+      "DashboardStorageResponse": {
+        "type": "object",
+        "properties": {
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "ESS0001"
+          },
+          "status": {
+            "type": "string",
+            "description": "Storage 상태",
+            "example": "RUN"
+          },
+          "nowKw": {
+            "type": "string",
+            "description": "현재 유효전력(kW)",
+            "example": "523.1"
+          },
+          "dayKw": {
+            "type": "string",
+            "description": "일간 유효전력(kWh)",
+            "example": "15234.5"
+          },
+          "nowKvar": {
+            "type": "string",
+            "description": "현재 무효전력(kVar)",
+            "example": "82.1"
+          },
+          "dayKvar": {
+            "type": "string",
+            "description": "일간 무효전력(kVarh)",
+            "example": "5234.1"
+          },
+          "nowPf": {
+            "type": "string",
+            "description": "현재 역률(PF)",
+            "example": "0.98"
+          },
+          "dayPf": {
+            "type": "string",
+            "description": "일간 평균 역률(PF)",
+            "example": "0.97"
+          }
+        },
+        "description": "Storage 상태 응답 DTO\n\n- 실시간 전력\n- 일간 누적량\n- 역률\n정보 제공\n"
+      },
+      "ApiResponseDashboardIndividualResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "성공 여부",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "응답 메시지",
+            "example": "정상 처리되었습니다."
+          },
+          "data": {
+            "$ref": "#/components/schemas/DashboardIndividualResponse"
+          }
+        },
+        "description": "공통 API 응답"
+      },
+      "DashboardIndividualResponse": {
+        "type": "object",
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "description": "메뉴 ID",
+            "example": "MNU000002"
+          },
+          "pageTitle": {
+            "type": "string",
+            "description": "페이지 제목",
+            "example": "대시보드 개별"
+          },
+          "operYmd": {
+            "type": "string",
+            "description": "조회 기준일자",
+            "example": "2026-05-21"
+          },
+          "operTime": {
+            "type": "string",
+            "description": "조회 기준시간",
+            "example": "13"
+          },
+          "serialType": {
+            "type": "string",
+            "description": "설비 구분",
+            "example": "PCS"
+          },
+          "serialNo": {
+            "type": "string",
+            "description": "설비 시리얼 번호",
+            "example": "PCS0001"
+          },
+          "groupBySerial": {
+            "type": "boolean",
+            "description": "시리얼 그룹 조회 여부",
+            "example": false
+          },
+          "refreshSeconds": {
+            "type": "integer",
+            "description": "자동 새로고침 주기(초)",
+            "format": "int32",
+            "example": 60
+          },
+          "ac": {
+            "$ref": "#/components/schemas/DashboardAcResponse"
+          },
+          "battery": {
+            "$ref": "#/components/schemas/DashboardBatteryResponse"
+          },
+          "pcs": {
+            "$ref": "#/components/schemas/DashboardPcsResponse"
+          },
+          "diesel": {
+            "$ref": "#/components/schemas/DashboardDieselResponse"
+          },
+          "solar": {
+            "$ref": "#/components/schemas/DashboardAgcResponse"
+          },
+          "btb": {
+            "$ref": "#/components/schemas/DashboardAgcResponse"
+          },
+          "storage": {
+            "$ref": "#/components/schemas/DashboardStorageResponse"
+          },
+          "inverterList": {
+            "type": "array",
+            "description": "인버터 목록",
+            "items": {
+              "$ref": "#/components/schemas/DashboardInverterResponse"
+            }
+          },
+          "bankList": {
+            "type": "array",
+            "description": "Bank 목록",
+            "items": {
+              "$ref": "#/components/schemas/DashboardBankResponse"
+            }
+          }
+        },
+        "description": "대시보드 개별 응답 DTO"
+      },
+      "DeleteRequestDto": {
+        "required": [
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "삭제 사유",
+            "example": "미사용 데이터 정리"
+          }
+        },
+        "description": "삭제 요청 공통 DTO"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "name": "bearerAuth",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

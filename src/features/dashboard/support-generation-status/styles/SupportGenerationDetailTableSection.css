@@ -1,0 +1,5 @@
+.support-generation-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mzbk-space-7);
+}
