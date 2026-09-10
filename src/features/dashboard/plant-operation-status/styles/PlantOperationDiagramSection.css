@@ -362,6 +362,7 @@
 
 .plant-operation-bank-table tr > :last-child {
   width: 44%;
+  padding-left: 15%;
 }
 
 .plant-operation-bank-table tr > :last-child,
@@ -759,6 +760,7 @@
 .plant-operation-power-table td {
   min-width: 0;
   padding: 0 var(--topology-cell-left-padding-x) 0 var(--topology-cell-left-padding-tight);
+  padding-left: 15%;
   text-align: left;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
@@ -786,6 +788,7 @@
 }
 
 .plant-operation-power-table td.plant-operation-power-table__merged-value {
+  padding-left: var(--topology-cell-left-padding-tight);
   padding-right: var(--topology-cell-left-padding-x);
   text-align: center;
 }
@@ -827,6 +830,7 @@
 }
 
 .plant-operation-pcs-table td {
+  padding-left: 15%;
   text-align: left;
 }
 
@@ -844,6 +848,7 @@
 }
 
 .plant-operation-battery-table td {
+  padding-left: 15%;
   text-align: left;
 }
 
@@ -882,8 +887,8 @@
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  text-align: left !important;
-  padding-left: var(--topology-cell-left-padding-tight) !important;
+  text-align: right !important;
+  padding-left: 11% !important;
 }
 
 .plant-operation-generator-table td.plant-operation-empty-value {
@@ -901,6 +906,7 @@
 }
 
 .plant-operation-inverter-detail-table td {
+  padding-left: 15%;
   text-align: left;
 }
 
@@ -964,6 +970,11 @@
   width: 14%;
   text-align: center;
   padding-left: 10px;
+}
+
+.plant-operation-inverter-matrix-table td:not(:first-child) {
+  padding-left: 15%;
+  text-align: left;
 }
 
 .plant-operation-inverter-matrix-table th[scope='col']:not(:first-child) {
