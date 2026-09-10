@@ -1,5 +1,6 @@
 // Preview mock data: used when the real backend is unreachable so screens still render sample numbers.
-export const PREVIEW_MOCK_ENABLED = false;
+// TEMP: 로그인/실제 API 미작동 시 임시 미리보기용 — 클라이언트 전달 시에는 반드시 false로 되돌릴 것
+export const PREVIEW_MOCK_ENABLED = true;
 
 export const mockPlantOperationV2Response = {
     menuId: 'MZBK_EMS',
