@@ -395,7 +395,7 @@ function BankStatusCard({ bank }: { bank: PlantOperationBankStatus }) {
               <th scope="row" title={row.label}>
                 {row.label}
               </th>
-              <td title={row.value}>{row.value}</td>
+              <td title={row.value}><span className="plant-operation-value-right">{row.value}</span></td>
             </tr>
           ))}
         </tbody>
@@ -463,7 +463,7 @@ function SimpleStatusPanel({ panel, className = '', style }: { panel: PlantOpera
                 </span>
               </th>
               <td className={!row.value || row.value === '-' ? 'plant-operation-empty-value' : undefined} title={row.value}>
-                {row.value}
+                <span className="plant-operation-value-right">{row.value}</span>
               </td>
             </tr>
           );
@@ -504,9 +504,9 @@ function PowerMetricTable({ panel, className = '', style }: { panel: PlantOperat
               </td>
             ) : (
               <>
-                <td title={row.values[0]}>{row.values[0]}</td>
-                <td title={row.values[1]}>{row.values[1]}</td>
-                <td title={row.values[2]}>{row.values[2]}</td>
+                <td title={row.values[0]}><span className="plant-operation-value-right">{row.values[0]}</span></td>
+                <td title={row.values[1]}><span className="plant-operation-value-right">{row.values[1]}</span></td>
+                <td title={row.values[2]}><span className="plant-operation-value-right">{row.values[2]}</span></td>
               </>
             )}
             {index === 0 && (
@@ -543,7 +543,7 @@ function PcsStatusTable({ panel, style }: { panel: PlantOperationPcsPanel; style
             <th scope="row" title={row.label}>
               {row.label}
             </th>
-            <td title={row.value}>{row.value}</td>
+            <td title={row.value}><span className="plant-operation-value-right">{row.value}</span></td>
           </tr>
         ))}
       </tbody>
@@ -602,13 +602,13 @@ function BatteryRackTable({ panel, style }: { panel: PlantOperationBatteryPanel;
         <tr>
           {panel.summary.map((item) => (
             <td key={`${panel.id}-value-${item.label}`} title={item.value}>
-              {item.value}
+              <span className="plant-operation-value-right">{item.value}</span>
             </td>
           ))}
           {panel.groups.flatMap((group) =>
             group.metrics.map((metric) => (
               <td key={`${panel.id}-value-${group.title}-${metric.label}`} title={metric.value}>
-                {metric.value}
+                <span className="plant-operation-value-right">{metric.value}</span>
               </td>
             ))
           )}
@@ -673,7 +673,7 @@ function InverterDetailTable({ inverter }: { inverter: PlantOperationInverterNod
         <tr>
           {inverter.detailRows.map((row) => (
             <td key={`${inverter.id}-value-${row.label}`} className={!row.value || row.value === '-' ? 'plant-operation-empty-value' : undefined} title={row.value}>
-              {row.value}
+              <span className="plant-operation-value-right">{row.value}</span>
             </td>
           ))}
         </tr>
@@ -713,7 +713,7 @@ function InverterMatrixTable({ inverters, layout }: { inverters: PlantOperationI
 
               return (
                 <td key={`matrix-${inverter.id}-${metricLabel}`} className={!value || value === '-' ? 'plant-operation-empty-value' : undefined} title={value}>
-                  {value}
+                  <span className="plant-operation-value-right">{value}</span>
                 </td>
               );
             })}

@@ -254,8 +254,7 @@
 .plant-operation-inverter-detail-table td,
 .plant-operation-inverter-matrix-table td {
   padding: 0 var(--topology-cell-padding-x);
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
   vertical-align: middle;
   border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
   border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
@@ -265,6 +264,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+}
+
+.plant-operation-value-right {
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .plant-operation-bank-table thead th {
@@ -639,8 +648,7 @@
 
 .plant-operation-simple-table--bank-collector-left td {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
   font-weight: 700;
 }
 
@@ -751,8 +759,7 @@
 .plant-operation-power-table td {
   min-width: 0;
   padding: 0 var(--topology-cell-left-padding-x) 0 var(--topology-cell-left-padding-tight);
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
 }
@@ -820,8 +827,7 @@
 }
 
 .plant-operation-pcs-table td {
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
 }
 
 .plant-operation-battery-table th,
@@ -838,8 +844,7 @@
 }
 
 .plant-operation-battery-table td {
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
 }
 
 .plant-operation-battery-table thead {
@@ -872,14 +877,12 @@
 
 .plant-operation-generator-table td {
   width: 46%;
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
   padding-left: var(--topology-cell-left-padding-tight);
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  padding-right: 50% !important;
-  text-align: right !important;
+  text-align: left !important;
   padding-left: var(--topology-cell-left-padding-tight) !important;
 }
 
@@ -898,8 +901,7 @@
 }
 
 .plant-operation-inverter-detail-table td {
-  padding-right: 50%;
-  text-align: right;
+  text-align: left;
 }
 
 .plant-operation-inverter-detail-table thead,
