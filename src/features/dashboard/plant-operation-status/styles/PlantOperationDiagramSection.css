@@ -766,13 +766,17 @@
   white-space: nowrap;
 }
 
-.plant-operation-power-table .plant-operation-power-table__pf-value {
+.plant-operation-power-table__pf-value {
   min-width: 0;
   padding: 0 2px;
   text-align: center;
   font-size: var(--topology-cell-font-size);
   border-bottom: 0;
   text-overflow: clip;
+}
+
+.plant-operation-power-table__merged-value {
+  text-align: center;
 }
 
 .plant-operation-power-table__col-label {

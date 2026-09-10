@@ -498,9 +498,17 @@ function PowerMetricTable({ panel, className = '', style }: { panel: PlantOperat
             <th scope="row" title={row.label}>
               {row.label}
             </th>
-            <td title={row.values[0]}>{row.values[0]}</td>
-            <td title={row.values[1]}>{row.values[1]}</td>
-            <td title={row.values[2]}>{row.values[2]}</td>
+            {index === 0 ? (
+              <td className="plant-operation-power-table__merged-value" colSpan={3} title={row.values[0]}>
+                {row.values[0]}
+              </td>
+            ) : (
+              <>
+                <td title={row.values[0]}>{row.values[0]}</td>
+                <td title={row.values[1]}>{row.values[1]}</td>
+                <td title={row.values[2]}>{row.values[2]}</td>
+              </>
+            )}
             {index === 0 && (
               <>
                 <th className="plant-operation-power-table__pf-label" rowSpan={panel.rows.length} scope="row">
