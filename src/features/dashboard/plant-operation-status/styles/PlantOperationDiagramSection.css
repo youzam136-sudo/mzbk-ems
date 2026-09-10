@@ -225,23 +225,36 @@
 }
 
 .plant-operation-bank-table th,
-.plant-operation-bank-table td,
 .plant-operation-simple-table th,
-.plant-operation-simple-table td,
 .plant-operation-power-table th,
-.plant-operation-power-table td,
 .plant-operation-pcs-table th,
-.plant-operation-pcs-table td,
 .plant-operation-battery-table th,
-.plant-operation-battery-table td,
 .plant-operation-generator-table th,
-.plant-operation-generator-table td,
 .plant-operation-inverter-detail-table th,
-.plant-operation-inverter-detail-table td,
-.plant-operation-inverter-matrix-table th,
-.plant-operation-inverter-matrix-table td {
+.plant-operation-inverter-matrix-table th {
   padding: 0 var(--topology-cell-padding-x);
   text-align: center;
+  vertical-align: middle;
+  border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
+  font-size: var(--topology-cell-font-size);
+  font-weight: 500;
+  line-height: var(--topology-cell-line-height);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.plant-operation-bank-table td,
+.plant-operation-simple-table td,
+.plant-operation-power-table td,
+.plant-operation-pcs-table td,
+.plant-operation-battery-table td,
+.plant-operation-generator-table td,
+.plant-operation-inverter-detail-table td,
+.plant-operation-inverter-matrix-table td {
+  padding: 0 var(--topology-cell-padding-x);
+  text-align: right;
   vertical-align: middle;
   border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
   border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
@@ -333,13 +346,8 @@
 
 .plant-operation-bank-table tr > :first-child {
   width: 56%;
-  text-align: left;
-  padding-left: 10px;
-}
-
-.plant-operation-bank-table th,
-.plant-operation-bank-table td {
   text-align: center;
+  padding-left: 10px;
 }
 
 .plant-operation-bank-table tr > :last-child {
@@ -625,12 +633,12 @@
 
 .plant-operation-simple-table--bank-collector-left th {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  text-align: left;
+  text-align: center;
 }
 
 .plant-operation-simple-table--bank-collector-left td {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  text-align: left;
+  text-align: right;
   font-weight: 700;
 }
 
@@ -733,15 +741,15 @@
 .plant-operation-power-table th {
   min-width: 0;
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-tight);
-  text-align: left;
+  text-align: center;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
 }
 
 .plant-operation-power-table td {
   min-width: 0;
-  padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  text-align: left;
+  padding: 0 var(--topology-cell-left-padding-x) 0 var(--topology-cell-left-padding-tight);
+  text-align: right;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
 }
@@ -800,11 +808,11 @@
 
 .plant-operation-pcs-table th {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  text-align: left;
+  text-align: center;
 }
 
 .plant-operation-pcs-table td {
-  text-align: center;
+  text-align: right;
 }
 
 .plant-operation-battery-table th,
@@ -814,7 +822,14 @@
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
   letter-spacing: 0;
+}
+
+.plant-operation-battery-table th {
   text-align: center;
+}
+
+.plant-operation-battery-table td {
+  text-align: right;
 }
 
 .plant-operation-battery-table thead {
@@ -842,17 +857,17 @@
 
 .plant-operation-generator-table th {
   width: 54%;
-  text-align: left;
+  text-align: center;
 }
 
 .plant-operation-generator-table td {
   width: 46%;
-  text-align: center;
+  text-align: right;
   padding-left: var(--topology-cell-left-padding-tight);
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  text-align: center !important;
+  text-align: right !important;
   padding-left: var(--topology-cell-left-padding-tight) !important;
   padding-right: var(--topology-cell-left-padding-tight) !important;
 }
@@ -865,7 +880,14 @@
 .plant-operation-inverter-detail-table td {
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
+}
+
+.plant-operation-inverter-detail-table th {
   text-align: center;
+}
+
+.plant-operation-inverter-detail-table td {
+  text-align: right;
 }
 
 .plant-operation-inverter-detail-table thead,
@@ -926,7 +948,7 @@
 .plant-operation-inverter-matrix-table th:first-child,
 .plant-operation-inverter-matrix-table td:first-child {
   width: 14%;
-  text-align: left;
+  text-align: center;
   padding-left: 10px;
 }
 
