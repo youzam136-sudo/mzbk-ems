@@ -775,7 +775,7 @@
   text-overflow: clip;
 }
 
-.plant-operation-power-table__merged-value {
+.plant-operation-power-table td.plant-operation-power-table__merged-value {
   text-align: center;
 }
 
