@@ -87,7 +87,7 @@ export const plantOperationTopologyPlacements: PlantOperationTopologyPlacements 
     }
   },
   topAuxiliaryTables: {
-    'air-conditioner': pixelPlacement(2, 8, 260, 112),
+    'air-conditioner': pixelPlacement(2, 36, 260, 92),
     'ac-status': pixelPlacement(906, 402, 196, 140)
   },
   mainBtbLabel: {
