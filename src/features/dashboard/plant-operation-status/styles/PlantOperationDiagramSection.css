@@ -851,6 +851,12 @@
   padding-left: var(--topology-cell-left-padding-tight);
 }
 
+.plant-operation-simple-table[data-topology-table-kind='generator'] td {
+  text-align: center !important;
+  padding-left: var(--topology-cell-left-padding-tight) !important;
+  padding-right: var(--topology-cell-left-padding-tight) !important;
+}
+
 .plant-operation-generator-table td.plant-operation-empty-value {
   color: rgba(231, 233, 239, 0.45);
 }

@@ -110,14 +110,12 @@ function DashboardOutlet() {
   const { isAuthenticated, isInitializing } = useAuthSession();
   const location = useLocation();
 
-// TEMP PREVIEW: PREVIEW_SKIP_AUTH true 이면 로그인 검사를 건너뜁니다. 업체 전달 전 반드시 false로 되돌릴 것.
-  const PREVIEW_SKIP_AUTH = true;
-
-  if (isInitializing && !PREVIEW_SKIP_AUTH) {
+  if (isInitializing) {
     return <PageLoadingFallback label="로그인 상태를 확인하는 중입니다." />;
   }
 
-  if (!isAuthenticated && !PREVIEW_SKIP_AUTH) {
+  // TEMP: 로그인 API 미작동으로 임시 우회 중 — 클라이언트 전달 시에는 아래 "false &&" 를 반드시 제거할 것
+  if (false && !isAuthenticated) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 

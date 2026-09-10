@@ -1,5 +1,5 @@
 // Preview mock data: used when the real backend is unreachable so screens still render sample numbers.
-export const PREVIEW_MOCK_ENABLED = true;
+export const PREVIEW_MOCK_ENABLED = false;
 
 export const mockPlantOperationV2Response = {
     menuId: 'MZBK_EMS',
