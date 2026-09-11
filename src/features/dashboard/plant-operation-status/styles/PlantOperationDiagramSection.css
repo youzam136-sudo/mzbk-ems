@@ -770,8 +770,7 @@
 .plant-operation-power-table td {
   min-width: 0;
   padding: 0 var(--topology-cell-left-padding-x) 0 var(--topology-cell-left-padding-tight);
-  padding-left: 20%;
-  text-align: left;
+  text-align: center;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
 }

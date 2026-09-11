@@ -477,7 +477,7 @@ function RightAlignedValue({ value }: { value?: string }) {
   if (!value || value === '-') {
     return <span className="plant-operation-empty-value">{value}</span>;
   }
-  return <span className="plant-operation-value-right">{value}</span>;
+  return <span>{value}</span>;
 }
 
 function PowerMetricTable({ panel, className = '', style }: { panel: PlantOperationPowerPanel; className?: string; style?: CSSProperties }) {
