@@ -322,6 +322,7 @@
 
 .plant-operation-simple-table--ac-status td {
   padding-left: 4px !important;
+  padding-right: 29px !important;
   text-align: right !important;
 }
 
@@ -362,6 +363,7 @@
 
 .plant-operation-bank-table tr > :last-child {
   width: 44%;
+  padding-right: 39px;
 }
 
 .plant-operation-bank-table tr > :last-child,
@@ -648,6 +650,7 @@
 
 .plant-operation-simple-table--bank-collector-left td {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
+  padding-right: 39px;
   text-align: right;
   font-weight: 700;
 }
@@ -828,6 +831,7 @@
 }
 
 .plant-operation-pcs-table td {
+  padding-right: 38px;
   text-align: right;
 }
 
@@ -889,6 +893,7 @@
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
+  padding-right: 35px !important;
   text-align: right !important;
 }
 
