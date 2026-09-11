@@ -473,6 +473,13 @@ function SimpleStatusPanel({ panel, className = '', style }: { panel: PlantOpera
   );
 }
 
+function RightAlignedValue({ value }: { value?: string }) {
+  if (!value || value === '-') {
+    return <span className="plant-operation-empty-value">{value}</span>;
+  }
+  return <span className="plant-operation-value-right">{value}</span>;
+}
+
 function PowerMetricTable({ panel, className = '', style }: { panel: PlantOperationPowerPanel; className?: string; style?: CSSProperties }) {
   const tableStyle = { ...style, '--topology-row-count': panel.rows.length } as PlantOperationStyle;
 
@@ -504,9 +511,9 @@ function PowerMetricTable({ panel, className = '', style }: { panel: PlantOperat
               </td>
             ) : (
               <>
-                <td title={row.values[0]}><span className="plant-operation-value-right">{row.values[0]}</span></td>
-                <td title={row.values[1]}><span className="plant-operation-value-right">{row.values[1]}</span></td>
-                <td title={row.values[2]}><span className="plant-operation-value-right">{row.values[2]}</span></td>
+                <td title={row.values[0]}><RightAlignedValue value={row.values[0]} /></td>
+                <td title={row.values[1]}><RightAlignedValue value={row.values[1]} /></td>
+                <td title={row.values[2]}><RightAlignedValue value={row.values[2]} /></td>
               </>
             )}
             {index === 0 && (

@@ -902,9 +902,16 @@
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  text-align: right !important;
-  padding-left: 11% !important;
-  padding-right: 2% !important;
+  text-align: left !important;
+  padding-left: 16% !important;
+}
+
+.plant-operation-power-table td .plant-operation-empty-value {
+  display: block;
+  width: 100%;
+  margin-left: calc(-1 * var(--topology-cell-left-padding-tight, 6px));
+  text-align: center;
+  color: rgba(231, 233, 239, 0.45);
 }
 
 .plant-operation-generator-table td.plant-operation-empty-value {
