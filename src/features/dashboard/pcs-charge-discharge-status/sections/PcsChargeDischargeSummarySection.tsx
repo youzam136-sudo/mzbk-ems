@@ -25,10 +25,10 @@ export function PcsChargeDischargeSummarySection({ summary, chart }: PcsChargeDi
       textStyle: { fontFamily: CHART_FONT_FAMILY },
       tooltip: { trigger: 'axis' },
       legend: {
-        top: 0,
+        bottom: 0,
         textStyle: { color: '#d6ddea', fontFamily: CHART_FONT_FAMILY, fontSize: 13, fontWeight: 300 }
       },
-      grid: { left: 56, right: 56, top: 40, bottom: 40, containLabel: false },
+      grid: { left: 56, right: 56, top: 24, bottom: 64, containLabel: false },
       xAxis: {
         type: 'category',
         data: chart.labels,
@@ -98,7 +98,7 @@ export function PcsChargeDischargeSummarySection({ summary, chart }: PcsChargeDi
       />
 
       <div className="pcs-charge-summary__chart">
-        <BaseChart option={chartOption} height={270} minWidth={1247} />
+        <BaseChart option={chartOption} height={300} />
       </div>
     </PageCard>
   );

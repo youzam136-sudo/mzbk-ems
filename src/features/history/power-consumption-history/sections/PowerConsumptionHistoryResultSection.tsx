@@ -16,6 +16,7 @@ import { ExcelSaveButton } from '../../../../shared/ui/ExcelSaveButton';
 import type { SearchConditionCriteria } from '../../../../shared/ui/SearchConditionBar';
 import { PageCard } from '../../../../shared/ui/PageCard';
 import { SummaryMatrix } from '../../../../shared/ui/SummaryMatrix';
+import { StatChipGroup } from '../../../../shared/ui/StatChipGroup';
 import { isSingleDayRange } from '../../../../shared/utils/hourlyChartSlots';
 import { detailHeaderRows, usePowerConsumptionHistoryData } from '../hooks/usePowerConsumptionHistoryData';
 import type { PowerConsumptionHistoryMode } from '../types/powerConsumptionHistory';
@@ -102,11 +103,13 @@ export function PowerConsumptionHistoryResultSection({ searchCriteria, searchedA
                 onChange={(event) => setSelected(event.target.value)}
                 options={data.equipmentOptions}
               />
-              <SummaryMatrix
+              <StatChipGroup
                 ariaLabel="선택 BANK MAX/MIN/AVG"
-                columns={['MAX[kWh]', 'MIN[kWh]', 'AVG[kWh]']}
-                metrics={[{ label: selected, values: [detail.stat.max, detail.stat.min, detail.stat.avg] }]}
-                minWidth={420}
+                items={[
+                  { label: 'MAX[kWh]', value: detail.stat.max },
+                  { label: 'MIN[kWh]', value: detail.stat.min },
+                  { label: 'AVG[kWh]', value: detail.stat.avg }
+                ]}
               />
               <ExcelSaveButton
                 fileName={`전력소비_이력_${selected}_상세`}

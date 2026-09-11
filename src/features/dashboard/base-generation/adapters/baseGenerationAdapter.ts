@@ -102,26 +102,31 @@ function createPowerTableRows(
 
 const inverterDetailHeaderRows: TableHeaderCell[][] = [
   [
-    { label: 'Time', rowSpan: 2 },
-    { label: '상태', rowSpan: 2 },
+    { label: 'Time', rowSpan: 3 },
+    { label: '상태', rowSpan: 3 },
     { label: '전력[kW]', colSpan: 2 },
     { label: '누계전력[kWh]', colSpan: 2 },
     { label: 'STRING', colSpan: 9 }
   ],
   [
-    { label: '유효' },
-    { label: '무효' },
-    { label: 'DAY' },
-    { label: 'Total' },
-    { label: 'P[kW] Max' },
-    { label: 'P[kW] Min' },
-    { label: 'P[kW] AVG' },
-    { label: 'V[V] Max' },
-    { label: 'V[V] Min' },
-    { label: 'V[V] AVG' },
-    { label: 'A[A] Max' },
-    { label: 'A[A] Min' },
-    { label: 'A[A] AVG' }
+    { label: '유효', rowSpan: 2 },
+    { label: '무효', rowSpan: 2 },
+    { label: 'DAY', rowSpan: 2 },
+    { label: 'Total', rowSpan: 2 },
+    { label: 'P[kW]', colSpan: 3 },
+    { label: 'V[V]', colSpan: 3 },
+    { label: 'A[A]', colSpan: 3 }
+  ],
+  [
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' },
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' },
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' }
   ]
 ];
 

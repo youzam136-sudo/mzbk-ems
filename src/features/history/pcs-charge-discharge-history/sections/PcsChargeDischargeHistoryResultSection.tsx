@@ -32,8 +32,8 @@ export function PcsChargeDischargeHistoryResultSection({ searchCriteria, searche
     () => ({
       textStyle: { fontFamily: CHART_FONT_FAMILY },
       tooltip: { trigger: 'axis' },
-      legend: { top: 0, textStyle: { color: '#d6ddea', fontFamily: CHART_FONT_FAMILY, fontSize: 13, fontWeight: 300 } },
-      grid: { left: 56, right: 56, top: 40, bottom: 40, containLabel: false },
+      legend: { bottom: 0, textStyle: { color: '#d6ddea', fontFamily: CHART_FONT_FAMILY, fontSize: 13, fontWeight: 300 } },
+      grid: { left: 56, right: 56, top: 24, bottom: 64, containLabel: false },
       xAxis: {
         type: 'category',
         data: data.labels,
@@ -67,7 +67,7 @@ export function PcsChargeDischargeHistoryResultSection({ searchCriteria, searche
           조회 조건: {searchCriteria.mode} / {searchCriteria.startDate || '-'} ~ {searchCriteria.endDate || '-'} / 조회 시각: {searchedAt}
         </div>
         <div className="pcs-charge-history-result__chart">
-          <BaseChart option={chartOption} height={270} minWidth={1120} />
+          <BaseChart option={chartOption} height={300} />
         </div>
       </PageCard>
 

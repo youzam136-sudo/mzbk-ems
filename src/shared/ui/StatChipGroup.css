@@ -1,0 +1,42 @@
+.stat-chip-group {
+  display: flex;
+  gap: var(--mzbk-space-5);
+  margin: 0;
+}
+
+.stat-chip-group__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--mzbk-space-4) var(--mzbk-space-6);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--table-line, rgba(255, 255, 255, 0.12));
+  min-width: 96px;
+}
+
+.stat-chip-group__label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.stat-chip-group__value {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #f4f6fb;
+}
+
+@media (max-width: 720px) {
+  .stat-chip-group {
+    flex-wrap: wrap;
+    gap: var(--mzbk-space-4);
+  }
+
+  .stat-chip-group__item {
+    min-width: 0;
+    flex: 1 1 30%;
+  }
+}

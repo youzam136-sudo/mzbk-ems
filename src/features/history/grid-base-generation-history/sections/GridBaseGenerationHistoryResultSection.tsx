@@ -16,6 +16,7 @@ import { ExcelSaveButton } from '../../../../shared/ui/ExcelSaveButton';
 import type { SearchConditionCriteria } from '../../../../shared/ui/SearchConditionBar';
 import { PageCard } from '../../../../shared/ui/PageCard';
 import { SummaryMatrix } from '../../../../shared/ui/SummaryMatrix';
+import { StatChipGroup } from '../../../../shared/ui/StatChipGroup';
 import { isSingleDayRange } from '../../../../shared/utils/hourlyChartSlots';
 import { useGridBaseGenerationHistoryData } from '../hooks/useGridBaseGenerationHistoryData';
 import type { GridBaseGenerationHistoryMode } from '../types/gridBaseGenerationHistory';
@@ -23,22 +24,27 @@ import '../styles/GridBaseGenerationHistoryResultSection.css';
 
 const detailHeaderRows = [
   [
-    { label: 'Time', rowSpan: 2 },
+    { label: 'Time', rowSpan: 3 },
     { label: '전력[kWh]', colSpan: 2 },
     { label: 'STRING', colSpan: 9 }
   ],
   [
-    { label: '누계' },
-    { label: 'TOTAL' },
-    { label: 'P[kW] Max' },
-    { label: 'P[kW] Min' },
-    { label: 'P[kW] AVG' },
-    { label: 'V[V] Max' },
-    { label: 'V[V] Min' },
-    { label: 'V[V] AVG' },
-    { label: 'A[A] Max' },
-    { label: 'A[A] Min' },
-    { label: 'A[A] AVG' }
+    { label: '누계', rowSpan: 2 },
+    { label: 'TOTAL', rowSpan: 2 },
+    { label: 'P[kW]', colSpan: 3 },
+    { label: 'V[V]', colSpan: 3 },
+    { label: 'A[A]', colSpan: 3 }
+  ],
+  [
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' },
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' },
+    { label: 'Max' },
+    { label: 'Min' },
+    { label: 'AVG' }
   ]
 ];
 
@@ -127,11 +133,13 @@ export function GridBaseGenerationHistoryResultSection({ searchCriteria, searche
                 onChange={(event) => setSelectedInverter(event.target.value)}
                 options={data.equipmentOptions}
               />
-              <SummaryMatrix
+              <StatChipGroup
                 ariaLabel="선택 인버터 MAX/MIN/AVG"
-                columns={['MAX[kWh]', 'MIN[kWh]', 'AVG[kWh]']}
-                metrics={[{ label: selectedInverter, values: [detail.stat.max, detail.stat.min, detail.stat.avg] }]}
-                minWidth={420}
+                items={[
+                  { label: 'MAX[kWh]', value: detail.stat.max },
+                  { label: 'MIN[kWh]', value: detail.stat.min },
+                  { label: 'AVG[kWh]', value: detail.stat.avg }
+                ]}
               />
               <ExcelSaveButton
                 fileName={`기저발전_이력_${selectedInverter}_상세`}
