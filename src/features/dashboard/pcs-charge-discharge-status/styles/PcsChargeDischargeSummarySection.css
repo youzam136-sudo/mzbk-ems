@@ -4,10 +4,6 @@
   gap: var(--mzbk-space-6);
 }
 
-.pcs-charge-summary__matrix {
-  max-width: 480px;
-}
-
 .pcs-charge-summary__chart {
   width: 100%;
   overflow-x: auto;
