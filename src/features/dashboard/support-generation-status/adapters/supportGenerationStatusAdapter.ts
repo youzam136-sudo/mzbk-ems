@@ -43,21 +43,25 @@ const detailTableHeaderRows: TableHeaderCell[][] = [
   [
     { label: 'Time', rowSpan: 2 },
     { label: '상태', rowSpan: 2 },
-    { label: '유효[kW]', rowSpan: 2 },
-    { label: '무효[kW]', rowSpan: 2 },
-    { label: '피상[kW]', rowSpan: 2 },
-    { label: 'PF[%]', rowSpan: 2 },
-    { label: '지상/진상', rowSpan: 2 },
-    { label: 'DAY[kWh]', rowSpan: 2 },
-    { label: 'V[V]', rowSpan: 2 },
-    { label: 'A[A]', rowSpan: 2 },
-    { label: '주파수[Hz]', rowSpan: 2 },
+    { label: 'Power', colSpan: 9 },
     { label: 'TMP[°C]', colSpan: 2 },
     { label: 'Oil[Bar]', rowSpan: 2 },
     { label: 'RPM', rowSpan: 2 },
     { label: 'Fuel[%]', rowSpan: 2 }
   ],
-  [{ label: 'COOL' }, { label: 'OIL' }]
+  [
+    { label: '유효[kW]' },
+    { label: '무효[kW]' },
+    { label: '피상[kW]' },
+    { label: 'PF[%]' },
+    { label: '지상/진상' },
+    { label: 'DAY[kWh]' },
+    { label: 'V[V]' },
+    { label: 'A[A]' },
+    { label: '주파수[Hz]' },
+    { label: 'COOL' },
+    { label: 'OIL' }
+  ]
 ];
 
 function getRowsByTime(...rowSets: ApiRecord[][]) {
