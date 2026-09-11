@@ -29,7 +29,7 @@ function getBaseGenerationTitle(pathname: string) {
 export function BaseGenerationPage() {
   const location = useLocation();
   const domain = useMemo(() => getBaseGenerationDomain(location.pathname), [location.pathname]);
-  const isTargetSelectable = domain === 'base-plant';
+  const isTargetSelectable = true;
   const pageTitle = useMemo(() => getBaseGenerationTitle(location.pathname), [location.pathname]);
   const [selectedTargetId, setSelectedTargetId] = useState('');
   const { data, isLoading, errorMessage } = useBaseGenerationStatus(domain, isTargetSelectable ? selectedTargetId : '');

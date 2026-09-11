@@ -25,8 +25,8 @@ export function PowerConsumptionSummarySection({ summary, trendChart }: PowerCon
       chartLabels={trendChart.labels}
       chartYAxisName="Total kWh"
       chartSeries={[
-        { name: '전체 소비량', type: 'bar', data: trendChart.totalDemandSeries },
-        { name: 'PF', type: 'line', data: trendChart.pfSeries, color: '#f3f6ff' }
+        { name: 'Total', type: 'bar', data: trendChart.totalDemandSeries },
+        ...trendChart.bankLineSeries.map((series) => ({ name: series.name, type: 'line' as const, data: series.data }))
       ]}
     />
   );

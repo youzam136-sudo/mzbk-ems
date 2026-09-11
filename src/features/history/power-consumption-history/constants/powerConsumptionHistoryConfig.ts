@@ -1,6 +1,11 @@
 import type { PowerConsumptionHistoryMetric, PowerConsumptionHistoryMode } from '../types/powerConsumptionHistory';
 
-export const powerConsumptionHistoryModes: readonly PowerConsumptionHistoryMode[] = ['Year', 'Month', 'Duration'];
+export const powerConsumptionHistoryModes: readonly { value: PowerConsumptionHistoryMode; label: string; inputType?: 'date' | 'dateRange' | 'month' | 'year' }[] = [
+  { value: 'Day', label: 'DAY', inputType: 'date' },
+  { value: 'Month', label: 'Month' },
+  { value: 'Year', label: 'Year' },
+  { value: 'Duration', label: 'Duration' }
+];
 export const powerConsumptionHistoryMetrics: readonly PowerConsumptionHistoryMetric[] = ['Max kWh', 'Min kWh', 'AVG kWh'];
 
 export const powerConsumptionHistoryDefaultCriteria = {

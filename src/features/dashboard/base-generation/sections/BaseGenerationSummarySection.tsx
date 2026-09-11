@@ -25,8 +25,8 @@ export function BaseGenerationSummarySection({ summary, trendChart }: BaseGenera
       chartLabels={trendChart.labels}
       chartYAxisName="Total kWh"
       chartSeries={[
-        { name: '유효전력', type: 'bar', data: trendChart.totalOutputSeries },
-        { name: '무효전력', type: 'line', data: trendChart.lineSeries, color: '#f3f6ff' }
+        { name: 'Total', type: 'bar', data: trendChart.totalOutputSeries },
+        ...trendChart.lineSeries.map((series) => ({ name: series.name, type: 'line' as const, data: series.data }))
       ]}
     />
   );

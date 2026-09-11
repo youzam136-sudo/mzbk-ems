@@ -16,10 +16,15 @@ export type BaseGenerationChartDatum = {
   name: string;
 };
 
+export type BaseGenerationTrendLineSeries = {
+  name: string;
+  data: number[];
+};
+
 export type BaseGenerationTrendChartData = {
   labels: string[];
   totalOutputSeries: number[];
-  lineSeries: number[];
+  lineSeries: BaseGenerationTrendLineSeries[];
 };
 
 export type BaseGenerationDetailTableData = {

@@ -4,6 +4,6 @@
  * 설명: 실제 ESS/디젤 데이터는 API 어댑터에서 받고, 화면 선택 타입만 분리한다.
  * 수정: 보조발전 이력 구성이 바뀌면 이 파일과 result section의 API 필드를 같이 조정한다.
  */
-export type SupportGenerationHistoryMode = 'Year' | 'Month' | 'Duration';
+export type SupportGenerationHistoryMode = 'Day' | 'Year' | 'Month' | 'Duration';
 
 export type SupportGenerationHistoryMetric = 'Max kWh' | 'Min kWh' | 'AVG kWh' | 'Max D kWh' | 'Min D kWh' | 'AVG D kWh';

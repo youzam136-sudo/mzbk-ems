@@ -1,19 +1,15 @@
 import {
   EMPTY_API_VALUE,
   formatApiNumber,
-  formatShare,
   getTimeLabel,
   readApiField,
   sortByDateTime,
-  sumApiNumbers,
   toChartNumber
 } from '../../../../shared/api/apiDataUtils';
 import type { ApiRecord } from '../../../../shared/api/apiDataUtils';
 import type { TableHeaderCell, TableRow } from '../../../../shared/types/table';
 import type { PcsChargeDischargePageData } from '../types/pcsChargeDischargeStatus';
 import type { PcsChargeDischargeStatusResponse } from '../api/pcsChargeDischargeStatusApi';
-
-const SUMMARY_COLORS = ['#25b6fe', '#d20000'];
 
 const pcsTableHeaderRows: TableHeaderCell[][] = [
   [
@@ -34,6 +30,7 @@ const pcsTableHeaderRows: TableHeaderCell[][] = [
     { label: 'RACK (AVG) V' },
     { label: 'RACK (AVG) A' },
     { label: 'CELL (AVG) V' },
+    { label: 'CELL (AVG) A' },
     { label: 'TEMP (AVG)' }
   ]
 ];
@@ -108,6 +105,7 @@ function createPcsTableRows(response: PcsChargeDischargeStatusResponse): TableRo
       formatApiNumber(readApiField(battery, 'batAvgRakv')),
       formatApiNumber(readApiField(battery, 'batAvgRaka')),
       formatApiNumber(readApiField(battery, 'batAvgCelv')),
+      formatApiNumber(readApiField(battery, 'batAvgCela')),
       formatApiNumber(readApiField(battery, 'batAvgPaktmp'))
     ];
   });
@@ -128,47 +126,60 @@ function createBatteryTableRows(response: PcsChargeDischargeStatusResponse): Tab
     formatApiNumber(readApiField(row, 'batMinCelv')),
     formatApiNumber(readApiField(row, 'maxCelvRakno')),
     formatApiNumber(readApiField(row, 'minCelvRakno')),
-    formatApiNumber(readApiField(row, 'batMaxRaka')),
-    formatApiNumber(readApiField(row, 'batMinRaka')),
-    formatApiNumber(readApiField(row, 'maxRakaRakno')),
-    formatApiNumber(readApiField(row, 'minRakaRakno')),
+    formatApiNumber(readApiField(row, 'batMaxCela')),
+    formatApiNumber(readApiField(row, 'batMinCela')),
+    formatApiNumber(readApiField(row, 'maxCelaRakno')),
+    formatApiNumber(readApiField(row, 'minCelaRakno')),
     formatApiNumber(readApiField(row, 'batMaxPaktmp')),
     formatApiNumber(readApiField(row, 'maxPaktmpRakno'))
   ]);
 }
 
+function computeStat(values: number[]) {
+  const nonZero = values.filter((value) => value > 0);
+
+  if (nonZero.length === 0) {
+    return { max: EMPTY_API_VALUE, min: EMPTY_API_VALUE, avg: EMPTY_API_VALUE };
+  }
+
+  const max = Math.max(...nonZero);
+  const min = Math.min(...nonZero);
+  const avg = nonZero.reduce((sum, value) => sum + value, 0) / nonZero.length;
+
+  return { max: formatApiNumber(max), min: formatApiNumber(min), avg: formatApiNumber(avg) };
+}
+
 /*
  * 필요: PCS/Battery API 응답을 충방전 화면의 공통 패널/표 데이터로 변환한다.
  * 연결: usePcsChargeDischargeStatus, PcsChargeDischargeSummarySection, PcsChargeDischargeTableSection.
- * 설명: PCS 유효전력을 충전 축, DC 전력을 방전 축으로 분리해 현재 API 값 기반 그래프를 만든다.
+ * 설명: PCS 유효전력을 충전 축, DC 전력을 방전 축으로 분리하고, SoC(%)는 배터리 값에서 가져온다.
  * 수정: 충전/방전 판정 기준이 확정되면 chargeSeries/dischargeSeries 매핑만 교체한다.
  */
 export function toPcsChargeDischargePageData(response: PcsChargeDischargeStatusResponse): PcsChargeDischargePageData {
-  const chargeTotal = readApiField(response.pcsLatest, 'pcsAtpTot');
-  const dischargeTotal = readApiField(response.pcsLatest, 'pcsDcP');
-  const total = sumApiNumbers([chargeTotal, dischargeTotal]);
   const rowsByTime = getRowsByTime(response.pcsStatusList, response.batteryStatusList);
   const pcsRows = createPcsTableRows(response);
   const batteryRows = createBatteryTableRows(response);
 
+  const chargeSeries = rowsByTime.map(({ value }) => Math.max(0, toChartNumber(readApiField(value.set0, 'pcsAtpTot'))));
+  const dischargeMagnitudeSeries = rowsByTime.map(({ value }) => Math.abs(toChartNumber(readApiField(value.set0, 'pcsDcP'))));
+  const dischargeSeries = dischargeMagnitudeSeries.map((value) => -value);
+  const socSeries = rowsByTime.map(({ value }) => toChartNumber(readApiField(value.set1, 'batAvgSoc')));
+
+  const chargeStat = computeStat(chargeSeries);
+  const dischargeStat = computeStat(dischargeMagnitudeSeries);
+
   return {
     summary: {
-      columns: ['Total', 'PCS', 'Battery'],
-      metrics: [
-        { label: '비중(%)', values: ['100.0', formatShare(chargeTotal, total), formatShare(dischargeTotal, total)] },
-        { label: '발전량(kWh)', values: [formatApiNumber(total), formatApiNumber(chargeTotal), formatApiNumber(dischargeTotal)] }
-      ],
-      donutData: [
-        { name: '충전 표시', value: toChartNumber(chargeTotal) },
-        { name: '방전 표시', value: toChartNumber(dischargeTotal) }
-      ],
-      donutLegendLabels: ['충전 표시', '방전 표시'],
-      donutColors: SUMMARY_COLORS
+      rows: [
+        { label: '충전', max: chargeStat.max, min: chargeStat.min, avg: chargeStat.avg },
+        { label: '방전', max: dischargeStat.max, min: dischargeStat.min, avg: dischargeStat.avg }
+      ]
     },
     chart: {
       labels: rowsByTime.map(({ time }) => time),
-      chargeSeries: rowsByTime.map(({ value }) => toChartNumber(readApiField(value.set0, 'pcsAtpTot'))),
-      dischargeSeries: rowsByTime.map(({ value }) => -Math.abs(toChartNumber(readApiField(value.set0, 'pcsDcP'))))
+      chargeSeries,
+      dischargeSeries,
+      socSeries
     },
     pcsTable: {
       ariaLabel: 'PCS 충방전 ESS PCS 상세 내역',

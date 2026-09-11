@@ -1,6 +1,11 @@
 import type { SupportGenerationHistoryMetric, SupportGenerationHistoryMode } from '../types/supportGenerationHistory';
 
-export const supportGenerationHistoryModes: readonly SupportGenerationHistoryMode[] = ['Year', 'Month', 'Duration'];
+export const supportGenerationHistoryModes: readonly { value: SupportGenerationHistoryMode; label: string; inputType?: 'date' | 'dateRange' | 'month' | 'year' }[] = [
+  { value: 'Day', label: 'DAY', inputType: 'date' },
+  { value: 'Month', label: 'Month' },
+  { value: 'Year', label: 'Year' },
+  { value: 'Duration', label: 'Duration' }
+];
 
 export const supportGenerationHistoryMetrics: readonly SupportGenerationHistoryMetric[] = [
   'Max kWh',

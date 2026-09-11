@@ -19,8 +19,8 @@ export type SupportGenerationDistributionItem = {
 export type SupportGenerationTrendChartData = {
   labels: string[];
   totalOutputSeries: number[];
-  batteryOutputSeries: number[];
-  dieselOutputSeries: number[];
+  diesel1OutputSeries: number[];
+  diesel2OutputSeries: number[];
 };
 
 export type SupportGenerationSummaryData = {
@@ -31,11 +31,19 @@ export type SupportGenerationSummaryData = {
   donutColors: string[];
 };
 
-export type SupportGenerationDetailTableData = {
+export type SupportGenerationOperationTableData = {
   ariaLabel: string;
   minWidth: number;
   headerRows: TableHeaderCell[][];
   rows: TableRow[];
+  allRows?: TableRow[];
+};
+
+export type SupportGenerationDetailTableData = {
+  ariaLabel: string;
+  minWidth: number;
+  headerRows: TableHeaderCell[][];
+  rowsByEquipment: Record<string, TableRow[]>;
   equipmentOptions: {
     label: string;
     value: string;
@@ -47,5 +55,6 @@ export type SupportGenerationDetailTableData = {
 export type SupportGenerationPageData = {
   summary: SupportGenerationSummaryData;
   trendChart: SupportGenerationTrendChartData;
-  table: SupportGenerationDetailTableData;
+  operationTable: SupportGenerationOperationTableData;
+  detailTable: SupportGenerationDetailTableData;
 };

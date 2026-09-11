@@ -16,10 +16,15 @@ export type PowerConsumptionDistributionItem = {
   value: number;
 };
 
+export type PowerConsumptionTrendLineSeries = {
+  name: string;
+  data: number[];
+};
+
 export type PowerConsumptionTrendChartData = {
   labels: string[];
   totalDemandSeries: number[];
-  pfSeries: number[];
+  bankLineSeries: PowerConsumptionTrendLineSeries[];
 };
 
 export type PowerConsumptionSummaryData = {
@@ -30,16 +35,27 @@ export type PowerConsumptionSummaryData = {
   donutColors: string[];
 };
 
-export type PowerConsumptionTableData = {
+export type PowerConsumptionOperationTableData = {
   ariaLabel: string;
   minWidth: number;
   headerRows: TableHeaderCell[][];
   rows: TableRow[];
+  allRows?: TableRow[];
+};
+
+export type PowerConsumptionDetailTableData = {
+  ariaLabel: string;
+  minWidth: number;
+  headerRows: TableHeaderCell[][];
+  rowsByEquipment: Record<string, TableRow[]>;
+  equipmentOptions: { label: string; value: string }[];
+  defaultEquipmentValue: string;
+  defaultExpanded: boolean;
 };
 
 export type PowerConsumptionPageData = {
   summary: PowerConsumptionSummaryData;
   trendChart: PowerConsumptionTrendChartData;
-  table: PowerConsumptionTableData;
-  bankTable: PowerConsumptionTableData;
+  operationTable: PowerConsumptionOperationTableData;
+  detailTable: PowerConsumptionDetailTableData;
 };

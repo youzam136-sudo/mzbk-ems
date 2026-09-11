@@ -1,68 +1,12 @@
 import type { TableHeaderCell, TableRow } from '../../../../shared/types/table';
 import type { BaseGenerationPageData } from '../types/baseGeneration';
-import type { BaseGenerationStatusResponse, GridStatusResponseDto } from '../api/baseGenerationApi';
-import type { MonitoringDetailDto, MonitoringTargetDto } from '../../../../shared/api/monitoringApi';
+import type { BaseGenerationStatusResponse, GridStatusResponseDto, InverterStringDetailDto } from '../api/baseGenerationApi';
+import type { MonitoringTargetDto } from '../../../../shared/api/monitoringApi';
 
 type NumberLike = string | number | null | undefined;
 
 const EMPTY_VALUE = '-';
-const SUMMARY_COLORS = ['#25b6fe', '#f3f6ff'];
-
-const powerTableHeaderRows: TableHeaderCell[][] = [
-  [
-    { label: 'Time', rowSpan: 2 },
-    { label: 'POWER', colSpan: 3 },
-    { label: 'PF', rowSpan: 2 },
-    { label: 'ACTIVE.ACCM', colSpan: 4 },
-    { label: 'REACTIVE.ACCM', colSpan: 4 }
-  ],
-  [
-    { label: 'ACTIVE' },
-    { label: 'REACTIVE' },
-    { label: 'APPARENT' },
-    { label: 'DAY' },
-    { label: 'WEEK' },
-    { label: 'MON' },
-    { label: 'TOT' },
-    { label: 'DAY' },
-    { label: 'WEEK' },
-    { label: 'MON' },
-    { label: 'TOT' }
-  ]
-];
-
-const inverterTableHeaderRows: TableHeaderCell[][] = [
-  [
-    { label: 'Time', rowSpan: 3 },
-    { label: 'DC', colSpan: 3 },
-    { label: 'AC', colSpan: 13 },
-    { label: 'PF', rowSpan: 3 }
-  ],
-  [
-    { label: 'P', rowSpan: 2 },
-    { label: 'V', rowSpan: 2 },
-    { label: 'A', rowSpan: 2 },
-    { label: 'P', colSpan: 4 },
-    { label: 'V', colSpan: 3 },
-    { label: 'A', colSpan: 3 },
-    { label: 'Frequency', colSpan: 3 }
-  ],
-  [
-    { label: 'TOT' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' },
-    { label: 'L12' },
-    { label: 'L23' },
-    { label: 'L32' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' }
-  ]
-];
+const DONUT_PALETTE = ['#f2994a', '#9aa3ae', '#2f80ed', '#27ae60', '#eb5757', '#9b51e0', '#56ccf2'];
 
 function getRawValue(value: NumberLike) {
   if (value === null || value === undefined) {
@@ -106,22 +50,12 @@ function formatNumber(value: NumberLike, fallbackDigits = 1) {
   }).format(numericValue);
 }
 
-function formatPowerFactor(value: NumberLike) {
-  const numericValue = toNumber(value);
-
-  if (numericValue === null) {
-    return EMPTY_VALUE;
-  }
-
-  return numericValue > 1 ? (numericValue / 100).toFixed(2) : numericValue.toFixed(2);
-}
-
 function toChartNumber(value: NumberLike) {
   return toNumber(value) ?? 0;
 }
 
-function getTimeLabel(row: GridStatusResponseDto) {
-  const time = getRawValue(row.esmtOperTime);
+function getTimeLabel(row: { esmtOperTime?: NumberLike; operTime?: NumberLike }) {
+  const time = getRawValue(row.esmtOperTime ?? row.operTime);
 
   if (time.length >= 5) {
     return time.slice(0, 5);
@@ -130,63 +64,84 @@ function getTimeLabel(row: GridStatusResponseDto) {
   return time || EMPTY_VALUE;
 }
 
-function getSortedRows(rows: GridStatusResponseDto[]) {
-  return [...rows].sort((a, b) => {
-    const aKey = `${getRawValue(a.esmtOperYmd)} ${getRawValue(a.esmtOperTime)}`;
-    const bKey = `${getRawValue(b.esmtOperYmd)} ${getRawValue(b.esmtOperTime)}`;
-
-    return aKey.localeCompare(bKey);
-  });
+function getTargetLabel(target: MonitoringTargetDto, index: number) {
+  return getRawValue(target.targetName) || `IVT${index + 1}`;
 }
 
-function getDisplayRows(response: BaseGenerationStatusResponse) {
-  const rows = getSortedRows(response.statusList);
-
-  if (rows.length > 0) {
-    return rows;
-  }
-
-  return response.latest ? [response.latest] : [];
+/*
+ * 필요: 인버터(타겟) N개를 컬럼으로 갖는 운전 상세 표의 2단 헤더를 만든다.
+ * 연결: toBaseGenerationPageData.
+ * 설명: 타겟 수가 바뀌어도(7개가 아니어도) 그대로 대응하도록 targetList 길이 기준으로 동적 생성한다.
+ */
+function createPowerTableHeaderRows(targets: MonitoringTargetDto[]): TableHeaderCell[][] {
+  return [
+    [{ label: 'Time', rowSpan: 2 }, ...targets.map((target, index) => ({ label: getTargetLabel(target, index), colSpan: 2 }))],
+    targets.flatMap(() => [{ label: '상태' }, { label: '전력[kW]' }])
+  ];
 }
 
-function createPowerTableRows(rows: GridStatusResponseDto[]): TableRow[] {
-  return rows.map((row) => [
-    getTimeLabel(row),
-    formatNumber(row.baAtpTot),
-    formatNumber(row.baRtpTot),
-    formatNumber(row.baArpTot),
-    formatPowerFactor(row.baPfTot),
-    formatNumber(row.baAtpDayAccm),
-    formatNumber(row.baAtpWeekAccm),
-    formatNumber(row.baAtpMonAccm),
-    formatNumber(row.baAtpTotAccm),
-    formatNumber(row.baRtpDayAccm),
-    formatNumber(row.baRtpWeekAccm),
-    formatNumber(row.baRtpMonAccm),
-    formatNumber(row.baRtpTotAccm)
+/*
+ * 필요: 시간대별로 각 인버터의 상태/전력을 한 행에 나열한 운전 상세 표 데이터를 만든다.
+ * 연결: toBaseGenerationPageData.
+ * 설명: targetSeriesMap이 없는(실제 API가 아직 인버터별 시계열을 못 주는) 경우 전체 열을 '-'로 채운다.
+ */
+function createPowerTableRows(
+  timeLabels: string[],
+  targets: MonitoringTargetDto[],
+  targetSeriesMap: Record<string, GridStatusResponseDto[]> | undefined
+): TableRow[] {
+  return timeLabels.map((time, rowIndex) => [
+    time,
+    ...targets.flatMap((target) => {
+      const series = targetSeriesMap?.[getRawValue(target.targetId)];
+      const point = series?.[rowIndex];
+      return [getRawValue(point?.status) || EMPTY_VALUE, formatNumber(point?.baAtpTot)];
+    })
   ]);
 }
 
-function createInverterTableRows(rows: GridStatusResponseDto[]): TableRow[] {
-  return rows.map((row) => [
-    getTimeLabel(row),
-    formatNumber(row.baAtpTot),
-    formatNumber(row.baPtpvL12),
-    formatNumber(row.baPaL1),
-    formatNumber(row.baAtpTot),
-    formatNumber(row.baAtpL1),
-    formatNumber(row.baAtpL2),
-    formatNumber(row.baAtpL3),
-    formatNumber(row.baPtpvL12),
-    formatNumber(row.baPtpvL23),
-    formatNumber(row.baPtpvL31),
-    formatNumber(row.baPaL1),
-    formatNumber(row.baPaL2),
-    formatNumber(row.baPaL3),
-    formatNumber(row.baPfrL1),
-    formatNumber(row.baPfrL2),
-    formatNumber(row.baPfrL3),
-    formatPowerFactor(row.baPfTot)
+const inverterDetailHeaderRows: TableHeaderCell[][] = [
+  [
+    { label: 'Time', rowSpan: 2 },
+    { label: '상태', rowSpan: 2 },
+    { label: '전력[kW]', colSpan: 2 },
+    { label: '누계전력[kWh]', colSpan: 2 },
+    { label: 'STRING', colSpan: 9 }
+  ],
+  [
+    { label: '유효' },
+    { label: '무효' },
+    { label: 'DAY' },
+    { label: 'Total' },
+    { label: 'P[kW] Max' },
+    { label: 'P[kW] Min' },
+    { label: 'P[kW] AVG' },
+    { label: 'V[V] Max' },
+    { label: 'V[V] Min' },
+    { label: 'V[V] AVG' },
+    { label: 'A[A] Max' },
+    { label: 'A[A] Min' },
+    { label: 'A[A] AVG' }
+  ]
+];
+
+function createInverterDetailRows(details: InverterStringDetailDto[]): TableRow[] {
+  return details.map((detail) => [
+    getTimeLabel(detail),
+    getRawValue(detail.status) || EMPTY_VALUE,
+    formatNumber(detail.activePower),
+    formatNumber(detail.reactivePower),
+    formatNumber(detail.dayAccm),
+    formatNumber(detail.totalAccm),
+    formatNumber(detail.stringPMax),
+    formatNumber(detail.stringPMin),
+    formatNumber(detail.stringPAvg),
+    formatNumber(detail.stringVMax),
+    formatNumber(detail.stringVMin),
+    formatNumber(detail.stringVAvg),
+    formatNumber(detail.stringAMax),
+    formatNumber(detail.stringAMin),
+    formatNumber(detail.stringAAvg)
   ]);
 }
 
@@ -194,85 +149,72 @@ function createTargetOptions(targets: MonitoringTargetDto[]) {
   return targets
     .map((target, index) => {
       const value = getRawValue(target.targetId) || `target-${index + 1}`;
-      const label = getRawValue(target.targetName) || `대상 #${index + 1}`;
+      const label = getTargetLabel(target, index);
 
       return { label, value };
     })
     .filter((option) => option.value);
 }
 
-function createDetailTableRows(details: MonitoringDetailDto[]): TableRow[] {
-  return details.map((detail) => [
-    getTimeLabel({ esmtOperTime: detail.operTime }),
-    formatNumber(detail.detailValue1),
-    formatNumber(detail.detailValue2),
-    formatNumber(detail.detailValue3),
-    formatNumber(detail.detailValue1),
-    formatNumber(detail.detailValue2),
-    formatNumber(detail.detailValue3),
-    formatNumber(detail.detailValue4),
-    formatNumber(detail.detailValue2),
-    formatNumber(detail.detailValue3),
-    formatNumber(detail.detailValue4),
-    formatNumber(detail.detailValue1),
-    formatNumber(detail.detailValue2),
-    formatNumber(detail.detailValue3),
-    formatNumber(detail.detailValue4),
-    formatNumber(detail.detailValue5),
-    formatNumber(detail.detailValue5),
-    formatNumber(detail.detailValue5)
-  ]);
-}
-
 /*
- * 필요: GRID API DTO를 기저발전 공통 화면 ViewModel로 변환한다.
+ * 필요: GRID/인버터 API DTO를 기저발전(태양광) 화면 ViewModel로 변환한다.
  * 연결: useBaseGenerationStatus, BaseGenerationSummarySection, BaseGenerationTableSection.
- * 설명: 컴포넌트에는 API 필드명과 fallback 규칙을 두지 않고, targetList/detail 값을 화면 계약으로 바꾼다.
- * 수정: 기저발전 API 필드 의미나 상세 표 매핑이 바뀌면 이 adapter의 매핑만 먼저 조정한다.
+ * 설명: 2026.08.31 워크샵 반영 스펙 — 인버터(IVT1~N) 개별 상태/전력 표 + STRING 상세 통계로 구조 변경.
+ * 수정: 인버터 개수나 STRING 통계 필드가 바뀌면 이 adapter의 매핑만 먼저 조정한다.
  */
 export function toBaseGenerationPageData(response: BaseGenerationStatusResponse): BaseGenerationPageData {
-  const rows = getDisplayRows(response);
-  const latest = response.latest ?? rows.at(-1) ?? null;
-  const activeTotal = latest?.baAtpTot;
-  const reactiveTotal = latest?.baRtpTot;
-  const targetOptions = createTargetOptions(response.targetList);
-  const detailRows = response.detailList.length ? createDetailTableRows(response.detailList) : createInverterTableRows(rows);
+  const targets = response.targetList;
+  const targetOptions = createTargetOptions(targets);
+  const timeLabels = response.statusList.map((row) => getTimeLabel(row));
+  const totalSeries = response.statusList.map((row) => toChartNumber(row.baAtpTot));
+  const latestTotal = totalSeries.at(-1) ?? toChartNumber(response.latest?.baAtpTot);
+
+  const perTargetLatest = targets.map((target) => {
+    const series = response.targetSeriesMap?.[getRawValue(target.targetId)];
+    return toChartNumber(series?.at(-1)?.baAtpTot);
+  });
 
   return {
     summary: {
-      columns: ['Total', 'GRID'],
+      columns: ['Total', ...targets.map((target, index) => getTargetLabel(target, index))],
       metrics: [
-        { label: '발전비중(%)', values: ['100.0', formatNumber(latest?.lgldGbcd ?? 100)] },
-        { label: '발전량(kWh)', values: [formatNumber(activeTotal), formatNumber(activeTotal)] }
+        {
+          label: '비중[%]',
+          values: [
+            '100.0',
+            ...perTargetLatest.map((value) => (latestTotal > 0 ? formatNumber((value / latestTotal) * 100) : EMPTY_VALUE))
+          ]
+        },
+        { label: '전력[kW]', values: [formatNumber(latestTotal), ...perTargetLatest.map((value) => formatNumber(value))] }
       ],
-      donutData: [
-        { name: '유효전력', value: toChartNumber(activeTotal) },
-        { name: '무효전력', value: toChartNumber(reactiveTotal) }
-      ],
-      donutLegendLabels: ['유효전력', '무효전력'],
-      donutColors: SUMMARY_COLORS
+      donutData: targets.map((target, index) => ({ name: getTargetLabel(target, index), value: perTargetLatest[index] ?? 0 })),
+      donutLegendLabels: targets.map((target, index) => getTargetLabel(target, index)),
+      donutColors: DONUT_PALETTE
     },
     trendChart: {
-      labels: rows.map((row) => getTimeLabel(row)),
-      totalOutputSeries: rows.map((row) => toChartNumber(row.baAtpTot)),
-      lineSeries: rows.map((row) => toChartNumber(row.baRtpTot))
+      labels: timeLabels,
+      totalOutputSeries: totalSeries,
+      lineSeries: targets.map((target, index) => ({
+        name: getTargetLabel(target, index),
+        data: (response.targetSeriesMap?.[getRawValue(target.targetId)] ?? []).map((point) => toChartNumber(point.baAtpTot))
+      }))
     },
     tables: {
       powerTable: {
         ariaLabel: '기저발전 운전 상세 현황',
-        minWidth: 1280,
-        headerRows: powerTableHeaderRows,
-        rows: createPowerTableRows(rows.slice(-5)),
-        allRows: createPowerTableRows(rows)
+        minWidth: Math.max(1280, 160 + targets.length * 160),
+        headerRows: createPowerTableHeaderRows(targets),
+        rows: createPowerTableRows(timeLabels, targets, response.targetSeriesMap),
+        allRows: createPowerTableRows(timeLabels, targets, response.targetSeriesMap)
       },
       inverterTable: {
-        ariaLabel: '기저발전 GRID 상세 내역',
-        minWidth: 1880,
+        ariaLabel: '기저발전 인버터 상세 내역',
+        minWidth: 1680,
         defaultExpanded: true,
-        defaultEquipmentValue: response.selectedTargetId || targetOptions[0]?.value || 'grid-1',
-        equipmentOptions: targetOptions.length ? targetOptions : [{ label: 'GRID #1', value: 'grid-1' }],
-        headerRows: inverterTableHeaderRows,
-        rows: detailRows
+        defaultEquipmentValue: response.selectedTargetId || targetOptions[0]?.value || 'ivt-1',
+        equipmentOptions: targetOptions.length ? targetOptions : [{ label: 'IVT1', value: 'ivt-1' }],
+        headerRows: inverterDetailHeaderRows,
+        rows: createInverterDetailRows(response.detailList)
       }
     },
     targetOptions,

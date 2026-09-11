@@ -5,6 +5,19 @@
   padding: var(--mzbk-space-7);
 }
 
+.support-generation-history-result__detail-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mzbk-space-6);
+}
+
+.support-generation-history-result__detail-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--mzbk-space-5);
+}
+
 @media (max-width: 720px) {
   .support-generation-history-result .card__body {
     gap: var(--mzbk-space-5);

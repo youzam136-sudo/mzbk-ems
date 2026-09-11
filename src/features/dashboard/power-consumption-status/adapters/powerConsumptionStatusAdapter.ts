@@ -1,179 +1,140 @@
-import {
-  EMPTY_API_VALUE,
-  formatApiNumber,
-  formatApiPowerFactor,
-  formatShare,
-  getTimeLabel,
-  readApiField,
-  sortByDateTime,
-  sumApiNumbers,
-  toChartNumber
-} from '../../../../shared/api/apiDataUtils';
+import { formatApiNumber, formatApiPowerFactor, readApiField } from '../../../../shared/api/apiDataUtils';
+import type { ApiRecord } from '../../../../shared/api/apiDataUtils';
 import type { TableHeaderCell, TableRow } from '../../../../shared/types/table';
 import type { PowerConsumptionPageData } from '../types/powerConsumptionStatus';
 import type { PowerConsumptionStatusResponse } from '../api/powerConsumptionStatusApi';
 
-const SUMMARY_COLORS = ['#25b6fe', '#396985', '#cdced2', '#6cd6d0', '#8fa8ff'];
-const BANK_LABELS = ['GRID', 'ESS', 'PCS', 'Diesel #1', 'Diesel #2'];
+const EMPTY_VALUE = '-';
 
-const powerTableHeaderRows: TableHeaderCell[][] = [
-  [
-    { label: 'TIME', rowSpan: 2 },
-    { label: 'Gen', rowSpan: 2 },
-    { label: 'TOTAL', colSpan: 2 },
-    { label: 'USE Rate (%)', rowSpan: 2 },
-    { label: 'BANK 1', colSpan: 3 },
-    { label: 'BANK 2', colSpan: 3 },
-    { label: 'BANK 3', colSpan: 3 },
-    { label: 'BANK 4', colSpan: 3 },
-    { label: 'BANK 5', colSpan: 3 }
-  ],
-  [
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'PF' },
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'PF' },
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'PF' },
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'PF' },
-    { label: 'Active' },
-    { label: 'Reactive' },
-    { label: 'PF' }
-  ]
-];
+function getTimeLabel(row: ApiRecord) {
+  const time = String(readApiField(row, 'esmtOperTime') ?? readApiField(row, 'operTime') ?? '');
+  return time.length >= 5 ? time.slice(0, 5) : time || EMPTY_VALUE;
+}
 
-const bankTableHeaderRows: TableHeaderCell[][] = [
-  [
-    { label: 'TIME', rowSpan: 2 },
-    { label: 'BANK 1', colSpan: 3 },
-    { label: 'BANK 2', colSpan: 4 },
-    { label: 'BANK 3', colSpan: 3 },
-    { label: 'BANK 4', colSpan: 3 },
-    { label: 'BANK 5', colSpan: 3 }
-  ],
-  [
-    { label: 'TOTAL' },
-    { label: '3P' },
-    { label: '1P' },
-    { label: 'TOTAL' },
-    { label: '3P' },
-    { label: '1P' },
-    { label: 'PE' },
-    { label: 'TOTAL' },
-    { label: '3P' },
-    { label: '1P' },
-    { label: 'TOTAL' },
-    { label: '3P' },
-    { label: '1P' },
-    { label: 'TOTAL' },
-    { label: '3P' },
-    { label: '1P' }
-  ]
-];
+function toChartNumber(value: unknown) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : 0;
+}
 
-function createPowerRows(response: PowerConsumptionStatusResponse): TableRow[] {
-  return sortByDateTime(response.gridStatusList).map((row) => [
-    getTimeLabel(row),
-    'GRID',
-    formatApiNumber(readApiField(row, 'baAtpTot')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiNumber(readApiField(row, 'lgldGbcd')),
-    formatApiNumber(readApiField(row, 'baAtpTot')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiPowerFactor(readApiField(row, 'baPfTot')),
-    formatApiNumber(readApiField(row, 'baAtpL1')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiPowerFactor(readApiField(row, 'baPfTot')),
-    formatApiNumber(readApiField(row, 'baAtpL2')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiPowerFactor(readApiField(row, 'baPfTot')),
-    formatApiNumber(readApiField(row, 'baAtpL3')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiPowerFactor(readApiField(row, 'baPfTot')),
-    formatApiNumber(readApiField(row, 'baAtpTot')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiPowerFactor(readApiField(row, 'baPfTot'))
+function getBankLabel(bank: { targetId: string; targetName: string }, index: number) {
+  return bank.targetName || `BANK ${index + 1}`;
+}
+
+function createOperationTableHeaderRows(banks: PowerConsumptionStatusResponse['bankList']): TableHeaderCell[][] {
+  return [
+    [{ label: 'Time', rowSpan: 2 }, ...banks.map((bank, index) => ({ label: getBankLabel(bank, index), colSpan: 3 }))],
+    banks.flatMap(() => [{ label: '유효[kW]' }, { label: '주파수[Hz]' }, { label: 'PF[%]' }])
+  ];
+}
+
+function createOperationTableRows(
+  timeLabels: string[],
+  banks: PowerConsumptionStatusResponse['bankList'],
+  bankSeriesMap: Record<string, ApiRecord[]>
+): TableRow[] {
+  return timeLabels.map((time, rowIndex) => [
+    time,
+    ...banks.flatMap((bank) => {
+      const point = bankSeriesMap[bank.targetId]?.[rowIndex];
+      return [
+        formatApiNumber(readApiField(point, 'pcActive')),
+        formatApiNumber(readApiField(point, 'pcFreq')),
+        formatApiPowerFactor(readApiField(point, 'pcPf'))
+      ];
+    })
   ]);
 }
 
-function createBankRows(response: PowerConsumptionStatusResponse): TableRow[] {
-  return sortByDateTime(response.gridStatusList).map((row) => [
+const detailTableHeaderRows: TableHeaderCell[][] = [
+  [
+    { label: 'Time', rowSpan: 2 },
+    { label: '상태', rowSpan: 2 },
+    { label: 'V[V]', rowSpan: 2 },
+    { label: 'A[A]', rowSpan: 2 },
+    { label: '유효[kW]', rowSpan: 2 },
+    { label: '무효[kW]', rowSpan: 2 },
+    { label: 'PF[%]', rowSpan: 2 },
+    { label: 'FR[Hz]', rowSpan: 2 },
+    { label: 'DAY', colSpan: 2 },
+    { label: 'TOTAL', colSpan: 2 }
+  ],
+  [{ label: '유효[kWh]' }, { label: '무효[kWh]' }, { label: '유효[kWh]' }, { label: '무효[kWh]' }]
+];
+
+function createDetailRows(detailList: ApiRecord[]): TableRow[] {
+  return detailList.map((row) => [
     getTimeLabel(row),
-    formatApiNumber(readApiField(row, 'baAtpTot')),
-    formatApiNumber(readApiField(row, 'baAtpL1')),
-    formatApiNumber(readApiField(row, 'baPtpvL1n')),
-    formatApiNumber(readApiField(row, 'baAtpL2')),
-    formatApiNumber(readApiField(row, 'baAtpL2')),
-    formatApiNumber(readApiField(row, 'baPtpvL2n')),
-    formatApiNumber(readApiField(row, 'baArpTot')),
-    formatApiNumber(readApiField(row, 'baAtpL3')),
-    formatApiNumber(readApiField(row, 'baAtpL3')),
-    formatApiNumber(readApiField(row, 'baPtptL3n')),
-    formatApiNumber(readApiField(row, 'baRtpTot')),
-    formatApiNumber(readApiField(row, 'baPtpvL12')),
-    formatApiNumber(readApiField(row, 'baPtpvL23')),
-    formatApiNumber(readApiField(row, 'baPtpvL31')),
-    formatApiNumber(readApiField(row, 'baPaL1')),
-    formatApiNumber(readApiField(row, 'baPaL2'))
+    String(readApiField(row, 'pcStat') ?? EMPTY_VALUE),
+    formatApiNumber(readApiField(row, 'pcVtg')),
+    formatApiNumber(readApiField(row, 'pcCur')),
+    formatApiNumber(readApiField(row, 'pcActive')),
+    formatApiNumber(readApiField(row, 'pcReactive')),
+    formatApiPowerFactor(readApiField(row, 'pcPf')),
+    formatApiNumber(readApiField(row, 'pcFreq')),
+    formatApiNumber(readApiField(row, 'pcDayActive')),
+    formatApiNumber(readApiField(row, 'pcDayReactive')),
+    formatApiNumber(readApiField(row, 'pcTotalActive')),
+    formatApiNumber(readApiField(row, 'pcTotalReactive'))
   ]);
 }
 
 /*
- * 필요: 전력 소비 현황을 API 최신값과 GRID 일자별 값으로 구성한다.
+ * 필요: BANK1~5 API 응답을 전력소비현황 화면 ViewModel로 변환한다.
  * 연결: usePowerConsumptionStatus, PowerConsumptionSummarySection, PowerConsumptionTableSection.
- * 설명: 전용 API가 없어 장비별 최신 유효전력 값을 BANK 요약에 대응시키는 임시 API 매핑이다.
- * 수정: 전력 소비 API가 확정되면 summary/table 필드만 전용 DTO 기준으로 교체한다.
+ * 설명: 2026.08.31 워크샵 반영 스펙 — GRID/ESS/PCS/Diesel을 BANK로 오용하던 예전 매핑을 걷어내고 실제 BANK1~5 구조로 교체.
+ * 수정: BANK API 필드명이 바뀌면 이 adapter의 매핑만 먼저 조정한다.
  */
 export function toPowerConsumptionPageData(response: PowerConsumptionStatusResponse): PowerConsumptionPageData {
-  const bankValues = [
-    readApiField(response.gridLatest, 'baAtpTot'),
-    readApiField(response.essLatest, 'essAtpTot'),
-    readApiField(response.pcsLatest, 'pcsAtpTot'),
-    readApiField(response.diesel1Latest, 'dslAtpTot'),
-    readApiField(response.diesel2Latest, 'dslAtpTot')
-  ];
-  const total = sumApiNumbers(bankValues);
-  const sortedRows = sortByDateTime(response.gridStatusList);
-  const tableRows = createPowerRows(response);
-  const bankRows = createBankRows(response);
+  const banks = response.bankList;
+  const firstBankSeries = banks[0] ? response.bankSeriesMap[banks[0].targetId] ?? [] : [];
+  const timeLabels = firstBankSeries.map((row) => getTimeLabel(row));
+
+  const perBankLatest = banks.map((bank) => toChartNumber(readApiField(response.bankSeriesMap[bank.targetId]?.at(-1), 'pcActive')));
+  const totalSeries = timeLabels.map((_, rowIndex) =>
+    banks.reduce((sum, bank) => sum + toChartNumber(readApiField(response.bankSeriesMap[bank.targetId]?.[rowIndex], 'pcActive')), 0)
+  );
+  const latestTotal = perBankLatest.reduce((sum, value) => sum + value, 0);
+
+  const equipmentOptions = banks.map((bank, index) => ({ label: getBankLabel(bank, index), value: bank.targetId }));
+  const operationRows = createOperationTableRows(timeLabels, banks, response.bankSeriesMap);
 
   return {
     summary: {
-      columns: ['Total', 'BANK 1', 'BANK 2', 'BANK 3', 'BANK 4', 'BANK 5'],
+      columns: ['Total', ...banks.map((bank, index) => getBankLabel(bank, index))],
       metrics: [
-        { label: '수요비중(%)', values: ['100.0', ...bankValues.map((value) => formatShare(value, total))] },
-        { label: '수요량(kWh)', values: [formatApiNumber(total), ...bankValues.map((value) => formatApiNumber(value))] }
+        {
+          label: '비중[%]',
+          values: ['100.0', ...perBankLatest.map((value) => (latestTotal > 0 ? formatApiNumber((value / latestTotal) * 100) : EMPTY_VALUE))]
+        },
+        { label: '전력[kW]', values: [formatApiNumber(latestTotal), ...perBankLatest.map((value) => formatApiNumber(value))] }
       ],
-      donutData: bankValues.map((value, index) => ({
-        name: BANK_LABELS[index],
-        value: toChartNumber(value)
-      })),
-      donutLegendLabels: BANK_LABELS,
-      donutColors: SUMMARY_COLORS
+      donutData: banks.map((bank, index) => ({ name: getBankLabel(bank, index), value: perBankLatest[index] ?? 0 })),
+      donutLegendLabels: banks.map((bank, index) => getBankLabel(bank, index)),
+      donutColors: ['#25b6fe', '#396985', '#cdced2', '#6cd6d0', '#8fa8ff']
     },
     trendChart: {
-      labels: sortedRows.map((row) => getTimeLabel(row)),
-      totalDemandSeries: sortedRows.map((row) => toChartNumber(readApiField(row, 'baAtpTot'))),
-      pfSeries: sortedRows.map((row) => toChartNumber(readApiField(row, 'baPfTot')))
+      labels: timeLabels,
+      totalDemandSeries: totalSeries,
+      bankLineSeries: banks.map((bank, index) => ({
+        name: getBankLabel(bank, index),
+        data: (response.bankSeriesMap[bank.targetId] ?? []).map((point) => toChartNumber(readApiField(point, 'pcActive')))
+      }))
     },
-    table: {
-      ariaLabel: '전력 소비 현황 상세 내역',
-      minWidth: 1680,
-      headerRows: powerTableHeaderRows,
-      rows: tableRows.length > 0 ? tableRows : [[EMPTY_API_VALUE]]
+    operationTable: {
+      ariaLabel: '전력 소비 현황 운전 상세 현황',
+      minWidth: Math.max(900, 160 + banks.length * 160),
+      headerRows: createOperationTableHeaderRows(banks),
+      rows: operationRows,
+      allRows: operationRows
     },
-    bankTable: {
+    detailTable: {
       ariaLabel: '전력 소비 현황 BANK 상세 내역',
       minWidth: 1420,
-      headerRows: bankTableHeaderRows,
-      rows: bankRows.length > 0 ? bankRows : [[EMPTY_API_VALUE]]
+      defaultExpanded: true,
+      defaultEquipmentValue: banks[0]?.targetId ?? 'bank-1',
+      equipmentOptions: equipmentOptions.length ? equipmentOptions : [{ label: 'BANK 1', value: 'bank-1' }],
+      headerRows: detailTableHeaderRows,
+      rowsByEquipment: Object.fromEntries(banks.map((bank) => [bank.targetId, createDetailRows(response.bankDetailByEquipment[bank.targetId] ?? [])]))
     }
   };
 }

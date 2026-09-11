@@ -9,6 +9,9 @@ export type SupportGenerationStatusResponse = {
     essStatusList: ApiRecord[];
     diesel1StatusList: ApiRecord[];
     diesel2StatusList: ApiRecord[];
+    // TEMP: 실제 API 연동 전까지 미리보기 데이터에서만 채워짐 (Diesel 상세 내역 보기 표)
+    diesel1Detail: ApiRecord[];
+    diesel2Detail: ApiRecord[];
 };
 
 export const supportGenerationStatusApi = {
@@ -29,7 +32,9 @@ export const supportGenerationStatusApi = {
                       diesel2Latest,
                       essStatusList: Array.isArray(essStatusList) ? essStatusList : [],
                       diesel1StatusList: Array.isArray(diesel1StatusList) ? diesel1StatusList : [],
-                      diesel2StatusList: Array.isArray(diesel2StatusList) ? diesel2StatusList : []
+                      diesel2StatusList: Array.isArray(diesel2StatusList) ? diesel2StatusList : [],
+                      diesel1Detail: [],
+                      diesel2Detail: []
             };
           } catch (error) {
                   if (PREVIEW_MOCK_ENABLED) {

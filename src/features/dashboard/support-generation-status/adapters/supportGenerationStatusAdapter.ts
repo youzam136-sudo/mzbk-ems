@@ -1,5 +1,4 @@
 import {
-  EMPTY_API_VALUE,
   formatApiNumber,
   formatApiPowerFactor,
   formatShare,
@@ -14,42 +13,51 @@ import type { TableHeaderCell, TableRow } from '../../../../shared/types/table';
 import type { SupportGenerationPageData } from '../types/supportGenerationStatus';
 import type { SupportGenerationStatusResponse } from '../api/supportGenerationStatusApi';
 
-const TABLE_MIN_WIDTH = 1620;
-const SUMMARY_COLORS = ['#25b6fe', '#396985', '#cdced2'];
+const OPERATION_TABLE_MIN_WIDTH = 900;
+const DETAIL_TABLE_MIN_WIDTH = 1680;
+const SUMMARY_COLORS = ['#25b6fe', '#cdced2'];
 
-const supportTableHeaderRows: TableHeaderCell[][] = [
+const operationTableHeaderRows: TableHeaderCell[][] = [
   [
-    { label: 'TIME', rowSpan: 3 },
+    { label: 'TIME', rowSpan: 2 },
     { label: 'Diesel #1', colSpan: 5 },
-    { label: 'Diesel #2', colSpan: 5 },
-    { label: 'PCS ( Discharge )', colSpan: 8 }
+    { label: 'Diesel #2', colSpan: 5 }
   ],
   [
-    { label: 'P', colSpan: 4 },
-    { label: 'PF', rowSpan: 2 },
-    { label: 'P', colSpan: 4 },
-    { label: 'PF', rowSpan: 2 },
-    { label: 'P', colSpan: 4 },
-    { label: 'PE', colSpan: 4 }
-  ],
-  [
-    { label: 'TOT' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' },
-    { label: 'TOT' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' },
-    { label: 'TOT' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' },
-    { label: 'TOT' },
-    { label: 'L1' },
-    { label: 'L2' },
-    { label: 'L3' }
+    { label: '상태' },
+    { label: '유효[kW]' },
+    { label: 'V[V]' },
+    { label: 'A[A]' },
+    { label: '주파수[Hz]' },
+    { label: 'PF[%]' },
+    { label: '상태' },
+    { label: '유효[kW]' },
+    { label: 'V[V]' },
+    { label: 'A[A]' },
+    { label: '주파수[Hz]' },
+    { label: 'PF[%]' }
   ]
+];
+
+const detailTableHeaderRows: TableHeaderCell[][] = [
+  [
+    { label: 'Time', rowSpan: 2 },
+    { label: '상태', rowSpan: 2 },
+    { label: '유효[kW]', rowSpan: 2 },
+    { label: '무효[kW]', rowSpan: 2 },
+    { label: '피상[kW]', rowSpan: 2 },
+    { label: 'PF[%]', rowSpan: 2 },
+    { label: '지상/진상', rowSpan: 2 },
+    { label: 'DAY[kWh]', rowSpan: 2 },
+    { label: 'V[V]', rowSpan: 2 },
+    { label: 'A[A]', rowSpan: 2 },
+    { label: '주파수[Hz]', rowSpan: 2 },
+    { label: 'TMP[°C]', colSpan: 2 },
+    { label: 'Oil[Bar]', rowSpan: 2 },
+    { label: 'RPM', rowSpan: 2 },
+    { label: 'Fuel[%]', rowSpan: 2 }
+  ],
+  [{ label: 'COOL' }, { label: 'OIL' }]
 ];
 
 function getRowsByTime(...rowSets: ApiRecord[][]) {
@@ -67,98 +75,114 @@ function getRowsByTime(...rowSets: ApiRecord[][]) {
   return Array.from(mergedRows.entries()).map(([time, value]) => ({ time, value }));
 }
 
-function createTableRows(response: SupportGenerationStatusResponse): TableRow[] {
-  const rowsByTime = getRowsByTime(response.diesel1StatusList, response.diesel2StatusList, response.essStatusList);
+function createOperationTableRows(response: SupportGenerationStatusResponse): TableRow[] {
+  const rowsByTime = getRowsByTime(response.diesel1StatusList, response.diesel2StatusList);
 
   return rowsByTime.map(({ time, value }) => {
     const diesel1 = value.set0;
     const diesel2 = value.set1;
-    const ess = value.set2;
 
     return [
       time,
+      String(readApiField(diesel1, 'dslStat') ?? '-'),
       formatApiNumber(readApiField(diesel1, 'dslAtpTot')),
-      formatApiNumber(readApiField(diesel1, 'dslAtpL1')),
-      formatApiNumber(readApiField(diesel1, 'dslAtpL2')),
-      formatApiNumber(readApiField(diesel1, 'dslAtpL3')),
+      formatApiNumber(readApiField(diesel1, 'dslVtg')),
+      formatApiNumber(readApiField(diesel1, 'dslCur')),
+      formatApiNumber(readApiField(diesel1, 'dslFreq')),
       formatApiPowerFactor(readApiField(diesel1, 'dslPfTot')),
+      String(readApiField(diesel2, 'dslStat') ?? '-'),
       formatApiNumber(readApiField(diesel2, 'dslAtpTot')),
-      formatApiNumber(readApiField(diesel2, 'dslAtpL1')),
-      formatApiNumber(readApiField(diesel2, 'dslAtpL2')),
-      formatApiNumber(readApiField(diesel2, 'dslAtpL3')),
-      formatApiPowerFactor(readApiField(diesel2, 'dslPfTot')),
-      formatApiNumber(readApiField(ess, 'essAtpTot')),
-      formatApiNumber(readApiField(ess, 'essAtpL1')),
-      formatApiNumber(readApiField(ess, 'essAtpL2')),
-      formatApiNumber(readApiField(ess, 'essAtpL3')),
-      formatApiNumber(readApiField(ess, 'essRtpTot')),
-      formatApiNumber(readApiField(ess, 'essRtpTot')),
-      formatApiNumber(readApiField(ess, 'essArpTot')),
-      formatApiPowerFactor(readApiField(ess, 'essPfTot'))
+      formatApiNumber(readApiField(diesel2, 'dslVtg')),
+      formatApiNumber(readApiField(diesel2, 'dslCur')),
+      formatApiNumber(readApiField(diesel2, 'dslFreq')),
+      formatApiPowerFactor(readApiField(diesel2, 'dslPfTot'))
     ];
   });
 }
 
+function createDetailRows(detailList: ApiRecord[]): TableRow[] {
+  return sortByDateTime(detailList).map((row) => [
+    getTimeLabel(row),
+    String(readApiField(row, 'dslStat') ?? '-'),
+    formatApiNumber(readApiField(row, 'dslAtpTot')),
+    formatApiNumber(readApiField(row, 'dslRtpTot')),
+    formatApiNumber(readApiField(row, 'dslArpTot')),
+    formatApiPowerFactor(readApiField(row, 'dslPfTot')),
+    String(readApiField(row, 'dslLeadLag') ?? '-'),
+    formatApiNumber(readApiField(row, 'dslAtpDayAccm')),
+    formatApiNumber(readApiField(row, 'dslVtg')),
+    formatApiNumber(readApiField(row, 'dslCur')),
+    formatApiNumber(readApiField(row, 'dslFreq')),
+    formatApiNumber(readApiField(row, 'dslCoolTemp')),
+    formatApiNumber(readApiField(row, 'dslOilTemp')),
+    formatApiNumber(readApiField(row, 'dslOilPress')),
+    formatApiNumber(readApiField(row, 'dslRpm'), 0),
+    formatApiNumber(readApiField(row, 'dslFuel'), 0)
+  ]);
+}
+
 /*
- * 필요: 보조 발전현황 API 응답을 기존 공통 그래프/표 컴포넌트 계약으로 변환한다.
+ * 필요: 보조 발전현황(디젤) API 응답을 화면 컴포넌트 계약으로 변환한다.
  * 연결: useSupportGenerationStatus, SupportGenerationSummarySection, SupportGenerationDetailTableSection.
- * 설명: Diesel #1, Diesel #2, ESS 값을 합산해 보조발전 Total을 만들고, 빈 값은 '-'로 고정한다.
- * 수정: 보조발전의 장비 구성이 바뀌면 summaryColumns와 row 매핑만 조정한다.
+ * 설명: 2026.08.31 워크샵 반영 스펙 — 운전 상세 표(디젤1/2 단순 6컬럼)와 장비별 상세 표(STRING/TMP/OIL/RPM/Fuel)를 분리했다.
+ * 수정: 디젤 API 필드명이 바뀌면 이 adapter의 매핑만 먼저 조정한다.
  */
 export function toSupportGenerationPageData(response: SupportGenerationStatusResponse): SupportGenerationPageData {
   const diesel1Total = readApiField(response.diesel1Latest, 'dslAtpTot');
   const diesel2Total = readApiField(response.diesel2Latest, 'dslAtpTot');
-  const essTotal = readApiField(response.essLatest, 'essAtpTot');
-  const total = sumApiNumbers([diesel1Total, diesel2Total, essTotal]);
-  const rowsByTime = getRowsByTime(response.diesel1StatusList, response.diesel2StatusList, response.essStatusList);
-  const tableRows = createTableRows(response);
+  const dieselTotal = sumApiNumbers([diesel1Total, diesel2Total]);
+  const rowsByTime = getRowsByTime(response.diesel1StatusList, response.diesel2StatusList);
+  const operationRows = createOperationTableRows(response);
 
   return {
     summary: {
-      columns: ['Total', 'Diesel #1', 'Diesel #2', 'Battery D.Charge'],
+      columns: ['Total', 'Diesel #1', 'Diesel #2'],
       metrics: [
         {
-          label: '발전비중(%)',
-          values: ['100.0', formatShare(diesel1Total, total), formatShare(diesel2Total, total), formatShare(essTotal, total)]
+          label: '비중[%]',
+          values: ['100.0', formatShare(diesel1Total, dieselTotal), formatShare(diesel2Total, dieselTotal)]
         },
         {
-          label: '발전량(kWh)',
-          values: [formatApiNumber(total), formatApiNumber(diesel1Total), formatApiNumber(diesel2Total), formatApiNumber(essTotal)]
+          label: '전력[kW]',
+          values: [formatApiNumber(dieselTotal), formatApiNumber(diesel1Total), formatApiNumber(diesel2Total)]
         }
       ],
       donutData: [
         { name: 'Diesel #1', value: toChartNumber(diesel1Total) },
-        { name: 'Diesel #2', value: toChartNumber(diesel2Total) },
-        { name: 'ESS', value: toChartNumber(essTotal) }
+        { name: 'Diesel #2', value: toChartNumber(diesel2Total) }
       ],
-      donutLegendLabels: ['Diesel #1', 'Diesel #2', 'ESS'],
+      donutLegendLabels: ['Diesel #1', 'Diesel #2'],
       donutColors: SUMMARY_COLORS
     },
     trendChart: {
       labels: rowsByTime.map(({ time }) => time),
       totalOutputSeries: rowsByTime.map(({ value }) =>
-        sumApiNumbers([
-          readApiField(value.set0, 'dslAtpTot'),
-          readApiField(value.set1, 'dslAtpTot'),
-          readApiField(value.set2, 'essAtpTot')
-        ])
-      ),
-      dieselOutputSeries: rowsByTime.map(({ value }) =>
         sumApiNumbers([readApiField(value.set0, 'dslAtpTot'), readApiField(value.set1, 'dslAtpTot')])
       ),
-      batteryOutputSeries: rowsByTime.map(({ value }) => toChartNumber(readApiField(value.set2, 'essAtpTot')))
+      diesel1OutputSeries: rowsByTime.map(({ value }) => toChartNumber(readApiField(value.set0, 'dslAtpTot'))),
+      diesel2OutputSeries: rowsByTime.map(({ value }) => toChartNumber(readApiField(value.set1, 'dslAtpTot')))
     },
-    table: {
-      ariaLabel: '보조 발전현황 디젤 상세 내역',
-      minWidth: TABLE_MIN_WIDTH,
+    operationTable: {
+      ariaLabel: '보조 발전현황 운전 상세 현황',
+      minWidth: OPERATION_TABLE_MIN_WIDTH,
+      headerRows: operationTableHeaderRows,
+      rows: operationRows,
+      allRows: operationRows
+    },
+    detailTable: {
+      ariaLabel: '보조 발전현황 장비 상세 내역',
+      minWidth: DETAIL_TABLE_MIN_WIDTH,
       defaultExpanded: true,
       defaultEquipmentValue: 'diesel-1',
       equipmentOptions: [
         { label: 'Diesel #1', value: 'diesel-1' },
         { label: 'Diesel #2', value: 'diesel-2' }
       ],
-      headerRows: supportTableHeaderRows,
-      rows: tableRows.length > 0 ? tableRows : [[EMPTY_API_VALUE]]
+      headerRows: detailTableHeaderRows,
+      rowsByEquipment: {
+        'diesel-1': createDetailRows(response.diesel1Detail),
+        'diesel-2': createDetailRows(response.diesel2Detail)
+      }
     }
   };
 }

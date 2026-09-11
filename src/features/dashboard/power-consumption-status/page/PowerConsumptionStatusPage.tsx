@@ -28,7 +28,7 @@ export function PowerConsumptionStatusPage() {
       {!isLoading && data && (
         <>
           <PowerConsumptionSummarySection summary={data.summary} trendChart={data.trendChart} />
-          <PowerConsumptionTableSection table={data.table} bankTable={data.bankTable} />
+          <PowerConsumptionTableSection operationTable={data.operationTable} detailTable={data.detailTable} />
         </>
       )}
     </div>

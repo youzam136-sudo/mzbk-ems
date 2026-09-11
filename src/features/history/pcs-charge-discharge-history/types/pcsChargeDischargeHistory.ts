@@ -4,7 +4,7 @@
  * 설명: 실제 데이터는 API에서 받고, 이 파일은 화면에서 선택 가능한 타입만 관리한다.
  * 수정: 지표명이나 조회 모드가 바뀌면 이 파일과 constants를 같이 조정한다.
  */
-export type PcsChargeDischargeHistoryMode = 'Year' | 'Month' | 'Duration';
+export type PcsChargeDischargeHistoryMode = 'Day' | 'Year' | 'Month' | 'Duration';
 
 export type PcsChargeDischargeHistoryMetric =
   | 'Max kWh'

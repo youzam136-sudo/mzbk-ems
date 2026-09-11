@@ -28,7 +28,7 @@ export function SupportGenerationStatusPage() {
       {!isLoading && data && (
         <>
           <SupportGenerationSummarySection summary={data.summary} trendChart={data.trendChart} />
-          <SupportGenerationDetailTableSection table={data.table} />
+          <SupportGenerationDetailTableSection operationTable={data.operationTable} detailTable={data.detailTable} />
         </>
       )}
     </div>

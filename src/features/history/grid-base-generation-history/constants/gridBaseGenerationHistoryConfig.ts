@@ -1,6 +1,11 @@
 import type { GridBaseGenerationHistoryMetric, GridBaseGenerationHistoryMode } from '../types/gridBaseGenerationHistory';
 
-export const gridBaseGenerationHistoryModes: readonly GridBaseGenerationHistoryMode[] = ['Year', 'Month', 'Duration'];
+export const gridBaseGenerationHistoryModes: readonly { value: GridBaseGenerationHistoryMode; label: string; inputType?: 'date' | 'dateRange' | 'month' | 'year' }[] = [
+  { value: 'Day', label: 'DAY', inputType: 'date' },
+  { value: 'Month', label: 'Month' },
+  { value: 'Year', label: 'Year' },
+  { value: 'Duration', label: 'Duration' }
+];
 export const gridBaseGenerationHistoryMetrics: readonly GridBaseGenerationHistoryMetric[] = ['Max kWh', 'Min kWh', 'AVG kWh'];
 
 export const gridBaseGenerationHistoryDefaultCriteria = {

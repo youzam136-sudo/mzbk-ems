@@ -6,28 +6,22 @@ import type { TableHeaderCell, TableRow } from '../../../../shared/types/table';
  * 설명: 컴포넌트는 PCS/Battery API 필드명을 모르고 이 타입만 사용한다.
  * 수정: 충전/방전 기준값이 바뀌면 adapter 매핑을 먼저 조정한다.
  */
-export type PcsChargeDischargeSummaryMetric = {
-  label: string;
-  values: string[];
-};
-
-export type PcsChargeDischargeDistributionItem = {
-  name: string;
-  value: number;
-};
-
 export type PcsChargeDischargeChartData = {
   labels: string[];
   chargeSeries: number[];
   dischargeSeries: number[];
+  socSeries: number[];
+};
+
+export type PcsChargeDischargeStatRow = {
+  label: string;
+  max: string;
+  min: string;
+  avg: string;
 };
 
 export type PcsChargeDischargeSummaryData = {
-  columns: string[];
-  metrics: PcsChargeDischargeSummaryMetric[];
-  donutData: PcsChargeDischargeDistributionItem[];
-  donutLegendLabels: string[];
-  donutColors: string[];
+  rows: PcsChargeDischargeStatRow[];
 };
 
 export type PcsChargeDischargeTableData = {

@@ -1,6 +1,11 @@
 import type { PcsChargeDischargeHistoryMetric, PcsChargeDischargeHistoryMode } from '../types/pcsChargeDischargeHistory';
 
-export const pcsChargeDischargeHistoryModes: readonly PcsChargeDischargeHistoryMode[] = ['Year', 'Month', 'Duration'];
+export const pcsChargeDischargeHistoryModes: readonly { value: PcsChargeDischargeHistoryMode; label: string; inputType?: 'date' | 'dateRange' | 'month' | 'year' }[] = [
+  { value: 'Day', label: 'DAY', inputType: 'date' },
+  { value: 'Month', label: 'Month' },
+  { value: 'Year', label: 'Year' },
+  { value: 'Duration', label: 'Duration' }
+];
 
 export const pcsChargeDischargeHistoryMetrics: readonly PcsChargeDischargeHistoryMetric[] = [
   'Max kWh',

@@ -5,6 +5,11 @@
   padding: var(--mzbk-space-7);
 }
 
+.pcs-charge-history-result__chart {
+  width: 100%;
+  overflow-x: auto;
+}
+
 @media (max-width: 720px) {
   .pcs-charge-history-result .card__body {
     gap: var(--mzbk-space-5);

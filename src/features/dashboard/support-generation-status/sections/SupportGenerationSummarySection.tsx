@@ -26,8 +26,8 @@ export function SupportGenerationSummarySection({ summary, trendChart }: Support
       chartYAxisName="Total kWh"
       chartSeries={[
         { name: '전체 발전량', type: 'bar', data: trendChart.totalOutputSeries },
-        { name: 'ESS 발전량', type: 'line', data: trendChart.batteryOutputSeries, color: '#396985' },
-        { name: '디젤 발전량', type: 'line', data: trendChart.dieselOutputSeries, color: '#cdced2' }
+        { name: '디젤1 kWh', type: 'line', data: trendChart.diesel1OutputSeries, color: '#1c1c1c' },
+        { name: '디젤2 kWh', type: 'line', data: trendChart.diesel2OutputSeries, color: '#cdced2' }
       ]}
     />
   );

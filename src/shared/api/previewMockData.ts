@@ -72,44 +72,194 @@ function buildMonitoringStatusList(count: number) {
     }));
 }
 
+function buildBaseGenerationInverterSeries(index: number) {
+    const base = 24 + index * 3;
+    return Array.from({ length: 6 }, (_, i) => ({
+          esmtOperYmd: '20260810',
+          esmtOperTime: '1' + i + '0000',
+          status: index === 5 ? '정지' : '정상',
+          baAtpTot: index === 5 ? 0 : Number((base + i * 1.2).toFixed(1))
+    }));
+}
+
+function buildBaseGenerationInverterDetail(index: number) {
+    const base = 24 + index * 3;
+    return Array.from({ length: 6 }, (_, i) => ({
+          operTime: '1' + i + '0000',
+          status: index === 5 ? '정지' : '정상',
+          activePower: index === 5 ? 0 : Number((base + i * 1.2).toFixed(1)),
+          reactivePower: index === 5 ? 0 : Number((1.8 + i * 0.1).toFixed(1)),
+          dayAccm: Number((182.4 + index * 4 + i * 6).toFixed(1)),
+          totalAccm: Number((96820.4 + index * 120).toFixed(1)),
+          stringPMax: Number((base + 2.4).toFixed(1)),
+          stringPMin: Number((base - 1.8).toFixed(1)),
+          stringPAvg: Number(base.toFixed(1)),
+          stringVMax: 382.4,
+          stringVMin: 378.1,
+          stringVAvg: 380.2,
+          stringAMax: Number((88.2 + index).toFixed(1)),
+          stringAMin: Number((85.6 + index).toFixed(1)),
+          stringAAvg: Number((87.0 + index).toFixed(1))
+    }));
+}
+
+const BASE_GENERATION_INVERTER_COUNT = 7;
+const baseGenerationTargetSeriesMap = Object.fromEntries(
+      Array.from({ length: BASE_GENERATION_INVERTER_COUNT }, (_, i) => [`ivt-${i + 1}`, buildBaseGenerationInverterSeries(i)])
+);
+const baseGenerationDetailListByTarget = Object.fromEntries(
+      Array.from({ length: BASE_GENERATION_INVERTER_COUNT }, (_, i) => [`ivt-${i + 1}`, buildBaseGenerationInverterDetail(i)])
+);
+const baseGenerationTotalStatusList = Array.from({ length: 6 }, (_, i) => ({
+      esmtOperYmd: '20260810',
+      esmtOperTime: '1' + i + '0000',
+      baAtpTot: Object.values(baseGenerationTargetSeriesMap).reduce((sum, series) => sum + (series[i]?.baAtpTot ?? 0), 0)
+}));
+
 export const mockBaseGenerationStatus = {
     latest: {
           esmtOperYmd: '20260810', esmtOperTime: '143000',
-          baPtpvL12: 380.2, baPtpvL23: 379.8, baPtpvL31: 380.5, baPtpvL1n: 219.4, baPtpvL2n: 219.1, baPtptL3n: 219.6,
-          baPfrL1: 60.0, baPfrL2: 60.0, baPfrL3: 60.0, baPaL1: 152.4, baPaL2: 151.1, baPaL3: 151.7,
-          baAtpL1: 96.4, baAtpL2: 95.8, baAtpL3: 96.1, baAtpTot: 288.3, baRtpTot: 24.1, baArpTot: 289.3, baPfTot: 0.97,
-          baAtpDayAccm: 2846.2, baAtpWeekAccm: 18642.4, baAtpMonAccm: 78642.1, baAtpTotAccm: 942681.4,
-          baRtpDayAccm: 186.4, baRtpWeekAccm: 1284.2, baRtpMonAccm: 4862.1, baRtpTotAccm: 68421.4, lgldGbcd: 100
+          baAtpTot: baseGenerationTotalStatusList.at(-1)?.baAtpTot ?? 0,
+          baRtpTot: 24.1, baArpTot: 289.3, baPfTot: 0.97, lgldGbcd: 100
     },
-    statusList: buildMonitoringStatusList(6),
-    detailList: [],
-    targetList: [{ targetId: 'T1', targetName: 'base plant' }],
-    selectedTargetId: 'T1'
+    statusList: baseGenerationTotalStatusList,
+    detailList: baseGenerationDetailListByTarget['ivt-1'],
+    targetList: Array.from({ length: BASE_GENERATION_INVERTER_COUNT }, (_, i) => ({ targetId: `ivt-${i + 1}`, targetName: `IVT${i + 1}` })),
+    selectedTargetId: 'ivt-1',
+    targetSeriesMap: baseGenerationTargetSeriesMap,
+    detailListByTarget: baseGenerationDetailListByTarget
 };
+
+function buildDieselStatusList(count: number, unitIndex: number, stopped: boolean) {
+    return Array.from({ length: count }, (_, i) => ({
+          esmtOperYmd: '20260810',
+          esmtOperTime: '1' + i + '0000',
+          dslStat: stopped ? '정지' : '정상',
+          dslAtpTot: stopped ? 0 : Number((68 + unitIndex * 2 + i * 1.4).toFixed(1)),
+          dslVtg: stopped ? 0 : 380.1 + i * 0.1,
+          dslCur: stopped ? 0 : Number((90.4 + unitIndex * 1.5 + i).toFixed(1)),
+          dslFreq: stopped ? 0 : 60.0,
+          dslPfTot: stopped ? 0 : 0.95
+    }));
+}
+
+function buildDieselDetailList(count: number, unitIndex: number, stopped: boolean) {
+    return Array.from({ length: count }, (_, i) => ({
+          esmtOperTime: '1' + i + '0000',
+          dslStat: stopped ? '정지' : '정상',
+          dslAtpTot: stopped ? 0 : Number((68 + unitIndex * 2 + i * 1.4).toFixed(1)),
+          dslRtpTot: stopped ? 0 : Number((4.2 + i * 0.2).toFixed(1)),
+          dslArpTot: stopped ? 0 : Number((69.5 + unitIndex * 2 + i * 1.4).toFixed(1)),
+          dslPfTot: stopped ? 0 : 0.95,
+          dslLeadLag: stopped ? '-' : '지상',
+          dslAtpDayAccm: Number((642.4 + unitIndex * 20 + i * 8).toFixed(1)),
+          dslVtg: stopped ? 0 : 380.1 + i * 0.1,
+          dslCur: stopped ? 0 : Number((90.4 + unitIndex * 1.5 + i).toFixed(1)),
+          dslFreq: stopped ? 0 : 60.0,
+          dslCoolTemp: Number((78.4 + unitIndex).toFixed(1)),
+          dslOilTemp: Number((84.1 + unitIndex).toFixed(1)),
+          dslOilPress: 4.2,
+          dslRpm: stopped ? 0 : 1800,
+          dslFuel: 82 - unitIndex * 6
+    }));
+}
 
 export const mockSupportGenerationStatus = {
     essLatest: buildMonitoringLatest(),
     diesel1Latest: buildMonitoringLatest(),
     diesel2Latest: Object.assign(buildMonitoringLatest(), { value1: 0, remark: 'stop' }),
-    essStatusList: buildMonitoringStatusList(4),
-    diesel1StatusList: buildMonitoringStatusList(4),
-    diesel2StatusList: buildMonitoringStatusList(4)
+    essStatusList: buildMonitoringStatusList(6),
+    diesel1StatusList: buildDieselStatusList(6, 0, false),
+    diesel2StatusList: buildDieselStatusList(6, 1, true),
+    diesel1Detail: buildDieselDetailList(6, 0, false),
+    diesel2Detail: buildDieselDetailList(6, 1, true)
 };
+
+function buildPcsStatusList(count: number) {
+    return Array.from({ length: count }, (_, i) => {
+          const charging = i % 3 !== 2;
+          return {
+                esmtOperYmd: '20260810',
+                esmtOperTime: '1' + i + '0000',
+                pcsOperStatus: charging ? '충전' : '방전',
+                pcsPaL1: Number((152.4 + i * 2).toFixed(1)),
+                pcsPtpvL12: 380.2,
+                pcsAtpTot: charging ? Number((42 + i * 8).toFixed(1)) : 0,
+                pcsDcP: charging ? 0 : Number((28 + i * 6).toFixed(1))
+          };
+    });
+}
+
+function buildBatteryStatusList(count: number) {
+    return Array.from({ length: count }, (_, i) => ({
+          esmtOperYmd: '20260810',
+          esmtOperTime: '1' + i + '0000',
+          batAvgSoc: Number((52 + i * 3).toFixed(1)),
+          batAvgSoh: 96.0,
+          batAvgDcv: 809.2,
+          batAvgDca: Number((40.3 + i).toFixed(1)),
+          batAvgRakv: 483.6,
+          batAvgRaka: Number((118.9 + i).toFixed(1)),
+          batAvgCelv: 3.65,
+          batAvgCela: Number((118.9 + i).toFixed(1)),
+          batAvgPaktmp: Number((24.3 + i * 0.2).toFixed(1)),
+          batMaxRakv: 486.2, batMinRakv: 480.9, maxRakvRakno: 3, minRakvRakno: 1,
+          batMaxRaka: Number((124.6 + i).toFixed(1)), batMinRaka: Number((112.1 + i).toFixed(1)), maxRakaRakno: 2, minRakaRakno: 4,
+          batMaxCelv: 3.68, batMinCelv: 3.61, maxCelvRakno: 5, minCelvRakno: 2,
+          batMaxCela: Number((124.6 + i).toFixed(1)), batMinCela: Number((112.1 + i).toFixed(1)), maxCelaRakno: 6, minCelaRakno: 3,
+          batMaxPaktmp: Number((25.8 + i * 0.2).toFixed(1)), maxPaktmpRakno: 4
+    }));
+}
 
 export const mockPcsChargeDischargeStatus = {
     pcsLatest: buildMonitoringLatest(),
     batteryLatest: buildMonitoringLatest(),
-    pcsStatusList: buildMonitoringStatusList(5),
-    batteryStatusList: buildMonitoringStatusList(5)
+    pcsStatusList: buildPcsStatusList(6),
+    batteryStatusList: buildBatteryStatusList(6)
 };
 
+const POWER_CONSUMPTION_BANK_COUNT = 5;
+
+function buildPowerConsumptionBankSeries(index: number) {
+    const base = 62.4 + index * 3;
+    return Array.from({ length: 6 }, (_, i) => ({
+          esmtOperYmd: '20260810',
+          esmtOperTime: '1' + i + '0000',
+          pcActive: Number((base + i * 1.1).toFixed(1)),
+          pcFreq: 60.0,
+          pcPf: 0.96
+    }));
+}
+
+function buildPowerConsumptionBankDetail(index: number) {
+    const base = 62.4 + index * 3;
+    return Array.from({ length: 6 }, (_, i) => ({
+          esmtOperTime: '1' + i + '0000',
+          pcStat: '정상',
+          pcVtg: 380.2,
+          pcCur: Number((92.4 + index * 4 + i).toFixed(1)),
+          pcActive: Number((base + i * 1.1).toFixed(1)),
+          pcReactive: Number((4.1 + i * 0.1).toFixed(1)),
+          pcPf: 0.96,
+          pcFreq: 60.0,
+          pcDayActive: Number((642.4 + index * 20 + i * 8).toFixed(1)),
+          pcDayReactive: Number((42.1 + index * 2 + i).toFixed(1)),
+          pcTotalActive: Number((96820.4 + index * 120).toFixed(1)),
+          pcTotalReactive: Number((6820.4 + index * 40).toFixed(1))
+    }));
+}
+
+const powerConsumptionBankSeriesMap = Object.fromEntries(
+      Array.from({ length: POWER_CONSUMPTION_BANK_COUNT }, (_, i) => [`bank-${i + 1}`, buildPowerConsumptionBankSeries(i)])
+);
+const powerConsumptionBankDetailByEquipment = Object.fromEntries(
+      Array.from({ length: POWER_CONSUMPTION_BANK_COUNT }, (_, i) => [`bank-${i + 1}`, buildPowerConsumptionBankDetail(i)])
+);
+
 export const mockPowerConsumptionStatus = {
-    gridLatest: buildMonitoringLatest(),
-    essLatest: buildMonitoringLatest(),
-    pcsLatest: buildMonitoringLatest(),
-    diesel1Latest: buildMonitoringLatest(),
-    diesel2Latest: Object.assign(buildMonitoringLatest(), { value1: 0, remark: 'stop' }),
-    gridStatusList: buildMonitoringStatusList(6)
+    bankList: Array.from({ length: POWER_CONSUMPTION_BANK_COUNT }, (_, i) => ({ targetId: `bank-${i + 1}`, targetName: `BANK ${i + 1}` })),
+    bankSeriesMap: powerConsumptionBankSeriesMap,
+    bankDetailByEquipment: powerConsumptionBankDetailByEquipment
 };
 
 export const mockAcStatus = {
