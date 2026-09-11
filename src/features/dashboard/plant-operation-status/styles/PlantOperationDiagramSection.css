@@ -254,7 +254,7 @@
 .plant-operation-inverter-detail-table td,
 .plant-operation-inverter-matrix-table td {
   padding: 0 var(--topology-cell-padding-x);
-  text-align: left;
+  text-align: right;
   vertical-align: middle;
   border-right: var(--topology-cell-border-width) solid var(--topology-cell-line);
   border-bottom: var(--topology-cell-border-width) solid var(--topology-cell-line);
@@ -267,11 +267,8 @@
 }
 
 .plant-operation-value-right {
-  display: inline-block;
-  width: 50%;
-  text-align: right;
-  white-space: nowrap;
-  vertical-align: middle;
+  display: inline;
+  text-align: inherit;
 }
 
 .plant-operation-bank-table thead th {
@@ -325,13 +322,7 @@
 
 .plant-operation-simple-table--ac-status td {
   padding-left: 4px !important;
-  text-align: center !important;
-}
-
-.plant-operation-simple-table--ac-status td .plant-operation-value-right {
-  display: inline;
-  width: auto;
-  text-align: inherit;
+  text-align: right !important;
 }
 
 .plant-operation-simple-table__row-icon {
@@ -371,7 +362,6 @@
 
 .plant-operation-bank-table tr > :last-child {
   width: 44%;
-  padding-left: 14%;
 }
 
 .plant-operation-bank-table tr > :last-child,
@@ -658,8 +648,7 @@
 
 .plant-operation-simple-table--bank-collector-left td {
   padding: 0 var(--topology-cell-left-padding-tight) 0 var(--topology-cell-left-padding-x);
-  padding-left: 12%;
-  text-align: left;
+  text-align: right;
   font-weight: 700;
 }
 
@@ -770,7 +759,7 @@
 .plant-operation-power-table td {
   min-width: 0;
   padding: 0 var(--topology-cell-left-padding-x) 0 var(--topology-cell-left-padding-tight);
-  text-align: center;
+  text-align: right;
   font-size: var(--topology-cell-font-size);
   font-weight: 500;
 }
@@ -839,8 +828,7 @@
 }
 
 .plant-operation-pcs-table td {
-  padding-left: 16%;
-  text-align: left;
+  text-align: right;
 }
 
 .plant-operation-battery-table th,
@@ -896,13 +884,12 @@
 
 .plant-operation-generator-table td {
   width: 46%;
-  text-align: left;
+  text-align: right;
   padding-left: var(--topology-cell-left-padding-tight);
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  text-align: left !important;
-  padding-left: 16% !important;
+  text-align: right !important;
 }
 
 .plant-operation-power-table td .plant-operation-empty-value {
@@ -1000,8 +987,7 @@
 }
 
 .plant-operation-inverter-matrix-table td:not(:first-child) {
-  padding-left: 15%;
-  text-align: left;
+  text-align: right;
 }
 
 .plant-operation-inverter-matrix-table th[scope='col']:not(:first-child) {
