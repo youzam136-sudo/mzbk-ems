@@ -325,10 +325,13 @@
 
 .plant-operation-simple-table--ac-status td {
   padding-left: 4px !important;
+  text-align: center !important;
 }
 
 .plant-operation-simple-table--ac-status td .plant-operation-value-right {
-  width: 100%;
+  display: inline;
+  width: auto;
+  text-align: inherit;
 }
 
 .plant-operation-simple-table__row-icon {
