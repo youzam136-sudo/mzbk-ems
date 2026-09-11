@@ -35,39 +35,7 @@ export const productionNavigationGroups: NavigationGroup[] = [
         source: 'fallback'
       },
       {
-        label: 'PCS현황',
-        path: '/monitoring/pcs',
-        matchPaths: ['/dashboard/charge-discharge'],
-        iconSrc: commonIconSources.chargeDischarge.src,
-        iconAlt: commonIconSources.chargeDischarge.alt,
-        source: 'fallback'
-      },
-      {
-        label: '배터리현황',
-        path: '/monitoring/battery',
-        matchPaths: ['/dashboard/charge-discharge'],
-        iconSrc: commonIconSources.chargeDischarge.src,
-        iconAlt: commonIconSources.chargeDischarge.alt,
-        source: 'fallback'
-      },
-      {
-        label: '디젤1현황',
-        path: '/monitoring/diesel1',
-        matchPaths: ['/dashboard/support-generation'],
-        iconSrc: commonIconSources.supportGeneration.src,
-        iconAlt: commonIconSources.supportGeneration.alt,
-        source: 'fallback'
-      },
-      {
-        label: '디젤2현황',
-        path: '/monitoring/diesel2',
-        matchPaths: ['/dashboard/support-generation'],
-        iconSrc: commonIconSources.supportGeneration.src,
-        iconAlt: commonIconSources.supportGeneration.alt,
-        source: 'fallback'
-      },
-      {
-        label: 'GRID현황',
+        label: '기저발전',
         path: '/monitoring/grid',
         matchPaths: ['/dashboard/base-generation'],
         iconSrc: commonIconSources.baseGeneration.src,
@@ -75,11 +43,27 @@ export const productionNavigationGroups: NavigationGroup[] = [
         source: 'fallback'
       },
       {
-        label: 'ESS현황',
+        label: '디젤발전',
         path: '/monitoring/ess',
-        matchPaths: ['/dashboard/support-generation'],
+        matchPaths: ['/dashboard/support-generation', '/monitoring/diesel1', '/monitoring/diesel2'],
         iconSrc: commonIconSources.supportGeneration.src,
         iconAlt: commonIconSources.supportGeneration.alt,
+        source: 'fallback'
+      },
+      {
+        label: '충방전현황',
+        path: '/monitoring/pcs',
+        matchPaths: ['/dashboard/charge-discharge', '/monitoring/battery'],
+        iconSrc: commonIconSources.chargeDischarge.src,
+        iconAlt: commonIconSources.chargeDischarge.alt,
+        source: 'fallback'
+      },
+      {
+        label: '현황정보',
+        path: '/monitoring/dispatch',
+        matchPaths: ['/dashboard/power-consumption-status'],
+        iconSrc: commonIconSources.powerConsumption.src,
+        iconAlt: commonIconSources.powerConsumption.alt,
         source: 'fallback'
       },
       {

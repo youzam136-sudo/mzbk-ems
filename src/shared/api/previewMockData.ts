@@ -65,7 +65,7 @@ function buildMonitoringLatest() {
 function buildMonitoringStatusList(count: number) {
     return Array.from({ length: count }, (_, i) => ({
           baseLabel: '0' + (i + 1), chargeKwh: 128.6 + i * 4, current: 92.1 + i * 2, detailYn: 'N',
-          dischargeKwh: 96.4 + i * 3, frequency: 60.0, oilPress: 4.2, operTime: '1' + i + '0000', operYmd: '20260810',
+          dischargeKwh: 96.4 + i * 3, frequency: 60.0, oilPress: 4.2, operTime: `${String(10 + i).padStart(2, '0')}:00:00`, operYmd: '20260810',
           pf: 0.96, powerKwh: 210.4 + i * 5, rpm: 1800, rowNo: i + 1, soc: 74 + i, soh: 95, tankLevel: 82,
           targetId: 'T' + (i + 1), targetName: 'unit ' + (i + 1), temperature: 28.4 + i,
           value1: 320.5, value2: 42.3, value3: 0.97, value4: 0, voltage: 380.2
@@ -76,7 +76,7 @@ function buildBaseGenerationInverterSeries(index: number) {
     const base = 24 + index * 3;
     return Array.from({ length: 6 }, (_, i) => ({
           esmtOperYmd: '20260810',
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           status: index === 5 ? '정지' : '정상',
           baAtpTot: index === 5 ? 0 : Number((base + i * 1.2).toFixed(1))
     }));
@@ -85,7 +85,7 @@ function buildBaseGenerationInverterSeries(index: number) {
 function buildBaseGenerationInverterDetail(index: number) {
     const base = 24 + index * 3;
     return Array.from({ length: 6 }, (_, i) => ({
-          operTime: '1' + i + '0000',
+          operTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           status: index === 5 ? '정지' : '정상',
           activePower: index === 5 ? 0 : Number((base + i * 1.2).toFixed(1)),
           reactivePower: index === 5 ? 0 : Number((1.8 + i * 0.1).toFixed(1)),
@@ -112,7 +112,7 @@ const baseGenerationDetailListByTarget = Object.fromEntries(
 );
 const baseGenerationTotalStatusList = Array.from({ length: 6 }, (_, i) => ({
       esmtOperYmd: '20260810',
-      esmtOperTime: '1' + i + '0000',
+      esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
       baAtpTot: Object.values(baseGenerationTargetSeriesMap).reduce((sum, series) => sum + (series[i]?.baAtpTot ?? 0), 0)
 }));
 
@@ -133,7 +133,7 @@ export const mockBaseGenerationStatus = {
 function buildDieselStatusList(count: number, unitIndex: number, stopped: boolean) {
     return Array.from({ length: count }, (_, i) => ({
           esmtOperYmd: '20260810',
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           dslStat: stopped ? '정지' : '정상',
           dslAtpTot: stopped ? 0 : Number((68 + unitIndex * 2 + i * 1.4).toFixed(1)),
           dslVtg: stopped ? 0 : 380.1 + i * 0.1,
@@ -145,7 +145,7 @@ function buildDieselStatusList(count: number, unitIndex: number, stopped: boolea
 
 function buildDieselDetailList(count: number, unitIndex: number, stopped: boolean) {
     return Array.from({ length: count }, (_, i) => ({
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           dslStat: stopped ? '정지' : '정상',
           dslAtpTot: stopped ? 0 : Number((68 + unitIndex * 2 + i * 1.4).toFixed(1)),
           dslRtpTot: stopped ? 0 : Number((4.2 + i * 0.2).toFixed(1)),
@@ -180,7 +180,7 @@ function buildPcsStatusList(count: number) {
           const charging = i % 3 !== 2;
           return {
                 esmtOperYmd: '20260810',
-                esmtOperTime: '1' + i + '0000',
+                esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
                 pcsOperStatus: charging ? '충전' : '방전',
                 pcsPaL1: Number((152.4 + i * 2).toFixed(1)),
                 pcsPtpvL12: 380.2,
@@ -193,7 +193,7 @@ function buildPcsStatusList(count: number) {
 function buildBatteryStatusList(count: number) {
     return Array.from({ length: count }, (_, i) => ({
           esmtOperYmd: '20260810',
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           batAvgSoc: Number((52 + i * 3).toFixed(1)),
           batAvgSoh: 96.0,
           batAvgDcv: 809.2,
@@ -224,7 +224,7 @@ function buildPowerConsumptionBankSeries(index: number) {
     const base = 62.4 + index * 3;
     return Array.from({ length: 6 }, (_, i) => ({
           esmtOperYmd: '20260810',
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           pcActive: Number((base + i * 1.1).toFixed(1)),
           pcFreq: 60.0,
           pcPf: 0.96
@@ -234,7 +234,7 @@ function buildPowerConsumptionBankSeries(index: number) {
 function buildPowerConsumptionBankDetail(index: number) {
     const base = 62.4 + index * 3;
     return Array.from({ length: 6 }, (_, i) => ({
-          esmtOperTime: '1' + i + '0000',
+          esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`,
           pcStat: '정상',
           pcVtg: 380.2,
           pcCur: Number((92.4 + index * 4 + i).toFixed(1)),
@@ -265,7 +265,7 @@ export const mockPowerConsumptionStatus = {
 export const mockAcStatus = {
     latest: { esmtOperYmd: '20260810', esmtOperTime: '143000', acOperStuscd: '02', acSuplyAirtmp: 18.4, acRtnAirtmp: 24.1, acRtnAirhum: 46 },
     statusList: Array.from({ length: 4 }, (_, i) => ({
-          esmtOperYmd: '20260810', esmtOperTime: '1' + i + '0000', acOperStuscd: '02',
+          esmtOperYmd: '20260810', esmtOperTime: `${String(10 + i).padStart(2, '0')}:00:00`, acOperStuscd: '02',
           acSuplyAirtmp: 18 + i * 0.4, acRtnAirtmp: 24 + i * 0.3, acRtnAirhum: 44 + i
     }))
 };
