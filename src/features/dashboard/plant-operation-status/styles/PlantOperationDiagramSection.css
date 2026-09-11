@@ -893,7 +893,7 @@
 }
 
 .plant-operation-simple-table[data-topology-table-kind='generator'] td {
-  padding-right: 35px !important;
+  padding-right: 25px !important;
   text-align: right !important;
 }
 
