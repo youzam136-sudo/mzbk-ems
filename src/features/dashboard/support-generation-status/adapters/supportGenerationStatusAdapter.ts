@@ -20,8 +20,8 @@ const SUMMARY_COLORS = ['#25b6fe', '#cdced2'];
 const operationTableHeaderRows: TableHeaderCell[][] = [
   [
     { label: 'TIME', rowSpan: 2 },
-    { label: 'Diesel #1', colSpan: 5 },
-    { label: 'Diesel #2', colSpan: 5 }
+    { label: 'Diesel #1', colSpan: 6 },
+    { label: 'Diesel #2', colSpan: 6 }
   ],
   [
     { label: '상태' },

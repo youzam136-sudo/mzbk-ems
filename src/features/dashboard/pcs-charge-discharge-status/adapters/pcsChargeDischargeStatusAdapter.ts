@@ -13,26 +13,25 @@ import type { PcsChargeDischargeStatusResponse } from '../api/pcsChargeDischarge
 
 const pcsTableHeaderRows: TableHeaderCell[][] = [
   [
-    { label: 'TIME', rowSpan: 2 },
-    { label: 'ESS PCS', colSpan: 4 },
-    { label: 'ESS BATT', colSpan: 9 }
+    { label: 'TIME', rowSpan: 3 },
+    { label: 'PCS', colSpan: 4 },
+    { label: 'BATT', colSpan: 10 }
   ],
   [
-    { label: 'OPER' },
-    { label: 'AC A' },
-    { label: 'AC V' },
-    { label: 'AC P' },
-    { label: 'OPER BSC' },
-    { label: 'SoC (BSC)' },
-    { label: 'SoH (BSC)' },
-    { label: 'DC V (BSC)' },
-    { label: 'DC A (BSC)' },
-    { label: 'RACK (AVG) V' },
-    { label: 'RACK (AVG) A' },
-    { label: 'CELL (AVG) V' },
-    { label: 'CELL (AVG) A' },
-    { label: 'TEMP (AVG)' }
-  ]
+    { label: '상태', rowSpan: 2 },
+    { label: 'AC A[A]', rowSpan: 2 },
+    { label: 'AC V[V]', rowSpan: 2 },
+    { label: 'AC P[kW]', rowSpan: 2 },
+    { label: '상태', rowSpan: 2 },
+    { label: 'SoC[%]', rowSpan: 2 },
+    { label: 'SoH[%]', rowSpan: 2 },
+    { label: 'DC V[V]', rowSpan: 2 },
+    { label: 'DC A[A]', rowSpan: 2 },
+    { label: 'RACK (AVG)', colSpan: 2 },
+    { label: 'CELL (AVG)', colSpan: 2 },
+    { label: 'TMP (AVG)[°C]', rowSpan: 2 }
+  ],
+  [{ label: 'V[V]' }, { label: 'A[A]' }, { label: 'V[V]' }, { label: 'A[A]' }]
 ];
 
 const batteryTableHeaderRows: TableHeaderCell[][] = [
