@@ -31,34 +31,45 @@ const operationHeaderRows: TableHeaderCell[][] = [
   [
     { label: 'Time', rowSpan: 2 },
     { label: 'PCS', colSpan: 3 },
-    { label: 'BATT', colSpan: 6 }
+    { label: 'SoC[%]', rowSpan: 2 },
+    { label: 'SoH[%]', rowSpan: 2 },
+    { label: 'DC V[V]', rowSpan: 2 },
+    { label: 'DC A[A]', rowSpan: 2 },
+    { label: 'RACK', colSpan: 2 },
+    { label: 'CELL', colSpan: 2 },
+    { label: 'TMP[°C]', rowSpan: 2 }
   ],
   [
     { label: 'AC A[A]' },
     { label: 'AC V[V]' },
-    { label: 'AC P[kW]' },
-    { label: 'SoC[%]' },
-    { label: 'SoH[%]' },
-    { label: 'DC V[V]' },
-    { label: 'DC A[A]' },
-    { label: 'RACK(AVG) V[V]' },
-    { label: 'CELL(AVG) V[V]' }
+    { label: 'AC P[kWh]' },
+    { label: 'V[V]' },
+    { label: 'A[A]' },
+    { label: 'V[V]' },
+    { label: 'A[A]' }
   ]
 ];
 
 const detailHeaderRows: TableHeaderCell[][] = [
   [
-    { label: 'Time', rowSpan: 2 },
+    { label: 'Time', rowSpan: 3 },
     { label: 'RACK', colSpan: 8 },
     { label: 'CELL', colSpan: 8 },
     { label: 'PACK', colSpan: 2 }
   ],
   [
-    { label: 'V[V] Max' }, { label: 'V[V] Min' }, { label: 'V[V] Max#' }, { label: 'V[V] Min#' },
-    { label: 'A[A] Max' }, { label: 'A[A] Min' }, { label: 'A[A] Max#' }, { label: 'A[A] Min#' },
-    { label: 'V[V] Max' }, { label: 'V[V] Min' }, { label: 'V[V] Max#' }, { label: 'V[V] Min#' },
-    { label: 'A[A] Max' }, { label: 'A[A] Min' }, { label: 'A[A] Max#' }, { label: 'A[A] Min#' },
-    { label: 'TMP[°C] Max' }, { label: 'TMP[°C] Max#' }
+    { label: 'V[V]', colSpan: 4 },
+    { label: 'A[A]', colSpan: 4 },
+    { label: 'V[V]', colSpan: 4 },
+    { label: 'A[A]', colSpan: 4 },
+    { label: 'TMP[°C]', colSpan: 2 }
+  ],
+  [
+    { label: 'Max' }, { label: 'Min' }, { label: 'Max [No]' }, { label: 'Min [No]' },
+    { label: 'Max' }, { label: 'Min' }, { label: 'Max [No]' }, { label: 'Min [No]' },
+    { label: 'Max' }, { label: 'Min' }, { label: 'Max [No]' }, { label: 'Min [No]' },
+    { label: 'Max' }, { label: 'Min' }, { label: 'Max [No]' }, { label: 'Min [No]' },
+    { label: 'Max' }, { label: 'Max [No]' }
   ]
 ];
 
@@ -111,7 +122,10 @@ export function usePcsChargeDischargeHistoryData(criteria: SearchConditionCriter
       '809.2',
       formatNumber(40.3 + i),
       '483.6',
-      '3.65'
+      formatNumber(118.9 + i),
+      '3.65',
+      formatNumber(118.9 + i),
+      formatNumber(24.3 + i * 0.2)
     ]);
 
     const detailRows: TableRow[] = labels.map((label, i) => [

@@ -18,6 +18,10 @@
   gap: var(--mzbk-space-5);
 }
 
+.power-consumption-history-result__detail-header > :last-child {
+  margin-left: auto;
+}
+
 @media (max-width: 720px) {
   .power-consumption-history-result .card__body {
     gap: var(--mzbk-space-5);

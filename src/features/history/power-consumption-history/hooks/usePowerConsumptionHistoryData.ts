@@ -73,7 +73,7 @@ export function usePowerConsumptionHistoryData(criteria: SearchConditionCriteria
 
     const operationHeaderRows: TableHeaderCell[][] = [
       [{ label: 'Time', rowSpan: 2 }, ...bankLabels.map((label) => ({ label, colSpan: 3 }))],
-      bankLabels.flatMap(() => [{ label: '유효[kW]' }, { label: '주파수[Hz]' }, { label: 'PF[%]' }])
+      bankLabels.flatMap(() => [{ label: '유효[kWh]' }, { label: '주파수[Hz]' }, { label: 'PF[%]' }])
     ];
 
     const operationRows: TableRow[] = labels.map((label, dayIndex) => [
