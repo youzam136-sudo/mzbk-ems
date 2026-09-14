@@ -114,7 +114,8 @@ function DashboardOutlet() {
     return <PageLoadingFallback label="로그인 상태를 확인하는 중입니다." />;
   }
 
-  if (!isAuthenticated) {
+  // TEMP: 디자인 확인용으로 로그인 임시 우회 중 — 클라이언트 전달 시에는 아래 "false &&" 를 반드시 제거할 것
+  if (false && !isAuthenticated) {
     return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
