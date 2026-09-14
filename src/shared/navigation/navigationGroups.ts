@@ -84,7 +84,7 @@ export const productionNavigationGroups: NavigationGroup[] = [
     source: 'fallback',
     items: [
       {
-        label: 'GRID이력',
+        label: '기저발전 이력',
         path: '/history/grid',
         matchPaths: ['/history/grid-base-generation-history'],
         iconSrc: commonIconSources.gridHistory.src,
@@ -92,47 +92,19 @@ export const productionNavigationGroups: NavigationGroup[] = [
         source: 'fallback'
       },
       {
-        label: 'ESS이력',
+        label: '디젤발전 이력',
         path: '/history/ess',
-        matchPaths: ['/history/support-generation-history'],
+        matchPaths: ['/history/support-generation-history', '/history/diesel1', '/history/diesel2'],
         iconSrc: commonIconSources.supportHistory.src,
         iconAlt: commonIconSources.supportHistory.alt,
         source: 'fallback'
       },
       {
-        label: 'PCS이력',
+        label: '충방전 이력',
         path: '/history/pcs',
-        matchPaths: ['/history/pcs-charge-discharge-history'],
+        matchPaths: ['/history/pcs-charge-discharge-history', '/history/battery'],
         iconSrc: commonIconSources.pcsHistory.src,
         iconAlt: commonIconSources.pcsHistory.alt,
-        source: 'fallback'
-      },
-      {
-        label: '배터리이력',
-        path: '/history/battery',
-        iconSrc: commonIconSources.chargeDischarge.src,
-        iconAlt: commonIconSources.chargeDischarge.alt,
-        source: 'fallback'
-      },
-      {
-        label: '디젤1이력',
-        path: '/history/diesel1',
-        iconSrc: commonIconSources.supportHistory.src,
-        iconAlt: commonIconSources.supportHistory.alt,
-        source: 'fallback'
-      },
-      {
-        label: '디젤2이력',
-        path: '/history/diesel2',
-        iconSrc: commonIconSources.supportHistory.src,
-        iconAlt: commonIconSources.supportHistory.alt,
-        source: 'fallback'
-      },
-      {
-        label: '공조기이력',
-        path: '/history/ac',
-        iconSrc: commonIconSources.acStatus.src,
-        iconAlt: commonIconSources.acStatus.alt,
         source: 'fallback'
       },
       {

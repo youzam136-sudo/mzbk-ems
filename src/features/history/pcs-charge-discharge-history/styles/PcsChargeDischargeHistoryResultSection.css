@@ -5,6 +5,25 @@
   padding: var(--mzbk-space-7);
 }
 
+.pcs-charge-history-result__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mzbk-space-4);
+}
+
+.pcs-charge-history-result__stat-row {
+  display: flex;
+  align-items: center;
+  gap: var(--mzbk-space-5);
+}
+
+.pcs-charge-history-result__stat-label {
+  min-width: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d6ddea;
+}
+
 .pcs-charge-history-result__chart {
   width: 100%;
   overflow-x: auto;
