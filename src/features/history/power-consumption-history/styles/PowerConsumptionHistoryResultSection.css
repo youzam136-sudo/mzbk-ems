@@ -6,21 +6,21 @@
 }
 
 .power-consumption-history-result__summary-chips {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--mzbk-space-8, 40px) var(--mzbk-space-6);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--mzbk-space-5) var(--mzbk-space-4);
 }
 
 .power-consumption-history-result__stat-row {
   display: flex;
   align-items: center;
-  gap: var(--mzbk-space-5);
+  gap: var(--mzbk-space-3, 8px);
+  min-width: 0;
 }
 
 .power-consumption-history-result__stat-label {
-  min-width: 40px;
-  font-size: 14px;
+  min-width: 32px;
+  font-size: 13px;
   font-weight: 500;
   color: #d6ddea;
 }
