@@ -63,7 +63,13 @@ export function SupportGenerationHistoryResultSection({ searchCriteria, searched
   return (
     <>
       <PageCard className="support-generation-history-result support-generation-history-result--chart">
-        <SummaryMatrix ariaLabel="보조발전 이력 요약" columns={data.summary.columns} metrics={data.summary.metrics} minWidth={700} />
+        <SummaryMatrix
+          ariaLabel="보조발전 이력 요약"
+          columns={data.summary.columns}
+          metrics={data.summary.metrics}
+          minWidth={700}
+          className="history-summary-matrix--wide-label"
+        />
         <div className="sr-only" aria-live="polite">
           조회 조건: {searchCriteria.mode} / {searchCriteria.startDate || '-'} ~ {searchCriteria.endDate || '-'} / 조회 시각: {searchedAt}
         </div>

@@ -63,7 +63,13 @@ export function PowerConsumptionHistoryResultSection({ searchCriteria, searchedA
   return (
     <>
       <PageCard className="power-consumption-history-result power-consumption-history-result--chart">
-        <SummaryMatrix ariaLabel="전력소비 이력 요약" columns={data.summary.columns} metrics={data.summary.metrics} minWidth={900} />
+        <SummaryMatrix
+          ariaLabel="전력소비 이력 요약"
+          columns={data.summary.columns}
+          metrics={data.summary.metrics}
+          minWidth={900}
+          className="history-summary-matrix--wide-label"
+        />
         <div className="sr-only" aria-live="polite">
           조회 조건: {searchCriteria.mode} / {searchCriteria.startDate || '-'} ~ {searchCriteria.endDate || '-'} / 조회 시각: {searchedAt}
         </div>

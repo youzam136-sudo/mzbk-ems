@@ -5,6 +5,10 @@
   padding: var(--mzbk-space-7);
 }
 
+.history-summary-matrix--wide-label {
+  --summary-label-width: 220px;
+}
+
 .power-consumption-history-result__detail-panel {
   display: flex;
   flex-direction: column;
