@@ -89,7 +89,7 @@ export function PcsChargeDischargeSummarySection({ summary, chart }: PcsChargeDi
 
   return (
     <PageCard className="card--tight pcs-charge-summary">
-      <div className="pcs-charge-summary__stats">
+      <div className="pcs-charge-summary__stats pcs-charge-summary__stats--inline">
         {summary.rows.map((row) => (
           <div className="pcs-charge-summary__stat-row" key={row.label}>
             <span className="pcs-charge-summary__stat-label">{row.label}</span>

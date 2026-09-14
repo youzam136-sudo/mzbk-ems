@@ -11,6 +11,13 @@
   gap: var(--mzbk-space-4);
 }
 
+.pcs-charge-history-result__stats--inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mzbk-space-6);
+}
+
 .pcs-charge-history-result__stat-row {
   display: flex;
   align-items: center;

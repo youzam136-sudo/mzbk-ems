@@ -57,7 +57,7 @@ export function PcsChargeDischargeHistoryResultSection({ searchCriteria, searche
   return (
     <>
       <PageCard className="pcs-charge-history-result">
-        <div className="pcs-charge-history-result__stats">
+        <div className="pcs-charge-history-result__stats pcs-charge-history-result__stats--inline">
           {data.summary.map((row) => (
             <div className="pcs-charge-history-result__stat-row" key={row.label}>
               <span className="pcs-charge-history-result__stat-label">{row.label}</span>
