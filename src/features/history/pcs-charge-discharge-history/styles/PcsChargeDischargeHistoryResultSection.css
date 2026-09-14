@@ -15,7 +15,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--mzbk-space-6);
+  gap: var(--mzbk-space-8, 40px);
 }
 
 .pcs-charge-history-result__stat-row {
