@@ -5,6 +5,26 @@
   padding: var(--mzbk-space-7);
 }
 
+.power-consumption-history-result__summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mzbk-space-8, 40px) var(--mzbk-space-6);
+}
+
+.power-consumption-history-result__stat-row {
+  display: flex;
+  align-items: center;
+  gap: var(--mzbk-space-5);
+}
+
+.power-consumption-history-result__stat-label {
+  min-width: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d6ddea;
+}
+
 .history-summary-matrix--wide-label {
   --summary-label-width: 220px;
 }
