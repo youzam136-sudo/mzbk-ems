@@ -8,7 +8,7 @@
 .support-generation-history-result__summary-chips {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: var(--mzbk-space-5) var(--mzbk-space-4);
+  gap: var(--mzbk-space-3, 8px) var(--mzbk-space-4);
 }
 
 .support-generation-history-result__stat-row {
