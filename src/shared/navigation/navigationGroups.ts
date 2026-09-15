@@ -114,6 +114,13 @@ export const productionNavigationGroups: NavigationGroup[] = [
         iconSrc: commonIconSources.powerHistory.src,
         iconAlt: commonIconSources.powerHistory.alt,
         source: 'fallback'
+      },
+      {
+        label: '공조기 이력',
+        path: '/history/ac',
+        iconSrc: commonIconSources.acStatus.src,
+        iconAlt: commonIconSources.acStatus.alt,
+        source: 'fallback'
       }
     ]
   }

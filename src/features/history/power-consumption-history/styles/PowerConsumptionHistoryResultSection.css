@@ -8,7 +8,7 @@
 .power-consumption-history-result__summary-chips {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: var(--mzbk-space-3, 8px) var(--mzbk-space-4);
+  gap: 4px var(--mzbk-space-4);
 }
 
 .power-consumption-history-result__stat-row {
