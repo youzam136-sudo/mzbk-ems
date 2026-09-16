@@ -1,7 +1,11 @@
 .pcs-charge-summary {
   display: flex;
   flex-direction: column;
-  gap: var(--mzbk-space-6);
+  gap: var(--mzbk-space-8, 32px);
+}
+
+.pcs-charge-summary .summary-matrix-wrap {
+  margin-bottom: var(--mzbk-space-4);
 }
 
 .pcs-charge-summary__stats {
