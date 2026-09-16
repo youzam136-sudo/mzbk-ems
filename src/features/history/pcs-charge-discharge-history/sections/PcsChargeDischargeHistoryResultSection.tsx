@@ -6,7 +6,7 @@ import { DataTableCard } from '../../../../shared/ui/DataTableCard';
 import { DetailToggleBar } from '../../../../shared/ui/DetailToggleBar';
 import type { SearchConditionCriteria } from '../../../../shared/ui/SearchConditionBar';
 import { PageCard } from '../../../../shared/ui/PageCard';
-import { StatChipGroup } from '../../../../shared/ui/StatChipGroup';
+import { SummaryMatrix } from '../../../../shared/ui/SummaryMatrix';
 import { usePcsChargeDischargeHistoryData } from '../hooks/usePcsChargeDischargeHistoryData';
 import type { PcsChargeDischargeHistoryMode } from '../types/pcsChargeDischargeHistory';
 import '../styles/PcsChargeDischargeHistoryResultSection.css';
@@ -57,21 +57,12 @@ export function PcsChargeDischargeHistoryResultSection({ searchCriteria, searche
   return (
     <>
       <PageCard className="pcs-charge-history-result">
-        <div className="pcs-charge-history-result__stats pcs-charge-history-result__stats--inline">
-          {data.summary.map((row) => (
-            <div className="pcs-charge-history-result__stat-row" key={row.label}>
-              <span className="pcs-charge-history-result__stat-label">{row.label}</span>
-              <StatChipGroup
-                ariaLabel={`${row.label} MAX/MIN/AVG`}
-                items={[
-                  { label: 'MAX[kWh]', value: row.max },
-                  { label: 'MIN[kWh]', value: row.min },
-                  { label: 'AVG[kWh]', value: row.avg }
-                ]}
-              />
-            </div>
-          ))}
-        </div>
+        <SummaryMatrix
+          ariaLabel="PCS 충방전 이력 요약"
+          columns={['MAX[kWh]', 'MIN[kWh]', 'AVG[kWh]']}
+          metrics={data.summary.map((row) => ({ label: row.label, values: [row.max, row.min, row.avg] }))}
+          minWidth={420}
+        />
         <div className="sr-only" aria-live="polite">
           조회 조건: {searchCriteria.mode} / {searchCriteria.startDate || '-'} ~ {searchCriteria.endDate || '-'} / 조회 시각: {searchedAt}
         </div>

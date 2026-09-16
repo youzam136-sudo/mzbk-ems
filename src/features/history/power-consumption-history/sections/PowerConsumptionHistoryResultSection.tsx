@@ -15,6 +15,7 @@ import { EquipmentSelect } from '../../../../shared/ui/EquipmentSelect';
 import { ExcelSaveButton } from '../../../../shared/ui/ExcelSaveButton';
 import type { SearchConditionCriteria } from '../../../../shared/ui/SearchConditionBar';
 import { PageCard } from '../../../../shared/ui/PageCard';
+import { SummaryMatrix } from '../../../../shared/ui/SummaryMatrix';
 import { StatChipGroup } from '../../../../shared/ui/StatChipGroup';
 import { isSingleDayRange } from '../../../../shared/utils/hourlyChartSlots';
 import { detailHeaderRows, usePowerConsumptionHistoryData } from '../hooks/usePowerConsumptionHistoryData';
@@ -62,17 +63,13 @@ export function PowerConsumptionHistoryResultSection({ searchCriteria, searchedA
   return (
     <>
       <PageCard className="power-consumption-history-result power-consumption-history-result--chart">
-        <div className="power-consumption-history-result__summary-chips">
-          {data.summary.columns.map((column, columnIndex) => (
-            <div className="power-consumption-history-result__stat-row" key={column}>
-              <span className="power-consumption-history-result__stat-label">{column}</span>
-              <StatChipGroup
-                ariaLabel={`${column} 요약`}
-                items={data.summary.metrics.map((metric) => ({ label: metric.label, value: metric.values[columnIndex] }))}
-              />
-            </div>
-          ))}
-        </div>
+        <SummaryMatrix
+          ariaLabel="전력소비 이력 요약"
+          columns={data.summary.columns}
+          metrics={data.summary.metrics}
+          minWidth={900}
+          className="history-summary-matrix--wide-label"
+        />
         <div className="sr-only" aria-live="polite">
           조회 조건: {searchCriteria.mode} / {searchCriteria.startDate || '-'} ~ {searchCriteria.endDate || '-'} / 조회 시각: {searchedAt}
         </div>

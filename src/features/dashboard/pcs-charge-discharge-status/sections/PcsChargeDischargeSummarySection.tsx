@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import type { EChartsOption } from 'echarts';
 import { BaseChart } from '../../../../shared/ui/BaseChart';
 import { PageCard } from '../../../../shared/ui/PageCard';
-import { StatChipGroup } from '../../../../shared/ui/StatChipGroup';
+import { SummaryMatrix } from '../../../../shared/ui/SummaryMatrix';
 import type { PcsChargeDischargeChartData, PcsChargeDischargeSummaryData } from '../types/pcsChargeDischargeStatus';
 import '../styles/PcsChargeDischargeSummarySection.css';
 
@@ -89,21 +89,12 @@ export function PcsChargeDischargeSummarySection({ summary, chart }: PcsChargeDi
 
   return (
     <PageCard className="card--tight pcs-charge-summary">
-      <div className="pcs-charge-summary__stats pcs-charge-summary__stats--inline">
-        {summary.rows.map((row) => (
-          <div className="pcs-charge-summary__stat-row" key={row.label}>
-            <span className="pcs-charge-summary__stat-label">{row.label}</span>
-            <StatChipGroup
-              ariaLabel={`${row.label} MAX/MIN/AVG`}
-              items={[
-                { label: 'MAX[kWh]', value: row.max },
-                { label: 'MIN[kWh]', value: row.min },
-                { label: 'AVG[kWh]', value: row.avg }
-              ]}
-            />
-          </div>
-        ))}
-      </div>
+      <SummaryMatrix
+        ariaLabel="PCS 충방전 요약"
+        columns={['MAX[kWh]', 'MIN[kWh]', 'AVG[kWh]']}
+        metrics={summary.rows.map((row) => ({ label: row.label, values: [row.max, row.min, row.avg] }))}
+        minWidth={420}
+      />
 
       <div className="pcs-charge-summary__chart">
         <BaseChart option={chartOption} height={300} />
